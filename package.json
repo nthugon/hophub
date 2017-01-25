@@ -1,0 +1,19 @@
+{
+  "name": "beer-reviewed-journal",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "cd client && npm i && npm test && cd ../server && npm i && npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nthugon/beer-reviewed-journal.git"
+  },
+  "author": "@nthugon",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nthugon/beer-reviewed-journal/issues"
+  },
+  "homepage": "https://github.com/nthugon/beer-reviewed-journal#readme"
+}
