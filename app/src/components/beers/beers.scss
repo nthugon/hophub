@@ -1,0 +1,14 @@
+:local(.beers) {
+    margin:  10% 2% 2%;
+    border: 1px solid black;
+
+    header {
+        background-color: #f4d06f;
+        margin: 0;
+        position: fixed;
+        width: 100%;
+        top: 0;
+        left: 0;
+        z-index: 1000;
+    }
+}

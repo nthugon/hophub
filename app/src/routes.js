@@ -16,9 +16,9 @@ export default function routes($stateProvider, $urlRouterProvider) {
         url: '/beers',
         abstract: true,
         default: '.all',
-        data: {
-            public: true
-        },
+        // data: {
+        //     public: true
+        // },
         // resolve: {
         //     beers: ['yetToBeMadeService', beers => {
         //         return beers.get();
@@ -30,9 +30,9 @@ export default function routes($stateProvider, $urlRouterProvider) {
     $stateProvider.state({
         name: 'beers.all',
         url: '/all',
-        data: {
-            public: true
-        },
+        // data: {
+        //     public: true
+        // },
         component: 'allBeers'
     });
 
