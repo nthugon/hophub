@@ -1,0 +1,21 @@
+<section ng-class="$ctrl.styles.reviews">
+    <div>
+        <h2>This beer has the following reviews.</h2>
+        <table>
+            <thead>
+                <tr>
+                    <td>Stars</td>
+                    <td>Comments</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="review in $ctrl.beer.reviews">
+                    <td>{{review.stars}}</td>
+                    <td>{{review.comments}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <button ng-click="$ctrl.goToAddReview()">Add a Review</button>
+    <button ng-click="$ctrl.backToBeers()">Back to Beers</button>
+</section>

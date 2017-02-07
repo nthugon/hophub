@@ -1,0 +1,24 @@
+<section ng-class="$ctrl.styles.addbeers">
+    <h2>Use the Form Below to Add a Beer</h2>
+    <div class="add-beer">
+        <div>
+            <h3>Enter the Beer's Information</h3>
+            <label>Name</label>
+            <input ng-model="$ctrl.name">
+        </div>
+        <div>
+            <label>Style</label>
+            <input ng-model="$ctrl.style">
+        </div>
+        <div>
+            <label>Brewer</label>
+            <input ng-model="$ctrl.brewer">
+        </div>
+        <div>
+            <label>ABV</label>
+            <input ng-model="$ctrl.abv">
+        </div>
+        <button ng-click="$ctrl.addBeer()">Add</button>
+        <button ng-click="$ctrl.backToAll()">Cancel</button>       
+    </div>
+</section>

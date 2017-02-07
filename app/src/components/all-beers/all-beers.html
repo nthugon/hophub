@@ -11,8 +11,8 @@
         </thead>
         <tbody>
             <tr ng-repeat="beer in $ctrl.beers"
-                ui-sref="store({
-                    id: store._id
+                ui-sref="beer({
+                    id: beer._id
                 })">
                 <td>{{beer.name}}</td>
                 <td>{{beer.brewer}}</td>

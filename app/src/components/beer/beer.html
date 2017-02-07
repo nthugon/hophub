@@ -1,0 +1,8 @@
+<section ng-class="$ctrl.styles.beer">
+    <header>
+            <button ng-if="$ctrl.isAuthenticated()" ui-sref="welcome" ng-click="$ctrl.logout()">logout</button>
+    </header>
+    <section>
+        <ui-view></ui-view>
+    </section>
+</section>
