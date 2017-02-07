@@ -4,7 +4,7 @@ const User = require('../models/user');
 const token = require('../auth/token');
 const ensureAuth = require('../auth/ensure-auth')();
 
-router.post('/validate', ensureAuth, (req, res, next) => {
+router.get('/validate', ensureAuth, (req, res, next) => {
     res.send({valid: true});
 });
 

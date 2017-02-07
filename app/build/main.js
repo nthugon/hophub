@@ -96,7 +96,7 @@
 	
 	app.config(_routes2.default);
 	
-	var dev = 'localhost:3000/api';
+	var dev = 'http://localhost:3000/api';
 	
 	app.value('apiUrl', dev);
 	app.config(_http2.default);
@@ -34176,15 +34176,54 @@
 	};
 	
 	
-	function controller() {
+	controller.$inject = ['beerService', '$state', '$scope'];
+	
+	function controller(beers, $state, $scope) {
+	    var _this = this;
+	
+	    $scope.$state = $state;
+	
 	    this.styles = _allBeers4.default;
+	
+	    this.updateView = function () {
+	        $state.go($state.current.name, { view: _this.view });
+	    };
+	
+	    albums.get().then(function (albums) {
+	        _this.albums = albums;
+	    });
+	
+	    this.reset = function () {
+	        _this.name = '';
+	        _this.featured = '';
+	    };
+	
+	    this.reset();
+	
+	    this.addAlbum = function () {
+	        albums.add({
+	            name: _this.name,
+	            featured: _this.featured
+	        }).then(function (saved) {
+	            // push to in-memory array
+	            _this.albums.push(saved);
+	        }).then(_this.reset());
+	    };
+	
+	    this.deleteAlbum = function (album, event) {
+	        event.stopPropagation();
+	        albums.remove(album._id).then(function () {
+	            var index = _this.albums.indexOf(album);
+	            if (index > -1) _this.albums.splice(index, 1);
+	        });
+	    };
 	}
 
 /***/ },
 /* 29 */
 /***/ function(module, exports) {
 
-	module.exports = "<section ng-class=\"$ctrl.styles.allbeers\">\n    <p>Random content on beers/all-beers.<p>\n</section>\n";
+	module.exports = "<section ng-class=\"$ctrl.styles.allbeers\">\n    <h2>Select a Beer to See Its Reviews</h2>\n    <table>\n        <thead>\n            <tr>\n                <td>Beer</td>\n                <td>Brewer</td>\n                <td>Style</td>\n                <td>ABV</td>\n            </tr>\n        </thead>\n        <tbody>\n            <tr ng-repeat=\"beer in $ctrl.beers\"\n                ui-sref=\"store({\n                    id: store._id\n                })\">\n                <td>{{beer.name}}</td>\n                <td>{{beer.brewer}}</td>\n                <td>{{beer.style}}</td>\n                <td>{{beer.abv}}</td>\n            </tr>\n        </tbody>\n    </table>\n    <nav>\n        <button ng-click=\"$ctrl.goToAdd()\">Add a Store</button>\n    </nav>\n</section>\n";
 
 /***/ },
 /* 30 */
@@ -44640,26 +44679,49 @@
 	        url: '/beers',
 	        abstract: true,
 	        default: '.all',
-	        // data: {
-	        //     public: true
-	        // },
-	        // resolve: {
-	        //     beers: ['yetToBeMadeService', beers => {
-	        //         return beers.get();
-	        //     }]
-	        // },
+	        resolve: {
+	            beers: ['beerService', function (beers) {
+	                return beers.get();
+	            }]
+	        },
 	        component: 'beers'
 	    });
 	
 	    $stateProvider.state({
 	        name: 'beers.all',
 	        url: '/all',
-	        data: {
-	            public: true
-	        },
 	        component: 'allBeers'
 	    });
 	
+	    $stateProvider.state({
+	        name: 'beers.add',
+	        url: '/add',
+	        component: 'addBeers'
+	    });
+	
+	    $stateProvider.state({
+	        name: 'beer',
+	        url: '/beers/:id',
+	        abstract: true,
+	        default: '.reviews',
+	        resolve: {
+	            beer: ['$transition$', 'beerService', function (t, beers) {
+	                return beers.get(t.params().id);
+	            }]
+	        },
+	        component: 'beer'
+	    });
+	
+	    $stateProvider.state({
+	        name: 'beer.reviews',
+	        url: '/reviews',
+	        component: 'beerReviews'
+	    });
+	
+	    $stateProvider.state({
+	        name: 'beer.addReview'
+	
+	    });
 	    $urlRouterProvider.otherwise('/welcome');
 	}
 

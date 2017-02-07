@@ -1,6 +1,6 @@
 const token = require('./token');
 
-module.exports = function getEnsureAuth() {
+module.exports = function ensureAuth() {
 
     return function ensureAuth(req, res, next) {
         const jwt = req.headers.authorization;

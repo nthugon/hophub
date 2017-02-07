@@ -1,3 +1,27 @@
 <section ng-class="$ctrl.styles.allbeers">
-    <p>Random content on beers/all-beers.<p>
+    <h2>Select a Beer to See Its Reviews</h2>
+    <table>
+        <thead>
+            <tr>
+                <td>Beer</td>
+                <td>Brewer</td>
+                <td>Style</td>
+                <td>ABV</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="beer in $ctrl.beers"
+                ui-sref="store({
+                    id: store._id
+                })">
+                <td>{{beer.name}}</td>
+                <td>{{beer.brewer}}</td>
+                <td>{{beer.style}}</td>
+                <td>{{beer.abv}}</td>
+            </tr>
+        </tbody>
+    </table>
+    <nav>
+        <button ng-click="$ctrl.goToAdd()">Add a Store</button>
+    </nav>
 </section>

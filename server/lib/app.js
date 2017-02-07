@@ -19,10 +19,10 @@ if(process.env.NODE_ENV === 'production') {
 }
 app.use(cors);
 app.use(express.static('./public'));
-app.use(errorHandler);
 app.use(checkDb);
 app.use('/api/auth', auth);
 app.use('/api/beers', ensureAuth, beers);
 app.use('/api/reviews', ensureAuth, reviews);
+app.use(errorHandler);
 
 module.exports = app;
