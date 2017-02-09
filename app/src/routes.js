@@ -3,12 +3,26 @@ routes.$inject = ['$stateProvider', '$urlRouterProvider'];
 export default function routes($stateProvider, $urlRouterProvider) {
 
     $stateProvider.state({
-        name: 'welcome',
-        url: '/welcome',
+        name: 'about',
+        url: '/about',
         data: {
             public: true
         },
-        component: 'welcome' 
+        abstract: true,
+        default: '.app',
+        component: 'about' 
+    });
+
+    $stateProvider.state({
+        name: 'about.app',
+        url: '/app',
+        component: 'aboutApp'
+    });
+
+    $stateProvider.state({
+        name: 'about.developer',
+        url: '/developer',
+        component: 'aboutDeveloper'
     });
 
     $stateProvider.state({
@@ -59,6 +73,6 @@ export default function routes($stateProvider, $urlRouterProvider) {
         name: 'beer.addReview',
 
     });
-    $urlRouterProvider.otherwise('/welcome');
+    $urlRouterProvider.otherwise('/about/app');
     
 }

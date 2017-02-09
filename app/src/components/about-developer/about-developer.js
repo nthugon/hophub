@@ -1,5 +1,5 @@
-import template from './welcome.html';
-import styles from './welcome.scss';
+import template from './about-developer.html';
+import styles from './about-developer.scss';
 
 export default {
     template,
@@ -9,3 +9,4 @@ export default {
 function controller() {
     this.styles = styles;
 }
+

@@ -1,0 +1,21 @@
+<section ng-class="$ctrl.styles.about">
+    <header>
+        <div>
+            <h1>The Beer Reviewed Journal</h1>
+        </div>
+        <nav>
+            <ul>
+                <li ng-if="$ctrl.isAuthenticated()" ui-sref="about" ng-click="$ctrl.logout()">LOGOUT</li>
+                <li ng-if="!$ctrl.isAuthenticated()" ui-sref="beers">SIGNIN</li>
+                <li ng-if="$ctrl.isAuthenticated()" ui-sref="profile">PROFILE</li>
+                <li ui-sref="about">HOME</li>
+            </ul>
+        </nav>
+    </header>
+
+    <ui-view></ui-view>
+
+    <footer ui-sref="about.developer">
+        &copy; 2017 Nathan Hugon
+    </footer>
+</section>
