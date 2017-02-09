@@ -15,7 +15,7 @@ function controller($state) {
     this.styles = styles;
 
     this.goToAddReview = () => {
-        $state.go('store.addReview');
+        $state.go('beer.addReview');
     };
 
     this.backToBeers = () => {

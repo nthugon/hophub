@@ -23,7 +23,7 @@ function interceptor($window, tokenService, $state) {
         responseError(response) {
             if (response.status == 403) {
                 tokenService.remove();
-                $state.go('welcome');
+                $state.go('about');
             }
             return Promise.reject(response);
         }

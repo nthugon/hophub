@@ -13,6 +13,14 @@ router
             .catch(next);
     })
 
+    .get('/user', (req, res, next) => {
+        Review.find({user: req.user._id})
+            .select('stars user beer comments')
+            .lean()
+            .then(reviews => res.send(reviews))
+            .catch(next);
+    })
+
     .get('/:id', (req, res, next) => {
         Review.findById(req.params.id)
             .select('stars user beer comments')
@@ -28,6 +36,9 @@ router
     })
 
     .post('/', bodyParser, (req, res, next) => {
+        const {_id, username} = req.user;
+        req.body.reviewer = username;
+        req.body.user = _id;
         new Review(req.body).save()
             .then(saved => res.send(saved))
             .catch(next);

@@ -11,6 +11,10 @@ const schema = new Schema({
         ref: 'User',
         required: true
     },
+    reviewer: {
+        type: String,
+        required: true
+    },
     beer: {
         type: Schema.Types.ObjectId,
         ref: 'Beer',

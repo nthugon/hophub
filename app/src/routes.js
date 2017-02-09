@@ -71,8 +71,24 @@ export default function routes($stateProvider, $urlRouterProvider) {
 
     $stateProvider.state({
         name: 'beer.addReview',
-
+        url: '/reviews/add',
+        component: 'addReview'
     });
+
+    $stateProvider.state({
+        name: 'profile',
+        url: '/profile',
+        abstract: true,
+        default: 'profile.reviews',
+        component: 'profile'
+    });
+
+    $stateProvider.state({
+        name: 'profile.reviews',
+        url: 'profile/reviews',
+        component: 'userReviews'
+    });
+
     $urlRouterProvider.otherwise('/about/app');
     
 }
