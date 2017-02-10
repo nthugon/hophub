@@ -80,6 +80,11 @@ export default function routes($stateProvider, $urlRouterProvider) {
         url: '/profile',
         abstract: true,
         default: 'profile.reviews',
+        resolve: {
+            reviews: ['reviewService', reviews => {
+                return reviews.getUserReviews();
+            }]
+        },
         component: 'profile'
     });
 

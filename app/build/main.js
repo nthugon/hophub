@@ -34083,7 +34083,7 @@
 /* 21 */
 /***/ function(module, exports) {
 
-	module.exports = "<section ng-class=\"$ctrl.styles.about\">\n    <header>\n        <div>\n            <h1>The Beer Reviewed Journal</h1>\n        </div>\n        <nav>\n            <li ng-if=\"$ctrl.isAuthenticated()\" ui-sref=\"profile\">MY REVIEWS</li>\n            <li ng-if=\"$ctrl.isAuthenticated()\" ui-sref=\"beers\">BEERS</li>\n            <li ng-if=\"$ctrl.isAuthenticated()\" ui-sref=\"about\" ng-click=\"$ctrl.logout()\">LOGOUT</li>\n            <li ng-if=\"!$ctrl.isAuthenticated()\" ui-sref=\"beers\">SIGNIN</li>     \n        </nav>\n    </header>\n\n    <ui-view></ui-view>\n\n    <footer ui-sref=\"about.developer\">\n        &copy; 2017 Nathan Hugon\n    </footer>\n</section>\n";
+	module.exports = "<section ng-class=\"$ctrl.styles.about\">\n    <header>\n        <div>\n            <h1 ui-sref=\"about\">The Beer Reviewed Journal</h1>\n        </div>\n        <nav>\n            <li ng-if=\"$ctrl.isAuthenticated()\" ui-sref=\"profile\">MY REVIEWS</li>\n            <li ng-if=\"$ctrl.isAuthenticated()\" ui-sref=\"beers\">BEERS</li>\n            <li ng-if=\"$ctrl.isAuthenticated()\" ui-sref=\"about\" ng-click=\"$ctrl.logout()\">LOGOUT</li>\n            <li ng-if=\"!$ctrl.isAuthenticated()\" ui-sref=\"beers\">SIGNIN</li>     \n        </nav>\n    </header>\n\n    <ui-view></ui-view>\n\n    <footer ui-sref=\"about.developer\">\n        &copy; 2017 Nathan Hugon\n    </footer>\n</section>\n";
 
 /***/ },
 /* 22 */
@@ -34571,7 +34571,7 @@
 /* 57 */
 /***/ function(module, exports) {
 
-	module.exports = "<section ng-class=\"$ctrl.styles.reviews\">\n    <div>\n        <h2>{{$ctrl.beer.name}} has the following reviews.</h2>\n        <table>\n            <thead>\n                <tr>\n                    <td>Stars</td>\n                    <td>Comments</td>\n                </tr>\n            </thead>\n            <tbody>\n                <tr ng-repeat=\"review in $ctrl.beer.reviews\">\n                    <td>{{review.stars}}</td>\n                    <td>{{review.comments}}</td>\n                </tr>\n            </tbody>\n        </table>\n    </div>\n    <button ng-click=\"$ctrl.goToAddReview()\">Add a Review</button>\n    <button ng-click=\"$ctrl.backToBeers()\">Back to Beers</button>\n</section>\n";
+	module.exports = "<section ng-class=\"$ctrl.styles.reviews\">\n    <div>\n        <h2>{{$ctrl.beer.name}} has the following reviews.</h2>\n        <table>\n            <thead>\n                <tr>\n                    <td>Stars</td>\n                    <td>Comments</td>\n                    <td>Reviewer</td>\n                </tr>\n            </thead>\n            <tbody>\n                <tr ng-repeat=\"review in $ctrl.beer.reviews\">\n                    <td>{{review.stars}}</td>\n                    <td>{{review.comments}}</td>\n                    <td>{{review.reviewer}}</td>\n                </tr>\n            </tbody>\n        </table>\n    </div>\n    <button ng-click=\"$ctrl.goToAddReview()\">Add a Review</button>\n    <button ng-click=\"$ctrl.backToBeers()\">Back to Beers</button>\n</section>\n";
 
 /***/ },
 /* 58 */

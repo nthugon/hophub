@@ -1,3 +1,21 @@
 <section ng-class="$ctrl.styles.userreviews">
     <h1>Here is where the user's reviews will go</h1>
+    <table>
+        <thead>
+            <tr>
+                <td>Stars</td>
+                <td>User</td>
+                <td>Beer</td>
+                <td>Comment</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="review in $ctrl.reviews">
+                <td>{{review.stars}}</td>
+                <td>{{review.user}}</td>
+                <td>{{review.beer}}</td>
+                <td>{{review.comments}}</td>
+            </tr>
+        </tbody>
+    </table>
 </section>

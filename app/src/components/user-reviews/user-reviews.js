@@ -3,6 +3,9 @@ import styles from './user-reviews.scss';
 
 export default {
     template,
+    bindings: { 
+        reviews: '<'
+    },
     controller
 };
 
