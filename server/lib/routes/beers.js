@@ -17,7 +17,7 @@ router
 
         Promise.all([
             Beer.findById(beer).lean(),
-            Review.find({beer}).select('stars user beer comments').lean()
+            Review.find({beer}).select('stars reviewer comments').lean()
         ])
         .then(([beer, reviews]) => {
             beer.reviews = reviews;
