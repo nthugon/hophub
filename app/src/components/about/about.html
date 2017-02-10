@@ -4,10 +4,10 @@
             <h1>The Beer Reviewed Journal</h1>
         </div>
         <nav>
+            <li ng-if="$ctrl.isAuthenticated()" ui-sref="profile">MY REVIEWS</li>
+            <li ng-if="$ctrl.isAuthenticated()" ui-sref="beers">BEERS</li>
             <li ng-if="$ctrl.isAuthenticated()" ui-sref="about" ng-click="$ctrl.logout()">LOGOUT</li>
-            <li ng-if="!$ctrl.isAuthenticated()" ui-sref="beers">SIGNIN</li>
-            <li ng-if="$ctrl.isAuthenticated()" ui-sref="profile">PROFILE</li>
-            <li ui-sref="about">HOME</li>
+            <li ng-if="!$ctrl.isAuthenticated()" ui-sref="beers">SIGNIN</li>     
         </nav>
     </header>
 
