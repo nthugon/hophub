@@ -16,9 +16,11 @@ function controller(reviews, $state) {
 
     this.addReview = () => {
         reviews.add({
-            stars: this.stars,
+            drinkAgain: this.drinkAgain,
             comments: this.comments,
-            beer: this.beer._id
+            beerId: this.beer._id,
+            brewery: this.beer.brewery,
+            beerName: this.beer.name
         })
         .then(saved => {
             const beerId = this.beer._id;

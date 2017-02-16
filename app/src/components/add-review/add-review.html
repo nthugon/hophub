@@ -3,8 +3,15 @@
     <div class="add-review">
         <div>
             <h3>Add a Review</h3>
-            <label>Stars:</label>
-            <input type="number" name="quantity" ng-model="$ctrl.stars" min="1" max="5">
+            <label>Would You Drink This Beer Again?</label>
+            <span ng-repeat="drinkAgain in ['no', 'occasionally', 'yes']">
+            <input 
+                ng-model="$ctrl.drinkAgain" 
+                name="drinkAgain" 
+                ng-value="drinkAgain" 
+                type="radio"> 
+                {{drinkAgain}}
+            </span>
         </div>
         <div>
             <label>Comments</label>

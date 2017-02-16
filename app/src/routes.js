@@ -71,7 +71,7 @@ export default function routes($stateProvider, $urlRouterProvider) {
 
     $stateProvider.state({
         name: 'beer.addReview',
-        url: '/reviews/add',
+        url: '/add',
         component: 'addReview'
     });
 
@@ -90,7 +90,7 @@ export default function routes($stateProvider, $urlRouterProvider) {
 
     $stateProvider.state({
         name: 'profile.reviews',
-        url: 'profile/reviews',
+        url: '/reviews',
         component: 'userReviews'
     });
 

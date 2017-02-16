@@ -7,15 +7,14 @@ const ensureAdmin = require('../auth/ensure-admin')();
 router
     .get('/', (req, res, next) => {
         Review.find({})
-            .select('stars user beer comments')
             .lean()
             .then(reviews => res.send(reviews))
             .catch(next);
     })
 
     .get('/user', (req, res, next) => {
-        Review.find({user: req.user._id})
-            .select('stars user beer comments')
+        Review.find({userId: req.user._id})
+            .select('drinkAgain brewery beerName beerId comments')
             .lean()
             .then(reviews => res.send(reviews))
             .catch(next);
@@ -23,7 +22,6 @@ router
 
     .get('/:id', (req, res, next) => {
         Review.findById(req.params.id)
-            .select('stars user beer comments')
             .lean()
             .then(review => res.send(review))
             .catch(next);
@@ -38,7 +36,7 @@ router
     .post('/', bodyParser, (req, res, next) => {
         const {_id, username} = req.user;
         req.body.reviewer = username;
-        req.body.user = _id;
+        req.body.userId = _id;
         new Review(req.body).save()
             .then(saved => res.send(saved))
             .catch(next);

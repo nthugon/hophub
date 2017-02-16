@@ -13,11 +13,11 @@ router
     })
 
     .get('/:id', (req, res, next) => {
-        const beer = req.params.id;
+        const beerId = req.params.id;
 
         Promise.all([
-            Beer.findById(beer).lean(),
-            Review.find({beer}).select('stars reviewer comments').lean()
+            Beer.findById(beerId).lean(),
+            Review.find({beerId}).select('drinkAgain reviewer comments').lean()
         ])
         .then(([beer, reviews]) => {
             beer.reviews = reviews;

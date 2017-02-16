@@ -22,7 +22,7 @@ function controller(beers, $state) {
         beers.add({
             name: this.name,
             style: this.style,
-            brewer: this.brewer,
+            brewery: this.brewery,
             abv: this.abv
         })
         .then(saved => {              

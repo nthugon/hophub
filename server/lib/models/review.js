@@ -2,11 +2,12 @@ const mongoose = require( 'mongoose' );
 const Schema = mongoose.Schema;
 
 const schema = new Schema({
-    stars: {
-        type: Number,
+    drinkAgain: {
+        type: String,
+        enum: ['no', 'occasionally', 'yes'],
         required: true
     },
-    user: {
+    userId: {
         type: Schema.Types.ObjectId,
         ref: 'User',
         required: true
@@ -15,9 +16,17 @@ const schema = new Schema({
         type: String,
         required: true
     },
-    beer: {
+    beerId: {
         type: Schema.Types.ObjectId,
         ref: 'Beer',
+        required: true
+    },
+    brewery: {
+        type: String,
+        required: true
+    },
+    beerName: {
+        type: String,
         required: true
     },
     comments: {

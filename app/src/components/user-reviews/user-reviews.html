@@ -3,17 +3,17 @@
     <table>
         <thead>
             <tr>
-                <td>Stars</td>
-                <td>User</td>
-                <td>Beer</td>
-                <td>Comment</td>
+                <td>Brewery</td>
+                <td>Beer Name</td>
+                <td>Drink Again?</td>
+                <td>Comments</td>
             </tr>
         </thead>
         <tbody>
             <tr ng-repeat="review in $ctrl.reviews">
-                <td>{{review.stars}}</td>
-                <td>{{review.user}}</td>
-                <td>{{review.beer}}</td>
+                <td>{{review.brewery}}</td>
+                <td>{{review.beerName}}</td>
+                <td>{{review.drinkAgain}}</td>
                 <td>{{review.comments}}</td>
             </tr>
         </tbody>

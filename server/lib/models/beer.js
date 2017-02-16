@@ -7,10 +7,9 @@ const schema = new Schema({
         required: true
     },
     style: {
-        type: String,
-        required: true
+        type: String
     },
-    brewer: {
+    brewery: {
         type: String,
         required: true
     },
