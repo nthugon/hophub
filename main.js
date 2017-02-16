@@ -34762,6 +34762,9 @@
 	
 	exports.default = {
 	    template: _userReviews2.default,
+	    bindings: {
+	        reviews: '<'
+	    },
 	    controller: controller
 	};
 	
@@ -34774,7 +34777,7 @@
 /* 73 */
 /***/ function(module, exports) {
 
-	module.exports = "<section ng-class=\"$ctrl.styles.userreviews\">\n    <h1>Here is where the user's reviews will go</h1>\n</section>\n";
+	module.exports = "<section ng-class=\"$ctrl.styles.userreviews\">\n    <h1>Here is where the user's reviews will go</h1>\n    <table>\n        <thead>\n            <tr>\n                <td>Stars</td>\n                <td>User</td>\n                <td>Beer</td>\n                <td>Comment</td>\n            </tr>\n        </thead>\n        <tbody>\n            <tr ng-repeat=\"review in $ctrl.reviews\">\n                <td>{{review.stars}}</td>\n                <td>{{review.user}}</td>\n                <td>{{review.beer}}</td>\n                <td>{{review.comments}}</td>\n            </tr>\n        </tbody>\n    </table>\n</section>\n";
 
 /***/ },
 /* 74 */
@@ -45245,6 +45248,11 @@
 	        url: '/profile',
 	        abstract: true,
 	        default: 'profile.reviews',
+	        resolve: {
+	            reviews: ['reviewService', function (reviews) {
+	                return reviews.getUserReviews();
+	            }]
+	        },
 	        component: 'profile'
 	    });
 	
