@@ -27,6 +27,15 @@ app.config(routes);
 const dev = 'http://localhost:3000/api';
 
 app.value('apiUrl', dev);
+app.config(['$qProvider', function ($qProvider) {
+    $qProvider.errorOnUnhandledRejections(false);
+}]);
+// app.config(['$state', function ($state) {
+//     $state.defaultErrorHandler(function() { /* do nothing */});
+// }]);
 app.config(http);
 app.run(auth);
+
+
+
 

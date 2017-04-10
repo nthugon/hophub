@@ -45,3 +45,9 @@ jspm_packages
 
 # Output of 'npm pack'
 *.tgz
+
+# Text Editor files
+.vscode
+
+# Hidden Variables on process object
+.env

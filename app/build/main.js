@@ -99,6 +99,12 @@
 	var dev = 'http://localhost:3000/api';
 	
 	app.value('apiUrl', dev);
+	app.config(['$qProvider', function ($qProvider) {
+	    $qProvider.errorOnUnhandledRejections(false);
+	}]);
+	// app.config(['$state', function ($state) {
+	//     $state.defaultErrorHandler(function() { /* do nothing */});
+	// }]);
 	app.config(_http2.default);
 	app.run(_auth2.default);
 
@@ -34340,7 +34346,7 @@
 	        beers.add({
 	            name: _this.name,
 	            style: _this.style,
-	            brewer: _this.brewer,
+	            brewery: _this.brewery,
 	            abv: _this.abv
 	        }).then(function (saved) {
 	            _this.beers.push(saved);
@@ -34353,7 +34359,7 @@
 /* 41 */
 /***/ function(module, exports) {
 
-	module.exports = "<section ng-class=\"$ctrl.styles.addbeers\">\n    <h2>Use the Form Below to Add a Beer</h2>\n    <div class=\"add-beer\">\n        <div>\n            <h3>Enter the Beer's Information</h3>\n            <label>Name</label>\n            <input ng-model=\"$ctrl.name\">\n        </div>\n        <div>\n            <label>Style</label>\n            <input ng-model=\"$ctrl.style\">\n        </div>\n        <div>\n            <label>Brewer</label>\n            <input ng-model=\"$ctrl.brewer\">\n        </div>\n        <div>\n            <label>ABV</label>\n            <input ng-model=\"$ctrl.abv\">\n        </div>\n        <button ng-click=\"$ctrl.addBeer()\">Add</button>\n        <button ng-click=\"$ctrl.backToAll()\">Cancel</button>       \n    </div>\n</section>\n";
+	module.exports = "<section ng-class=\"$ctrl.styles.addbeers\">\n    <h2>Use the Form Below to Add a Beer</h2>\n    <div class=\"add-beer\">\n        <div>\n            <h3>Enter the Beer's Information</h3>\n            <label>Name</label>\n            <input ng-model=\"$ctrl.name\">\n        </div>\n        <div>\n            <label>Style</label>\n            <input ng-model=\"$ctrl.style\">\n        </div>\n        <div>\n            <label>Brewery</label>\n            <input ng-model=\"$ctrl.brewery\">\n        </div>\n        <div>\n            <label>ABV</label>\n            <input ng-model=\"$ctrl.abv\">\n        </div>\n        <button ng-click=\"$ctrl.addBeer()\">Add</button>\n        <button ng-click=\"$ctrl.backToAll()\">Cancel</button>       \n    </div>\n</section>\n";
 
 /***/ },
 /* 42 */
@@ -34400,9 +34406,11 @@
 	
 	    this.addReview = function () {
 	        reviews.add({
-	            stars: _this.stars,
+	            drinkAgain: _this.drinkAgain,
 	            comments: _this.comments,
-	            beer: _this.beer._id
+	            beerId: _this.beer._id,
+	            brewery: _this.beer.brewery,
+	            beerName: _this.beer.name
 	        }).then(function (saved) {
 	            var beerId = _this.beer._id;
 	            _this.beer.reviews.push(saved);
@@ -34419,7 +34427,7 @@
 /* 45 */
 /***/ function(module, exports) {
 
-	module.exports = "<section ng-class=\"$ctrl.styles.addreview\">\n    <h2>Use the Form Below to Add a Review for {{$ctrl.beer.name}}</h2>\n    <div class=\"add-review\">\n        <div>\n            <h3>Add a Review</h3>\n            <label>Stars:</label>\n            <input type=\"number\" name=\"quantity\" ng-model=\"$ctrl.stars\" min=\"1\" max=\"5\">\n        </div>\n        <div>\n            <label>Comments</label>\n            <input ng-model=\"$ctrl.comments\">\n        </div>\n        <button ng-click=\"$ctrl.addReview()\">Add</button>\n        <button ng-click=\"$ctrl.backToBeer()\">Cancel</button>        \n    </div>\n</section>\n";
+	module.exports = "<section ng-class=\"$ctrl.styles.addreview\">\n    <h2>Use the Form Below to Add a Review for {{$ctrl.beer.name}}</h2>\n    <div class=\"add-review\">\n        <div>\n            <h3>Add a Review</h3>\n            <label>Would You Drink This Beer Again?</label>\n            <span ng-repeat=\"drinkAgain in ['no', 'occasionally', 'yes']\">\n            <input \n                ng-model=\"$ctrl.drinkAgain\" \n                name=\"drinkAgain\" \n                ng-value=\"drinkAgain\" \n                type=\"radio\"> \n                {{drinkAgain}}\n            </span>\n        </div>\n        <div>\n            <label>Comments</label>\n            <input ng-model=\"$ctrl.comments\">\n        </div>\n        <button ng-click=\"$ctrl.addReview()\">Add</button>\n        <button ng-click=\"$ctrl.backToBeer()\">Cancel</button>        \n    </div>\n</section>\n";
 
 /***/ },
 /* 46 */
@@ -34471,7 +34479,7 @@
 /* 49 */
 /***/ function(module, exports) {
 
-	module.exports = "<section ng-class=\"$ctrl.styles.allbeers\">\n    <h2>Select a Beer to See Its Reviews</h2>\n    <table>\n        <thead>\n            <tr>\n                <td>Beer</td>\n                <td>Brewer</td>\n                <td>Style</td>\n                <td>ABV</td>\n            </tr>\n        </thead>\n        <tbody>\n            <tr ng-repeat=\"beer in $ctrl.beers\"\n                ui-sref=\"beer({\n                    id: beer._id\n                })\">\n                <td>{{beer.name}}</td>\n                <td>{{beer.brewer}}</td>\n                <td>{{beer.style}}</td>\n                <td>{{beer.abv}}</td>\n            </tr>\n        </tbody>\n    </table>\n    <nav>\n        <button ng-click=\"$ctrl.goToAdd()\">Add a Beer</button>\n    </nav>\n</section>\n";
+	module.exports = "<section ng-class=\"$ctrl.styles.allbeers\">\n    <h2>Select a Beer to See Its Reviews</h2>\n    <table>\n        <thead>\n            <tr>\n                <td>Beer</td>\n                <td>Brewery</td>\n                <td>Style</td>\n                <td>ABV</td>\n            </tr>\n        </thead>\n        <tbody>\n            <tr ng-repeat=\"beer in $ctrl.beers\"\n                ui-sref=\"beer({\n                    id: beer._id\n                })\">\n                <td>{{beer.name}}</td>\n                <td>{{beer.brewery}}</td>\n                <td>{{beer.style}}</td>\n                <td>{{beer.abv}}</td>\n            </tr>\n        </tbody>\n    </table>\n    <nav>\n        <button ng-click=\"$ctrl.goToAdd()\">Add a Beer</button>\n    </nav>\n</section>\n";
 
 /***/ },
 /* 50 */
@@ -34515,7 +34523,7 @@
 /* 53 */
 /***/ function(module, exports) {
 
-	module.exports = "<main>\n    <ui-view></ui-view>\n</main>\n\n";
+	module.exports = "<main ng-class=\"$ctrl.styles.app\">\n    <ui-view></ui-view>\n</main>\n\n";
 
 /***/ },
 /* 54 */
@@ -34571,7 +34579,7 @@
 /* 57 */
 /***/ function(module, exports) {
 
-	module.exports = "<section ng-class=\"$ctrl.styles.reviews\">\n    <div>\n        <h2>{{$ctrl.beer.name}} has the following reviews.</h2>\n        <table>\n            <thead>\n                <tr>\n                    <td>Stars</td>\n                    <td>Comments</td>\n                    <td>Reviewer</td>\n                </tr>\n            </thead>\n            <tbody>\n                <tr ng-repeat=\"review in $ctrl.beer.reviews\">\n                    <td>{{review.stars}}</td>\n                    <td>{{review.comments}}</td>\n                    <td>{{review.reviewer}}</td>\n                </tr>\n            </tbody>\n        </table>\n    </div>\n    <button ng-click=\"$ctrl.goToAddReview()\">Add a Review</button>\n    <button ng-click=\"$ctrl.backToBeers()\">Back to Beers</button>\n</section>\n";
+	module.exports = "<section ng-class=\"$ctrl.styles.reviews\">\n    <div>\n        <h2>{{$ctrl.beer.name}} has the following reviews.</h2>\n        <table>\n            <thead>\n                <tr>\n                    <td>Drink Again?</td>\n                    <td>Comments</td>\n                    <td>Reviewer</td>\n                </tr>\n            </thead>\n            <tbody>\n                <tr ng-repeat=\"review in $ctrl.beer.reviews\">\n                    <td>{{review.drinkAgain}}</td>\n                    <td>{{review.comments}}</td>\n                    <td>{{review.reviewer}}</td>\n                </tr>\n            </tbody>\n        </table>\n    </div>\n    <button ng-click=\"$ctrl.goToAddReview()\">Add a Review</button>\n    <button ng-click=\"$ctrl.backToBeers()\">Back to Beers</button>\n</section>\n";
 
 /***/ },
 /* 58 */
@@ -34777,7 +34785,7 @@
 /* 73 */
 /***/ function(module, exports) {
 
-	module.exports = "<section ng-class=\"$ctrl.styles.userreviews\">\n    <h1>Here is where the user's reviews will go</h1>\n    <table>\n        <thead>\n            <tr>\n                <td>Stars</td>\n                <td>User</td>\n                <td>Beer</td>\n                <td>Comment</td>\n            </tr>\n        </thead>\n        <tbody>\n            <tr ng-repeat=\"review in $ctrl.reviews\">\n                <td>{{review.stars}}</td>\n                <td>{{review.user}}</td>\n                <td>{{review.beer}}</td>\n                <td>{{review.comments}}</td>\n            </tr>\n        </tbody>\n    </table>\n</section>\n";
+	module.exports = "<section ng-class=\"$ctrl.styles.userreviews\">\n    <h1>Here is where the user's reviews will go</h1>\n    <table>\n        <thead>\n            <tr>\n                <td>Brewery</td>\n                <td>Beer Name</td>\n                <td>Drink Again?</td>\n                <td>Comments</td>\n            </tr>\n        </thead>\n        <tbody>\n            <tr ng-repeat=\"review in $ctrl.reviews\">\n                <td>{{review.brewery}}</td>\n                <td>{{review.beerName}}</td>\n                <td>{{review.drinkAgain}}</td>\n                <td>{{review.comments}}</td>\n            </tr>\n        </tbody>\n    </table>\n</section>\n";
 
 /***/ },
 /* 74 */
@@ -45239,7 +45247,7 @@
 	
 	    $stateProvider.state({
 	        name: 'beer.addReview',
-	        url: '/reviews/add',
+	        url: '/add',
 	        component: 'addReview'
 	    });
 	
@@ -45258,7 +45266,7 @@
 	
 	    $stateProvider.state({
 	        name: 'profile.reviews',
-	        url: 'profile/reviews',
+	        url: '/reviews',
 	        component: 'userReviews'
 	    });
 	
