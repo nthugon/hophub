@@ -34092,7 +34092,7 @@
 /* 21 */
 /***/ function(module, exports) {
 
-	module.exports = "<section ng-class=\"$ctrl.styles.about\">\n    <header>\n        <div>\n            <h1 ui-sref=\"about\">The Beer Reviewed Journal</h1>\n        </div>\n        <nav>\n            <li ng-if=\"$ctrl.isAuthenticated()\" ui-sref=\"profile\">MY REVIEWS</li>\n            <li ng-if=\"$ctrl.isAuthenticated()\" ui-sref=\"beers\">BEERS</li>\n            <li ng-if=\"$ctrl.isAuthenticated()\" ui-sref=\"about\" ng-click=\"$ctrl.logout()\">LOGOUT</li>\n            <li ng-if=\"!$ctrl.isAuthenticated()\" ui-sref=\"beers\">SIGNIN</li>     \n        </nav>\n    </header>\n\n    <ui-view></ui-view>\n\n    <footer ui-sref=\"about.developer\">\n        &copy; 2017 Nathan Hugon\n    </footer>\n</section>\n";
+	module.exports = "<section ng-class=\"$ctrl.styles.about\">\n    <header>\n        <div>\n            <h1 ui-sref=\"about\">The Beer Reviewed Journal</h1>\n        </div>\n        <nav>\n            <li ng-if=\"$ctrl.isAuthenticated()\" ui-sref=\"profile\">MY REVIEWS</li>\n            <li ng-if=\"$ctrl.isAuthenticated()\" ui-sref=\"beers\">BEERS</li>\n            <li ng-if=\"$ctrl.isAdmin()\" ui-sref=\"beers\">ADD BEERS</li>\n            <li ng-if=\"$ctrl.isAuthenticated()\" ui-sref=\"about\" ng-click=\"$ctrl.logout()\">LOGOUT</li>\n            <li ng-if=\"!$ctrl.isAuthenticated()\" ui-sref=\"beers\">SIGNIN</li>     \n        </nav>\n    </header>\n\n    <ui-view></ui-view>\n\n    <footer ui-sref=\"about.developer\">\n        &copy; 2017 Nathan Hugon\n    </footer>\n</section>\n";
 
 /***/ },
 /* 22 */
@@ -34399,16 +34399,19 @@
 	};
 	
 	
-	controller.$inject = ['reviewService', '$state'];
+	controller.$inject = ['reviewService', 'userService', '$state'];
 	
-	function controller(reviews, $state) {
+	function controller(reviews, user, $state) {
 	    var _this = this;
 	
 	    this.styles = _addReview4.default;
+	    this.user = user.getUserInfo();
 	
 	    this.addReview = function () {
 	        reviews.add({
 	            drinkAgain: _this.drinkAgain,
+	            userId: _this.user._id,
+	            reviewer: _this.user.username,
 	            comments: _this.comments,
 	            beerId: _this.beer._id,
 	            brewery: _this.beer.brewery,
@@ -34682,13 +34685,16 @@
 	    this.isAuthenticated = function () {
 	        return userService.isAuthenticated();
 	    };
+	    this.isAdmin = function () {
+	        return userService.isAdmin();
+	    };
 	}
 
 /***/ },
 /* 65 */
 /***/ function(module, exports) {
 
-	module.exports = "<section ng-class=\"$ctrl.styles.beers\">\n    <header>\n        <div>\n            <h1 ui-sref=\"about\">The Beer Reviewed Journal</h1>\n        </div>\n        <nav>\n            <li ng-if=\"$ctrl.isAuthenticated()\" ui-sref=\"profile\">MY REVIEWS</li>\n            <li ng-if=\"$ctrl.isAuthenticated()\" ui-sref=\"beers\">BEERS</li>\n            <li ng-if=\"$ctrl.isAuthenticated()\" ui-sref=\"about\" ng-click=\"$ctrl.logout()\">LOGOUT</li>\n            <li ng-if=\"!$ctrl.isAuthenticated()\" ui-sref=\"beers\">SIGNIN</li>     \n        </nav>\n    </header>\n    <p>Random content on beers parent.<p>\n    <section>\n        <ui-view></ui-view>\n    </section>\n</section>\n";
+	module.exports = "<section ng-class=\"$ctrl.styles.beers\">\n    <header>\n        <div>\n            <h1 ui-sref=\"about\">The Beer Reviewed Journal</h1>\n        </div>\n        <nav>\n            <li ng-if=\"$ctrl.isAuthenticated()\" ui-sref=\"profile\">MY REVIEWS</li>\n            <li ng-if=\"$ctrl.isAuthenticated()\" ui-sref=\"beers\">BEERS</li>\n            <li ng-if=\"$ctrl.isAdmin()\" ui-sref=\"beers\">ADD BEERS</li>\n            <li ng-if=\"$ctrl.isAuthenticated()\" ui-sref=\"about\" ng-click=\"$ctrl.logout()\">LOGOUT</li>\n            <li ng-if=\"!$ctrl.isAuthenticated()\" ui-sref=\"beers\">SIGNIN</li>     \n        </nav>\n    </header>\n    <p>Random content on beers parent.<p>\n    <section>\n        <ui-view></ui-view>\n    </section>\n</section>\n";
 
 /***/ },
 /* 66 */
@@ -34734,13 +34740,16 @@
 	    this.isAuthenticated = function () {
 	        return userService.isAuthenticated();
 	    };
+	    this.isAdmin = function () {
+	        return userService.isAdmin();
+	    };
 	}
 
 /***/ },
 /* 69 */
 /***/ function(module, exports) {
 
-	module.exports = "<section ng-class=\"$ctrl.styles.profile\">\n    <header>\n        <div>\n            <h1 ui-sref=\"about\">The Beer Reviewed Journal</h1>\n        </div>\n        <nav>\n            <li ng-if=\"$ctrl.isAuthenticated()\" ui-sref=\"profile\">MY REVIEWS</li>\n            <li ng-if=\"$ctrl.isAuthenticated()\" ui-sref=\"beers\">BEERS</li>\n            <li ng-if=\"$ctrl.isAuthenticated()\" ui-sref=\"about\" ng-click=\"$ctrl.logout()\">LOGOUT</li>\n            <li ng-if=\"!$ctrl.isAuthenticated()\" ui-sref=\"beers\">SIGNIN</li>     \n        </nav>\n    </header>\n\n    <ui-view></ui-view>\n\n    <footer ui-sref=\"about.developer\">\n        &copy; 2017 Nathan Hugon\n    </footer>\n</section>\n";
+	module.exports = "<section ng-class=\"$ctrl.styles.profile\">\n    <header>\n        <div>\n            <h1 ui-sref=\"about\">The Beer Reviewed Journal</h1>\n        </div>\n        <nav>\n            <li ng-if=\"$ctrl.isAuthenticated()\" ui-sref=\"profile\">MY REVIEWS</li>\n            <li ng-if=\"$ctrl.isAuthenticated()\" ui-sref=\"beers\">BEERS</li>\n            <li ng-if=\"$ctrl.isAdmin()\" ui-sref=\"beers\">ADD BEERS</li>\n            <li ng-if=\"$ctrl.isAuthenticated()\" ui-sref=\"about\" ng-click=\"$ctrl.logout()\">LOGOUT</li>\n            <li ng-if=\"!$ctrl.isAuthenticated()\" ui-sref=\"beers\">SIGNIN</li>     \n        </nav>\n    </header>\n\n    <ui-view></ui-view>\n\n    <footer ui-sref=\"about.developer\">\n        &copy; 2017 Nathan Hugon\n    </footer>\n</section>\n";
 
 /***/ },
 /* 70 */
@@ -34988,12 +34997,38 @@
 	    function credential(endpoint) {
 	        return function (credentials) {
 	            return $http.post(apiUrl + '/auth/' + endpoint, credentials).then(function (result) {
-	                // console.log(result.data.info.token);
 	                token.set(result.data.token);
 	            }).catch(function (err) {
 	                throw err.data;
 	            });
 	        };
+	    }
+	
+	    function urlBase64Decode(str) {
+	        var output = str.replace('-', '+').replace('_', '/');
+	        switch (output.length % 4) {
+	            case 0:
+	                break;
+	            case 2:
+	                output += '==';
+	                break;
+	            case 3:
+	                output += '=';
+	                break;
+	            default:
+	                throw 'Illegal base64url string!';
+	        }
+	        return window.atob(output);
+	    }
+	
+	    function getUserFromToken() {
+	        var currentToken = token.get();
+	        var user = {};
+	        if (typeof currentToken !== 'undefined') {
+	            var encoded = currentToken.split('.')[1];
+	            user = JSON.parse(urlBase64Decode(encoded));
+	        }
+	        return user;
 	    }
 	
 	    return {
@@ -35002,6 +35037,18 @@
 	        },
 	        logout: function logout() {
 	            token.remove();
+	        },
+	        isAdmin: function isAdmin() {
+	            if (!!token.get()) {
+	                var currentUser = getUserFromToken();
+	                return currentUser.admin;
+	            }
+	        },
+	        getUserInfo: function getUserInfo() {
+	            if (!!token.get()) {
+	                var currentUser = getUserFromToken();
+	                return currentUser;
+	            }
 	        },
 	
 	        signin: credential('signin'),

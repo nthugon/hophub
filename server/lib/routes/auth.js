@@ -10,6 +10,9 @@ router.get('/validate', ensureAuth, (req, res, next) => {
 
 router.post('/signup', jsonParser, (req, res, next) => {
     const { username, password } = req.body;
+    let newUser = {};
+    newUser.username = username;
+    newUser.password = password;
     delete req.body.password;
     if(!username || !password) {
         return next({
@@ -24,7 +27,7 @@ router.post('/signup', jsonParser, (req, res, next) => {
             code: 400,
             error: `Username ${username} already exists`
         };
-        const user = new User(req.body);
+        const user = new User(newUser);
         user.generateHash(password);
         return user.save();
     })
