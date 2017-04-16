@@ -6,13 +6,16 @@ module.exports = {
 
     sign(user) {
         return new Promise((resolve, reject) => {
+            const info = {};
             const payload = {
                 username: user.username,
                 _id: user._id,
-                roles: user.roles
+                admin: user.admin
             };
+            // info.payload = payload;
             jwt.sign(payload, tokenValidator, null, (err, token) => {
                 if(err) return reject(err);
+                // info.token = token;
                 resolve(token);
             });
         });

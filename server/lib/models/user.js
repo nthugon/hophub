@@ -11,8 +11,7 @@ const userSchema = new Schema({
         type: String,
         required: true
     },
-    roles: [ String ],
-    reviews: []
+    admin: {type: Boolean, default: false}
 });
 
 userSchema.methods.generateHash = function(password) {

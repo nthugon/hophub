@@ -34083,6 +34083,9 @@
 	    this.isAuthenticated = function () {
 	        return userService.isAuthenticated();
 	    };
+	    this.isAdmin = function () {
+	        return userService.isAdmin();
+	    };
 	}
 
 /***/ },
@@ -34187,7 +34190,6 @@
 	    var _this = this;
 	
 	    this.credentials = {
-	        email: '',
 	        username: '',
 	        password: ''
 	    };
@@ -34205,7 +34207,7 @@
 /* 29 */
 /***/ function(module, exports) {
 
-	module.exports = "<section>\n\t<h2>Sign up for the awesome todo app</h2>\n\t<form name=\"auth\" ng-submit=\"$ctrl.authenticate()\">\n\t\t<div>\n\t\t\t<label>\n\t\t\t\temail: <input required ng-model=\"$ctrl.credentials.email\">\n\t\t\t</label>\n\t\t</div>\n\n\t\t<div>\n\t\t\t<label>\n\t\t\t\tusername: <input required ng-model=\"$ctrl.credentials.username\">\n\t\t\t</label>\n\t\t</div>\n\n\t\t<div>\n\t\t\t<label>\n\t\t\t\tpassword: <input required type=\"password\" ng-model=\"$ctrl.credentials.password\">\n\t\t\t</label>\n\t\t</div>\n\n\t\t<button type=\"submit\">Sign Up</button>\n\t</form>\n\t<div class=\"error\" ng-if='$ctrl.error'>{{$ctrl.error.reason}}</div>\n</section>\n";
+	module.exports = "<section>\n\t<h2>Sign up for The Beer Reviewed Journal</h2>\n\t<form name=\"auth\" ng-submit=\"$ctrl.authenticate()\">\n\t\t<div>\n\t\t\t<label>\n\t\t\t\tusername: <input required ng-model=\"$ctrl.credentials.username\">\n\t\t\t</label>\n\t\t</div>\n\t\t<div>\n\t\t\t<label>\n\t\t\t\tpassword: <input required type=\"password\" ng-model=\"$ctrl.credentials.password\">\n\t\t\t</label>\n\t\t</div>\n\t\t<button type=\"submit\">Sign Up</button>\n\t</form>\n\t<div class=\"error\" ng-if='$ctrl.error'>{{$ctrl.error.reason}}</div>\n</section>\n";
 
 /***/ },
 /* 30 */
@@ -34986,6 +34988,7 @@
 	    function credential(endpoint) {
 	        return function (credentials) {
 	            return $http.post(apiUrl + '/auth/' + endpoint, credentials).then(function (result) {
+	                // console.log(result.data.info.token);
 	                token.set(result.data.token);
 	            }).catch(function (err) {
 	                throw err.data;

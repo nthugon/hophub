@@ -34,9 +34,6 @@ router
     })
 
     .post('/', bodyParser, (req, res, next) => {
-        const {_id, username} = req.user;
-        req.body.reviewer = username;
-        req.body.userId = _id;
         new Review(req.body).save()
             .then(saved => res.send(saved))
             .catch(next);
