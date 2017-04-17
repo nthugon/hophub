@@ -11,7 +11,14 @@ const userSchema = new Schema({
         type: String,
         required: true
     },
-    admin: {type: Boolean, default: false}
+    admin: {
+        type: Boolean,
+        default: false
+    },
+    brewer: {
+        type: Boolean,
+        default: false
+    }
 });
 
 userSchema.methods.generateHash = function(password) {

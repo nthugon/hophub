@@ -3,6 +3,7 @@ const jsonParser = require('body-parser').json();
 const User = require('../models/user');
 const token = require('../auth/token');
 const ensureAuth = require('../auth/ensure-auth')();
+const ensureAdmin = require('../auth/ensure-admin')();
 
 router.get('/validate', ensureAuth, (req, res, next) => {
     res.send({valid: true});
