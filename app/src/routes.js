@@ -25,6 +25,30 @@ export default function routes($stateProvider, $urlRouterProvider) {
         component: 'aboutDeveloper'
     });
 
+
+    
+
+    $stateProvider.state({
+        name: 'admin',
+        url: '/admin',
+        abstract: true,
+        default: '.users',
+        resolve: {
+            users: ['adminService', admin => {
+                return admin.getAllUsers();
+            }]
+        },
+        component: 'admin'
+    });
+
+    $stateProvider.state({
+        name: 'admin.users',
+        url: '/users',
+        component: 'allUsers'
+    });
+
+    
+
     $stateProvider.state({
         name: 'beers',
         url: '/beers',

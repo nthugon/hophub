@@ -61,6 +61,12 @@ export default function userService(token, $http, apiUrl) {
                 return currentUser.admin;
             }
         },
+        isBrewer() {
+            if (!!token.get()) {
+                let currentUser = getUserFromToken();
+                return currentUser.brewer;
+            }
+        },
         getUserInfo() {
             if (!!token.get()) {
                 let currentUser = getUserFromToken();

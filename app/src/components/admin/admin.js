@@ -1,9 +1,9 @@
-import template from './profile.html';
-import styles from './profile.scss';
+import template from './admin.html';
+import styles from './admin.scss';
 
 export default {
     template,
-    controller,
+    controller
 };
 
 controller.$inject = ['userService'];

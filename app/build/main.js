@@ -34086,13 +34086,16 @@
 	    this.isAdmin = function () {
 	        return userService.isAdmin();
 	    };
+	    this.isBrewer = function () {
+	        return userService.isBrewer();
+	    };
 	}
 
 /***/ },
 /* 21 */
 /***/ function(module, exports) {
 
-	module.exports = "<section ng-class=\"$ctrl.styles.about\">\n    <header>\n        <div>\n            <h1 ui-sref=\"about\">The Beer Reviewed Journal</h1>\n        </div>\n        <nav>\n            <li ng-if=\"$ctrl.isAuthenticated()\" ui-sref=\"profile\">MY REVIEWS</li>\n            <li ng-if=\"$ctrl.isAuthenticated()\" ui-sref=\"beers\">BEERS</li>\n            <li ng-if=\"$ctrl.isAdmin()\" ui-sref=\"beers\">ADD BEERS</li>\n            <li ng-if=\"$ctrl.isAuthenticated()\" ui-sref=\"about\" ng-click=\"$ctrl.logout()\">LOGOUT</li>\n            <li ng-if=\"!$ctrl.isAuthenticated()\" ui-sref=\"beers\">SIGNIN</li>     \n        </nav>\n    </header>\n\n    <ui-view></ui-view>\n\n    <footer ui-sref=\"about.developer\">\n        &copy; 2017 Nathan Hugon\n    </footer>\n</section>\n";
+	module.exports = "<section ng-class=\"$ctrl.styles.about\">\n    <header>\n        <div>\n            <h1 ui-sref=\"about\">The Beer Reviewed Journal</h1>\n        </div>\n        <nav>\n            <li ng-if=\"$ctrl.isAdmin()\" ui-sref=\"admin\">ADMIN</li>\n            <li ng-if=\"$ctrl.isBrewer()\" ui-sref=\"beers\">ADD BEERS</li>\n            <li ng-if=\"$ctrl.isAuthenticated()\" ui-sref=\"profile\">MY REVIEWS</li>\n            <li ng-if=\"$ctrl.isAuthenticated()\" ui-sref=\"beers\">BEERS</li>    \n            <li ng-if=\"$ctrl.isAuthenticated()\" ui-sref=\"about\" ng-click=\"$ctrl.logout()\">LOGOUT</li>\n            <li ng-if=\"!$ctrl.isAuthenticated()\" ui-sref=\"beers\">SIGNIN</li>     \n        </nav>\n    </header>\n\n    <ui-view></ui-view>\n\n    <footer ui-sref=\"about.developer\">\n        &copy; 2017 Nathan Hugon\n    </footer>\n</section>\n";
 
 /***/ },
 /* 22 */
@@ -34633,13 +34636,19 @@
 	    this.isAuthenticated = function () {
 	        return userService.isAuthenticated();
 	    };
+	    this.isAdmin = function () {
+	        return userService.isAdmin();
+	    };
+	    this.isBrewer = function () {
+	        return userService.isBrewer();
+	    };
 	}
 
 /***/ },
 /* 61 */
 /***/ function(module, exports) {
 
-	module.exports = "<section ng-class=\"$ctrl.styles.beer\">\n    <header>\n        <div>\n            <h1 ui-sref=\"about\">The Beer Reviewed Journal</h1>\n        </div>\n        <nav>\n            <li ng-if=\"$ctrl.isAuthenticated()\" ui-sref=\"profile\">MY REVIEWS</li>\n            <li ng-if=\"$ctrl.isAuthenticated()\" ui-sref=\"beers\">BEERS</li>\n            <li ng-if=\"$ctrl.isAuthenticated()\" ui-sref=\"about\" ng-click=\"$ctrl.logout()\">LOGOUT</li>\n            <li ng-if=\"!$ctrl.isAuthenticated()\" ui-sref=\"beers\">SIGNIN</li>     \n        </nav>\n    </header>\n    <section>\n        <ui-view></ui-view>\n    </section>\n</section>\n";
+	module.exports = "<section ng-class=\"$ctrl.styles.beer\">\n    <header>\n        <div>\n            <h1 ui-sref=\"about\">The Beer Reviewed Journal</h1>\n        </div>\n        <nav>\n            <li ng-if=\"$ctrl.isAdmin()\" ui-sref=\"admin\">ADMIN</li>\n            <li ng-if=\"$ctrl.isBrewer()\" ui-sref=\"beers\">ADD BEERS</li>\n            <li ng-if=\"$ctrl.isAuthenticated()\" ui-sref=\"profile\">MY REVIEWS</li>\n            <li ng-if=\"$ctrl.isAuthenticated()\" ui-sref=\"beers\">BEERS</li>\n            <li ng-if=\"$ctrl.isAuthenticated()\" ui-sref=\"about\" ng-click=\"$ctrl.logout()\">LOGOUT</li>\n            <li ng-if=\"!$ctrl.isAuthenticated()\" ui-sref=\"beers\">SIGNIN</li>     \n        </nav>\n    </header>\n    <section>\n        <ui-view></ui-view>\n    </section>\n</section>\n";
 
 /***/ },
 /* 62 */
@@ -34688,13 +34697,16 @@
 	    this.isAdmin = function () {
 	        return userService.isAdmin();
 	    };
+	    this.isBrewer = function () {
+	        return userService.isBrewer();
+	    };
 	}
 
 /***/ },
 /* 65 */
 /***/ function(module, exports) {
 
-	module.exports = "<section ng-class=\"$ctrl.styles.beers\">\n    <header>\n        <div>\n            <h1 ui-sref=\"about\">The Beer Reviewed Journal</h1>\n        </div>\n        <nav>\n            <li ng-if=\"$ctrl.isAuthenticated()\" ui-sref=\"profile\">MY REVIEWS</li>\n            <li ng-if=\"$ctrl.isAuthenticated()\" ui-sref=\"beers\">BEERS</li>\n            <li ng-if=\"$ctrl.isAdmin()\" ui-sref=\"beers\">ADD BEERS</li>\n            <li ng-if=\"$ctrl.isAuthenticated()\" ui-sref=\"about\" ng-click=\"$ctrl.logout()\">LOGOUT</li>\n            <li ng-if=\"!$ctrl.isAuthenticated()\" ui-sref=\"beers\">SIGNIN</li>     \n        </nav>\n    </header>\n    <p>Random content on beers parent.<p>\n    <section>\n        <ui-view></ui-view>\n    </section>\n</section>\n";
+	module.exports = "<section ng-class=\"$ctrl.styles.beers\">\n    <header>\n        <div>\n            <h1 ui-sref=\"about\">The Beer Reviewed Journal</h1>\n        </div>\n        <nav>\n            <li ng-if=\"$ctrl.isAdmin()\" ui-sref=\"admin\">ADMIN</li>\n            <li ng-if=\"$ctrl.isBrewer()\" ui-sref=\"beers\">ADD BEERS</li>\n            <li ng-if=\"$ctrl.isAuthenticated()\" ui-sref=\"profile\">MY REVIEWS</li>\n            <li ng-if=\"$ctrl.isAuthenticated()\" ui-sref=\"beers\">BEERS</li>  \n            <li ng-if=\"$ctrl.isAuthenticated()\" ui-sref=\"about\" ng-click=\"$ctrl.logout()\">LOGOUT</li>\n            <li ng-if=\"!$ctrl.isAuthenticated()\" ui-sref=\"beers\">SIGNIN</li>     \n        </nav>\n    </header>\n    <p>Random content on beers parent.<p>\n    <section>\n        <ui-view></ui-view>\n    </section>\n</section>\n";
 
 /***/ },
 /* 66 */
@@ -34743,13 +34755,16 @@
 	    this.isAdmin = function () {
 	        return userService.isAdmin();
 	    };
+	    this.isBrewer = function () {
+	        return userService.isBrewer();
+	    };
 	}
 
 /***/ },
 /* 69 */
 /***/ function(module, exports) {
 
-	module.exports = "<section ng-class=\"$ctrl.styles.profile\">\n    <header>\n        <div>\n            <h1 ui-sref=\"about\">The Beer Reviewed Journal</h1>\n        </div>\n        <nav>\n            <li ng-if=\"$ctrl.isAuthenticated()\" ui-sref=\"profile\">MY REVIEWS</li>\n            <li ng-if=\"$ctrl.isAuthenticated()\" ui-sref=\"beers\">BEERS</li>\n            <li ng-if=\"$ctrl.isAdmin()\" ui-sref=\"beers\">ADD BEERS</li>\n            <li ng-if=\"$ctrl.isAuthenticated()\" ui-sref=\"about\" ng-click=\"$ctrl.logout()\">LOGOUT</li>\n            <li ng-if=\"!$ctrl.isAuthenticated()\" ui-sref=\"beers\">SIGNIN</li>     \n        </nav>\n    </header>\n\n    <ui-view></ui-view>\n\n    <footer ui-sref=\"about.developer\">\n        &copy; 2017 Nathan Hugon\n    </footer>\n</section>\n";
+	module.exports = "<section ng-class=\"$ctrl.styles.profile\">\n    <header>\n        <div>\n            <h1 ui-sref=\"about\">The Beer Reviewed Journal</h1>\n        </div>\n        <nav>\n            <li ng-if=\"$ctrl.isAdmin()\" ui-sref=\"admin\">ADMIN</li>\n            <li ng-if=\"$ctrl.isBrewer()\" ui-sref=\"beers\">ADD BEERS</li>\n            <li ng-if=\"$ctrl.isAuthenticated()\" ui-sref=\"profile\">MY REVIEWS</li>\n            <li ng-if=\"$ctrl.isAuthenticated()\" ui-sref=\"beers\">BEERS</li>\n            <li ng-if=\"$ctrl.isAuthenticated()\" ui-sref=\"about\" ng-click=\"$ctrl.logout()\">LOGOUT</li>\n            <li ng-if=\"!$ctrl.isAuthenticated()\" ui-sref=\"beers\">SIGNIN</li>     \n        </nav>\n    </header>\n\n    <ui-view></ui-view>\n\n    <footer ui-sref=\"about.developer\">\n        &copy; 2017 Nathan Hugon\n    </footer>\n</section>\n";
 
 /***/ },
 /* 70 */
@@ -35042,6 +35057,12 @@
 	            if (!!token.get()) {
 	                var currentUser = getUserFromToken();
 	                return currentUser.admin;
+	            }
+	        },
+	        isBrewer: function isBrewer() {
+	            if (!!token.get()) {
+	                var currentUser = getUserFromToken();
+	                return currentUser.brewer;
 	            }
 	        },
 	        getUserInfo: function getUserInfo() {

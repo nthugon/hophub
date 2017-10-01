@@ -16,6 +16,8 @@ function controller(userService) {
     this.styles = styles;
     this.logout = () => userService.logout();
     this.isAuthenticated = () => userService.isAuthenticated();
+    this.isAdmin = () => userService.isAdmin();
+    this.isBrewer = () => userService.isBrewer();
 }
 
 

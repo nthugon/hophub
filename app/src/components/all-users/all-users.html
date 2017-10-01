@@ -1,0 +1,22 @@
+<section ng-class="$ctrl.styles.allusers">
+    <h2>Select a User to See Their Profile</h2>
+    <table>
+        <thead>
+            <tr>
+                <td>User</td>
+                <td>Admin</td>
+                <td>Brewer</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="user in $ctrl.users"
+                ui-sref="admin.edit({
+                    id: user._id
+                })">
+                <td>{{user.username}}</td>
+                <td>{{user.admin}}</td>
+                <td>{{user.brewer}}</td>
+            </tr>
+        </tbody>
+    </table>
+</section>

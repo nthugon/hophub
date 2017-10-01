@@ -9,7 +9,8 @@ module.exports = {
             const payload = {
                 username: user.username,
                 _id: user._id,
-                admin: user.admin
+                admin: user.admin,
+                brewer: user.brewer
             };
             jwt.sign(payload, tokenValidator, null, (err, token) => {
                 if(err) return reject(err);
