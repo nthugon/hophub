@@ -25,9 +25,6 @@ export default function routes($stateProvider, $urlRouterProvider) {
         component: 'aboutDeveloper'
     });
 
-
-    
-
     $stateProvider.state({
         name: 'admin',
         url: '/admin',
@@ -46,8 +43,6 @@ export default function routes($stateProvider, $urlRouterProvider) {
         url: '/users',
         component: 'allUsers'
     });
-
-    
 
     $stateProvider.state({
         name: 'beers',
