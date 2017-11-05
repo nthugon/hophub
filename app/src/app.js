@@ -24,7 +24,7 @@ const app = angular.module('myApp', [
 
 app.config(routes);
 
-const dev = 'http://localhost:3000/api';
+const dev = 'https://brj-server.herokuapp.com/api';
 
 app.value('apiUrl', dev);
 app.config(['$qProvider', function ($qProvider) {
