@@ -1,0 +1,7 @@
+@mixin button() {
+    padding: 1%;
+    text-align: center;
+    background-color: $button;
+    width: 75px;
+    border-radius: 15px;
+}

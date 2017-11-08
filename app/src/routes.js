@@ -10,7 +10,7 @@ export default function routes($stateProvider, $urlRouterProvider) {
         },
         abstract: true,
         default: '.app',
-        component: 'about' 
+        component: 'about'
     });
 
     $stateProvider.state({
@@ -42,6 +42,25 @@ export default function routes($stateProvider, $urlRouterProvider) {
         name: 'admin.users',
         url: '/users',
         component: 'allUsers'
+    });
+
+    $stateProvider.state({
+        name: 'admin.edit',
+        url: '/edit/:id',
+        resolve: {
+            // userBeers: ['$transition$', 'beerService', (t, beers) => {
+            //     return beers.getUserBeers(t.params().id);
+            // }],
+            // userReviews: ['$transition$', 'reviewService', (t, reviews) => {
+            //     return reviews.getUserReviews(t.params().id);
+            // }],
+            user: ['$transition$', 'adminService', (t, admin) => {
+                return admin.getUser(t.params().id);
+            }]
+        },
+        component: 'editUser'
+
+
     });
 
     $stateProvider.state({
@@ -114,5 +133,5 @@ export default function routes($stateProvider, $urlRouterProvider) {
     });
 
     $urlRouterProvider.otherwise('/about/app');
-    
+
 }

@@ -1,25 +1,30 @@
 @import 'colors';
+@import 'buttons';
 
 :local(.app) {
-    #hero {
+    .hero {
         width: 90%;
         margin: 0 8% 0 2%;
         border-radius: 0 2em 2em 0;
         background: linear-gradient(-90deg, black, black, transparent);
         
-        #hero-text {
+        .hero-text {
             vertical-align: top;
             padding: 2% 0 0 25%;
             color: $grey;
             display: inline-block;
             width: 44%;
+            p {
+                padding-left: 15%;
+                text-align: center;
+            }
         }
         img {
-            // opacity: 0.4;
             width: 30%;
             border-radius: 2em;       
         }        
-        // width: 40%;
-        // margin: 0 30%;
+    }
+    .get-started-btn {
+        @include button();
     }
 }
