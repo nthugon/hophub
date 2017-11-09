@@ -11,9 +11,13 @@ export default function reviewService($http, apiUrl) {
             return $http.get(`${apiUrl}/reviews`)
                 .then(res => res.data);
         },
-        getUserReviews() {
-            return $http.get(`${apiUrl}/reviews/user`)
+        getByCurrentUser() {
+            return $http.get(`${apiUrl}/reviews/currentUser`)
                 .then(res => res.data);
+        },
+        getByUser(id) {
+            return $http.get(`${apiUrl}/reviews/user/${id}`)
+            .then(res => res.data);
         },
         remove(id) {
             return $http.delete(`${apiUrl}/reviews/${id}`)
@@ -24,8 +28,6 @@ export default function reviewService($http, apiUrl) {
                 .then(res => {
                     return res.data;
                 });
-
-        }
-               
+        }              
     };
 }

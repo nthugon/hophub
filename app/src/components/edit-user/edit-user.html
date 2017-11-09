@@ -1,3 +1,41 @@
 <section ng-class="$ctrl.styles.edituser">
     <h2>Info for {{$ctrl.user.username}}:</h2>
+    <h1>Here is where the user's reviews will go</h1>
+    <table>
+        <thead>
+            <tr>
+                <td>Brewery</td>
+                <td>Beer Name</td>
+                <td>Drink Again?</td>
+                <td>Comments</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="review in $ctrl.userReviews">
+                <td>{{review.brewery}}</td>
+                <td>{{review.beerName}}</td>
+                <td>{{review.drinkAgain}}</td>
+                <td>{{review.comments}}</td>
+            </tr>
+        </tbody>
+    </table>
+    <h1>Here is where the user's beers will go</h1>
+    <table>
+        <thead>
+            <tr>
+                <td>Name</td>
+                <td>Style</td>
+                <td>Brewery</td>
+                <td>ABV</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="beer in $ctrl.userBeers">
+                <td>{{beer.name}}</td>
+                <td>{{beer.style}}</td>
+                <td>{{beer.brewery}}</td>
+                <td>{{beer.abv}}</td>
+            </tr>
+        </tbody>
+    </table>
 </section>

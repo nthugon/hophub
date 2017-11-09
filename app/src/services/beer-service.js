@@ -11,6 +11,10 @@ export default function beerService($http, apiUrl) {
             return $http.get(`${apiUrl}/beers`)
                 .then(res => res.data);
         },
+        getByUser(id) {
+            return $http.get(`${apiUrl}/beers/user/${id}`)
+            .then(res => res.data);
+        },
         remove(id) {
             return $http.delete(`${apiUrl}/beers/${id}`)
                 .then(res => res.data);

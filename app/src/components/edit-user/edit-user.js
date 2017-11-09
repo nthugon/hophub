@@ -5,6 +5,8 @@ export default {
     template,
     bindings: {
         user: '<',
+        userReviews: '<',
+        userBeers: '<'
     },
     controller
 };

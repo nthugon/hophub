@@ -9,10 +9,11 @@ export default {
     controller,
 };
 
-controller.$inject = ['beerService', '$state'];
+controller.$inject = ['beerService', '$state', 'userService'];
 
-function controller(beers, $state) {
+function controller(beers, $state, user) {
     this.styles = styles;
+    this.user = user.getUserInfo();
 
     this.backToAll = () => {
         $state.go('beers.all');
@@ -23,14 +24,15 @@ function controller(beers, $state) {
             name: this.name,
             style: this.style,
             brewery: this.brewery,
-            abv: this.abv
+            abv: this.abv,
+            userId: this.user._id,
+            enteredBy: this.user.username
         })
         .then(saved => {              
             this.beers.push(saved);
             $state.go('beer', {id: saved._id});
         });
-    };
-    
+    };    
 }
 
 

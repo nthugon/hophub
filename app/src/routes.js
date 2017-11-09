@@ -48,12 +48,12 @@ export default function routes($stateProvider, $urlRouterProvider) {
         name: 'admin.edit',
         url: '/edit/:id',
         resolve: {
-            // userBeers: ['$transition$', 'beerService', (t, beers) => {
-            //     return beers.getUserBeers(t.params().id);
-            // }],
-            // userReviews: ['$transition$', 'reviewService', (t, reviews) => {
-            //     return reviews.getUserReviews(t.params().id);
-            // }],
+            userBeers: ['$transition$', 'beerService', (t, beers) => {
+                return beers.getByUser(t.params().id);
+            }],
+            userReviews: ['$transition$', 'reviewService', (t, reviews) => {
+                return reviews.getByUser(t.params().id);
+            }],
             user: ['$transition$', 'adminService', (t, admin) => {
                 return admin.getUser(t.params().id);
             }]
@@ -120,7 +120,7 @@ export default function routes($stateProvider, $urlRouterProvider) {
         default: 'profile.reviews',
         resolve: {
             reviews: ['reviewService', reviews => {
-                return reviews.getUserReviews();
+                return reviews.getByCurrentUser();
             }]
         },
         component: 'profile'
