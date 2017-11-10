@@ -1,5 +1,5 @@
-import template from './all-users.html';
-import styles from './all-users.scss';
+import template from './manage-users.html';
+import styles from './manage-users.scss';
 
 export default {
     template,

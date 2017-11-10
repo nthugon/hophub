@@ -8,14 +8,18 @@
                 <td>Beer Name</td>
                 <td>Drink Again?</td>
                 <td>Comments</td>
+                <td></td>               
             </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="review in $ctrl.userReviews">
+            <tr ng-repeat="review in $ctrl.userReviews track by $index">
                 <td>{{review.brewery}}</td>
                 <td>{{review.beerName}}</td>
                 <td>{{review.drinkAgain}}</td>
                 <td>{{review.comments}}</td>
+                <td>
+                    <button ng-click="$ctrl.deleteReview(review._id)">Delete</button>
+                </td>
             </tr>
         </tbody>
     </table>
@@ -27,14 +31,18 @@
                 <td>Style</td>
                 <td>Brewery</td>
                 <td>ABV</td>
+                <td></td>
             </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="beer in $ctrl.userBeers">
+            <tr ng-repeat="beer in $ctrl.userBeers track by $index">
                 <td>{{beer.name}}</td>
                 <td>{{beer.style}}</td>
                 <td>{{beer.brewery}}</td>
                 <td>{{beer.abv}}</td>
+                <td>
+                    <button ng-click="$ctrl.deleteBeer(beer._id)">Delete</button>
+                </td>
             </tr>
         </tbody>
     </table>

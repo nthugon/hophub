@@ -30,22 +30,44 @@ export default function routes($stateProvider, $urlRouterProvider) {
         url: '/admin',
         abstract: true,
         default: '.users',
-        resolve: {
-            users: ['adminService', admin => {
-                return admin.getAllUsers();
-            }]
-        },
         component: 'admin'
     });
 
     $stateProvider.state({
         name: 'admin.users',
         url: '/users',
-        component: 'allUsers'
+        resolve: {
+            users: ['adminService', admin => {
+                return admin.getAllUsers();
+            }]
+        },
+        component: 'manageUsers'
     });
 
     $stateProvider.state({
-        name: 'admin.edit',
+        name: 'admin.beers',
+        url: '/beers',
+        resolve: {
+            allBeers: ['beerService', beers => {
+                return beers.getAll();
+            }]
+        },
+        component: 'manageBeers'
+    });
+
+    $stateProvider.state({
+        name: 'admin.reviews',
+        url: '/reviews',
+        resolve: {
+            allReviews: ['reviewService', reviews => {
+                return reviews.getAll();
+            }]
+        },
+        component: 'manageReviews'
+    });
+
+    $stateProvider.state({
+        name: 'admin.editUsers',
         url: '/edit/:id',
         resolve: {
             userBeers: ['$transition$', 'beerService', (t, beers) => {

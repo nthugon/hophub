@@ -1,0 +1,26 @@
+<section ng-class="$ctrl.styles.managereviews">
+        <h2>Reviews</h2>
+        <table>
+            <thead>
+                <tr>
+                    <td>Brewery</td>
+                    <td>Beer Name</td>
+                    <td>Drink Again?</td>
+                    <td>Comments</td>
+                    <td></td>                    
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="review in $ctrl.allReviews track by $index">
+                    <td>{{review.brewery}}</td>
+                    <td>{{review.beerName}}</td>
+                    <td>{{review.drinkAgain}}</td>
+                    <td>{{review.comments}}</td>
+                    <td>
+                        <button ng-click="$ctrl.deleteReview(review._id)">Delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+    

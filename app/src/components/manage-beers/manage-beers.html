@@ -1,0 +1,25 @@
+<section ng-class="$ctrl.styles.managebeers">
+        <h2>Beers</h2>
+        <table>
+            <thead>
+                <tr>
+                    <td>Name</td>
+                    <td>Style</td>
+                    <td>Brewery</td>
+                    <td>ABV</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="beer in $ctrl.allBeers track by $index">
+                    <td>{{beer.name}}</td>
+                    <td>{{beer.style}}</td>
+                    <td>{{beer.brewery}}</td>
+                    <td>{{beer.abv}}</td>
+                    <td>
+                        <button ng-click="$ctrl.deleteBeer(beer._id)">Delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+    

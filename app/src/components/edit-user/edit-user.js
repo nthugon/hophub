@@ -11,11 +11,23 @@ export default {
     controller
 };
 
-function controller() {
-    this.$onInit = function () {
-        console.log("user:", this.user);
-    };
+controller.$inject = ['beerService', 'reviewService'];
+
+function controller(beers, reviews) {
 
     this.styles = styles;
 
+    this.deleteReview = (id) => {
+        reviews.remove(id).then(deleted => {
+            let indexToRemove = this.userReviews.indexOf(deleted);
+            this.userReviews.splice(indexToRemove, 1);
+        });
+    };
+
+    this.deleteBeer = (id) => {
+        beers.remove(id).then(deleted => {
+            let indexToRemove = this.userBeers.indexOf(deleted);
+            this.userBeers.splice(indexToRemove, 1);
+        });
+    };
 }

@@ -13,6 +13,9 @@
         </nav>
     </header>
     <p>Random content on admin parent.<p>
+    <button ng-click="$ctrl.manageUsers(beer._id)">Manage Users</button>
+    <button ng-click="$ctrl.manageBeers(beer._id)">Manage Beers</button>
+    <button ng-click="$ctrl.manageReviews(beer._id)">Manage Reviews</button>
     <section>
         <ui-view></ui-view>
     </section>

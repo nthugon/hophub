@@ -1,4 +1,4 @@
-<section ng-class="$ctrl.styles.allusers">
+<section ng-class="$ctrl.styles.manageusers">
     <h2>Select a User to See Their Profile</h2>
     <table>
         <thead>
@@ -10,7 +10,7 @@
         </thead>
         <tbody>
             <tr ng-repeat="user in $ctrl.users"
-                ui-sref="admin.edit({
+                ui-sref="admin.editUsers({
                     id: user._id
                 })">
                 <td>{{user.username}}</td>
