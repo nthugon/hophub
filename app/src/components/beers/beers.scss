@@ -1,40 +1,16 @@
 @import 'colors';
+@import 'header';
+@import 'footer';
 
 :local(.beers) {
     margin:  10% 2% 2%;
     border: 1px solid black;
 
     header {
-        background-color: $header;
-        position: fixed;
-        width: 100%;
-        top: 0;
-        left: 0;
-        z-index: 1000;
-
-        div {
-            width: 50%;
-            float: left;
-            padding: 2% 0;
-            h1 {
-                padding-left: 4%;
-                margin: 0;
-                font-size: 1.5em;
-            }           
-        }
-        nav {
-            text-align: right;
-            width: 50%;
-            float: right;
-            list-style: none;
-            line-height: 1.75em;
-            font-size: 1em;
-            padding: 2% 0;
-            li {
-                margin-right: 4%;
-                display: inline-block;
-            }
-        }
+        @include header();
     }
-  
+
+    footer {
+        @include footer();
+    } 
 }
