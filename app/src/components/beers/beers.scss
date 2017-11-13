@@ -3,9 +3,19 @@
 @import 'footer';
 
 :local(.beers) {
-    margin:  10% 2% 2%;
-    border: 1px solid black;
-
+    box-sizing: border-box;
+    background-color: $parent-background;
+    border: 1px solid $parent-background;
+    border-radius: 1.6rem;
+    width: 80%;
+    min-height: 400px;
+    margin:  120px auto;
+    
+    h2 {
+        text-align: center;
+        font-size: 3.0rem;
+    }
+    
     header {
         @include header();
     }

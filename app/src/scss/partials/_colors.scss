@@ -5,6 +5,7 @@
 // #dbd5b5 timberwolf
 
 // #008e97 aqua
+// #0fa8ad faded aqua
 // #f58220 orange
 // #f79b4d light orange
 // #005778 blue
@@ -17,17 +18,19 @@
 // #8220f5 purple
 // #78c1ce sky blue
 
+$header: #78c1ce;
+$app-background: #f79b4d;
+$parent-background: #0fa8ad;
+$content: #f58220;
+$button: #fcf9b6;
+$footer: #005778;
+$footer-text: #fcf9b6;
 
 $logo: #20f582;
 $item: #005778;
-$nav: #008e97;
-$text: #f58220;
-$content: #f52028;
-$background: #f79b4d;
-$header: #78c1ce;
-$footer: #005778;
-$footer-text: #fcf9b6;
-$button: #fcf9b6;
+
+$blue: #005778;
+$aqua: #008e97;
 $green: #20f582;
 $red: #f52028;
 $light-red: #fa8f93;
