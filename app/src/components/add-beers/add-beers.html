@@ -4,19 +4,19 @@
         <div>
             <h3>Enter the Beer's Information</h3>
             <label>Name</label>
-            <input ng-model="$ctrl.name">
+            <input ng-model="$ctrl.name" maxlength="50">
         </div>
         <div>
             <label>Style</label>
-            <input ng-model="$ctrl.style">
+            <input ng-model="$ctrl.style" maxlength="30">
         </div>
         <div>
             <label>Brewery</label>
-            <input ng-model="$ctrl.brewery">
+            <input ng-model="$ctrl.brewery" maxlength="50">
         </div>
         <div>
             <label>ABV</label>
-            <input ng-model="$ctrl.abv">
+            <input type="number" min="1" max="20" ng-model="$ctrl.abv">
         </div>
         <button ng-click="$ctrl.addBeer()">Add</button>
         <button ng-click="$ctrl.backToAll()">Cancel</button>       

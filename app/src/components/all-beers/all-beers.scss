@@ -2,17 +2,47 @@
 
 :local(.allbeers) {
     box-sizing: border-box;
-    width: 60%;
-    margin: 0 auto 5%;
-    background-color: $content;
-    border: 1px solid $content;
     border-radius: 1.6rem;
     min-height: 260px;
-    color: $white;
+    color: $black;
     font-size: 1.6rem;
     h3 {
         font-size: 1.6rem;
         text-align: center;
         color: $black;
+    }
+    table {
+        width: 90%;
+        margin: 0 auto;
+        border-radius: 15px;
+        border: 1px solid #bdbdbd;
+        background-color: $grey;
+    }
+    td, th {
+        border-left: 1px solid #bdbdbd;
+        border-top:1px solid #bdbdbd;
+    }
+    td {
+        text-align: center;
+    }
+    th:nth-child(1) {
+        width: 35%;
+    }
+    th:nth-child(2) {
+        width: 30%;
+    }
+    th:nth-child(3) {
+        width: 25%;
+    }
+    th:nth-child(4) {
+        width: 10%;
+    }
+
+    th {
+            border-top: none;
+    }
+
+    td:first-child, th:first-child {
+            border-left: none;
     }
 }

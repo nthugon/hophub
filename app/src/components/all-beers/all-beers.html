@@ -1,12 +1,15 @@
 <section ng-class="$ctrl.styles.allbeers">
     <h3>Select a Beer to See Its Reviews</h3>
+    OR
+        <button ng-click="$ctrl.goToAdd()">Add a Beer</button>
+    </h3>
     <table>
         <thead>
             <tr>
-                <td>Beer</td>
-                <td>Brewery</td>
-                <td>Style</td>
-                <td>ABV</td>
+                <th>Beer</th>
+                <th>Brewery</th>
+                <th>Style</th>
+                <th>ABV</th>
             </tr>
         </thead>
         <tbody>
@@ -22,6 +25,6 @@
         </tbody>
     </table>
     <nav>
-        <button ng-click="$ctrl.goToAdd()">Add a Beer</button>
+        
     </nav>
 </section>
