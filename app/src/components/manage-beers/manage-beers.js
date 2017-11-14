@@ -14,7 +14,6 @@ controller.$inject = ['beerService'];
 function controller(beers) {
 
     this.styles = styles;
-    this.arr =[1,2,3,4,5];
 
     this.deleteBeer = (id) => {
         beers.remove(id).then(deleted => {

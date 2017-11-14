@@ -6,19 +6,19 @@
     <table>
         <thead>
             <tr>
-                <th>Beer</th>
                 <th>Brewery</th>
+                <th>Beer</th>
                 <th>Style</th>
                 <th>ABV</th>
             </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="beer in $ctrl.beers"
+            <tr ng-repeat="beer in $ctrl.beers | orderBy: 'brewery' track by $index"
                 ui-sref="beer({
                     id: beer._id
                 })">
-                <td>{{beer.name}}</td>
                 <td>{{beer.brewery}}</td>
+                <td>{{beer.name}}</td>
                 <td>{{beer.style}}</td>
                 <td>{{beer.abv}}</td>
             </tr>
