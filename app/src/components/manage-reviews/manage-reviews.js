@@ -16,11 +16,8 @@ function controller(reviews) {
     this.styles = styles;
 
     this.deleteReview = (id) => {
-        console.log("allReviews:", this.allReviews);
         reviews.remove(id).then(deleted => {
-            console.log("deleted:", deleted);
-            let indexToRemove = this.allReviews.indexOf(deleted);
-            console.log("indexToRemove:", indexToRemove);
+            let indexToRemove = this.allReviews.findIndex(i => i._id === deleted._id);
             this.allReviews.splice(indexToRemove, 1);
         });
     };
