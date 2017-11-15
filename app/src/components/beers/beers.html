@@ -12,10 +12,13 @@
             <li ng-if="!$ctrl.isAuthenticated()" ui-sref="beers">SIGNIN</li>     
         </nav>
     </header>
-    <h2>Beers!</h2>
+    <h2>Beers!</h2>    
     <section>
         <ui-view></ui-view>
     </section>
+    <div class="add-beer-btn">
+        <button ng-click="$ctrl.goToAdd()">Add a Beer</button>
+    </div> 
     <footer ui-sref="about.developer">
         &copy; 2017 Nathan Hugon
     </footer>

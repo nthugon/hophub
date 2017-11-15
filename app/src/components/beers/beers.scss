@@ -1,20 +1,26 @@
 @import 'colors';
 @import 'header';
 @import 'footer';
+@import 'buttons';
 
 :local(.beers) {
     box-sizing: border-box;
-    margin:  120px 0 0;
-    
+    margin:  120px 0 0;   
     h2 {
         text-align: center;
-        font-size: 3.0rem;
-    }
-    
+        font-size: 3.0rem; 
+    }    
     header {
         @include header();
     }
-
+    .add-beer-btn {
+        button {
+            position: fixed;
+            bottom: 75px;
+            right: 35px;
+            @include button();
+        }
+    }
     footer {
         @include footer();
     } 
