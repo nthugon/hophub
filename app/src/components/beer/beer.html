@@ -5,7 +5,6 @@
         </div>
         <nav>
             <li ng-if="$ctrl.isAdmin()" ui-sref="admin">ADMIN PAGE</li>
-            <li ng-if="$ctrl.isBrewer()" ui-sref="beers">BREWER'S PAGE</li>
             <li ng-if="$ctrl.isAuthenticated()" ui-sref="profile">MY REVIEWS</li>
             <li ng-if="$ctrl.isAuthenticated()" ui-sref="beers">BEERS</li>
             <li ng-if="$ctrl.isAuthenticated()" ui-sref="about" ng-click="$ctrl.logout()">LOGOUT</li>
