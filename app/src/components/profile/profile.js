@@ -13,5 +13,4 @@ function controller(userService) {
     this.logout = () => userService.logout();
     this.isAuthenticated = () => userService.isAuthenticated();
     this.isAdmin = () => userService.isAdmin();
-    this.isBrewer = () => userService.isBrewer();
 }

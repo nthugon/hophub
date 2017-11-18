@@ -5,20 +5,21 @@
         </div>
         <nav>
             <li ng-if="$ctrl.isAdmin()" ui-sref="admin">ADMIN PAGE</li>
-            <li ng-if="$ctrl.isBrewer()" ui-sref="beers">BREWER'S PAGE</li>
             <li ng-if="$ctrl.isAuthenticated()" ui-sref="profile">MY REVIEWS</li>
             <li ng-if="$ctrl.isAuthenticated()" ui-sref="beers">BEERS</li>  
             <li ng-if="$ctrl.isAuthenticated()" ui-sref="about" ng-click="$ctrl.logout()">LOGOUT</li>
             <li ng-if="!$ctrl.isAuthenticated()" ui-sref="beers">SIGNIN</li>     
         </nav>
     </header>
-    <h2>Beers!</h2>    
-    <section>
-        <ui-view></ui-view>
-    </section>
-    <div class="add-beer-btn">
-        <button ng-click="$ctrl.goToAdd()">Add a Beer</button>
-    </div> 
+    <div class="content">
+        <h2>Beers!</h2>    
+        <section>
+            <ui-view></ui-view>
+        </section>
+        <div class="add-beer-btn">
+            <button ng-click="$ctrl.goToAdd()">Add a Beer</button>
+        </div> 
+    </div>
     <footer ui-sref="about.developer">
         &copy; 2017 Nathan Hugon
     </footer>

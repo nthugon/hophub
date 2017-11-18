@@ -13,12 +13,19 @@
     header {
         @include header();
     }
-    .add-beer-btn {
-        button {
-            position: fixed;
-            bottom: 75px;
-            right: 35px;
-            @include button();
+    .content {
+        position: absolute;
+        width: 100%;
+        top: 78px;
+        bottom: 42px;
+        overflow: auto;
+        .add-beer-btn {
+            button {
+                position: fixed;
+                bottom: 75px;
+                right: 35px;
+                @include button();
+            }
         }
     }
     footer {

@@ -13,7 +13,6 @@ function controller(userService, $state) {
     this.logout = () => userService.logout();
     this.isAuthenticated = () => userService.isAuthenticated();
     this.isAdmin = () => userService.isAdmin();
-    this.isBrewer = () => userService.isBrewer();
     this.goToAdd = () => {
         $state.go('beers.add');
     };

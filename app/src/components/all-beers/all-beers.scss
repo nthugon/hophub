@@ -3,10 +3,9 @@
 
 :local(.allbeers) {
     box-sizing: border-box;
-    border-radius: 1.6rem;
-    min-height: 260px;
     color: $black;
     font-size: 1.6rem;
+    margin-bottom: 2%;
     h3 {
         font-size: 1.6rem;
         text-align: center;
@@ -15,7 +14,7 @@
     table {
         width: 70%;
         margin: 0 auto;
-        border-radius: 15px;
+        border-radius: 1.6rem;
         border-collapse: collapse;
         background-color: $content;
         td, th {

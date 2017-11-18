@@ -81,8 +81,6 @@ export default function routes($stateProvider, $urlRouterProvider) {
             }]
         },
         component: 'editUser'
-
-
     });
 
     $stateProvider.state({
