@@ -3,62 +3,99 @@
 @import 'footer';
 @import 'buttons';
 
-:local(.beers) {
-    box-sizing: border-box;
-    margin:  120px 0 0;   
-    h2 {
-        text-align: center;
-        font-size: 3.0rem; 
-    }    
+:local(.beers) {      
     header {
         background-color: $header;
         position: fixed;
         width: 100%;
-        height: 78px;
+        height: 60px;
         top: 0;
         left: 0;
         overflow: hidden;
         z-index: 1000;
-    
         .app-name {
-            padding: 10px 0 0;
+            padding: 15px 0 0;
             h1 {
                 padding-left: 4%;
                 margin: 0;
                 font-size: 2.4rem;
             }           
         }
-        nav {           
-            list-style: none;
-            line-height: 2.8rem;
-            font-size: 1.6rem;
-            padding: 0;
-            .nav-link {
-                padding: 0;
-                text-align: center;
-                display: inline-block;
-                i {
-                    display: block;
-                }
-            }
+    }
+    .beers-sub-heading {
+        position: fixed;
+        width: 100%;
+        height: 80px;
+        top: 60px;
+        left: 0;
+        overflow: hidden;
+        z-index: 1000;
+        h2 {
+            text-align: center;
+            margin: 0;
+            font-size: 3.0rem;
         }
+        .add-beer-btn {
+            text-align: right;
+            margin: 0 10px 0 0;
+            button {
+                @include button();
+            }
+            .bottle-neck {
+                display: inline-block;
+                width: 30px;
+                height: 15px;
+                margin: 0 0 -2px -4px;
+                border-radius: 0 5px 5px 0;
+                background-color: $button;
+            }
+        } 
     }
     .content {
         position: absolute;
         width: 100%;
-        top: 78px;
-        bottom: 42px;
-        overflow: auto;
-        .add-beer-btn {
-            button {
-                position: fixed;
-                bottom: 75px;
-                right: 35px;
-                @include button();
-            }
-        }
+        top: 140px;
+        bottom: 50px;
+        overflow: auto; 
+        color: $white;      
+        // background: url(/img/beer-mug-suds.jpg) center no-repeat;
+        background-color: $grey;
+        background-size: 100%;
+
+
     }
     footer {
-        @include footer();
+        box-sizing: border-box;    
+        text-align: center;
+        padding: 10px 0 0;
+        color: $white;
+        background: $footer;
+        font-size: 1.6rem;
+        position: fixed;
+        width: 100%;
+        height: 50px;
+        bottom: 0;
+        left: 0;
+        overflow: hidden;
+        z-index: 1000;
+
+        .tabs {           
+            list-style: none;            
+            font-size: 1.6rem;            
+            display: flex;
+            flex-direction: row;
+            .nav-link {
+                flex: 1;
+                text-align: center;
+                li {
+                    padding: 5px 0 0;
+                    font-size: 1.0rem;
+                }            
+                i {
+                    font-size: 2.0rem;
+                    display: block;
+                }
+            }
+        }
     } 
 }

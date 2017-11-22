@@ -27,12 +27,9 @@ app.config(routes);
 const dev = 'https://brj-server.herokuapp.com/api';
 
 app.value('apiUrl', dev);
-// app.config(['$qProvider', function ($qProvider) {
-//     $qProvider.errorOnUnhandledRejections(false);
-// }]);
-// app.config(['$state', function ($state) {
-//     $state.defaultErrorHandler(function() { /* do nothing */});
-// }]);
+app.config(['$qProvider', function ($qProvider) {
+    $qProvider.errorOnUnhandledRejections(false);
+}]);
 app.config(http);
 app.run(auth);
 
