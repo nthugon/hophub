@@ -25,7 +25,7 @@
     .beers-sub-heading {
         position: fixed;
         width: 100%;
-        height: 80px;
+        height: 110px;
         top: 60px;
         left: 0;
         overflow: hidden;
@@ -36,25 +36,32 @@
             font-size: 3.0rem;
         }
         .add-beer-btn {
-            text-align: right;
-            margin: 0 10px 0 0;
+            text-align: center;
+            margin: 5px 0 0 20px;
             button {
                 @include button();
             }
             .bottle-neck {
                 display: inline-block;
-                width: 30px;
-                height: 15px;
-                margin: 0 0 -2px -4px;
+                width: 40px;
+                height: 18px;
+                margin: 0 0 -4px -5px;
                 border-radius: 0 5px 5px 0;
                 background-color: $button;
             }
+        }
+        h3 {
+            margin: 10px 0 0 0;
+            font-size: 1.6rem;
+            text-align: center;
+            color: $black;
         } 
     }
+
     .content {
         position: absolute;
         width: 100%;
-        top: 140px;
+        top: 170px;
         bottom: 50px;
         overflow: auto; 
         color: $white;      
