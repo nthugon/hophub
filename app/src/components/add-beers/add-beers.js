@@ -4,7 +4,7 @@ import styles from './add-beers.scss';
 export default {
     template,
     bindings: {
-        beers: '<',
+        beers: '<'
     },
     controller,
 };

@@ -7,11 +7,14 @@
     </header>
     <div class="beers-sub-heading">
         <h2>Beers!</h2>
-        <div class="add-beer-btn" ng-click="$ctrl.goToAdd()">
+        <div ng-show="$ctrl.all" class="add-beer-btn" ng-click="$ctrl.goToAddBeer()">
                 <button><span>Add a Beer</span></button>
                 <div class="bottle-neck"></div>
         </div>
-        <h3>Select a Beer to See Its Reviews</h3> 
+        <div ng-show="$ctrl.add" class="add-beer-btn" ng-click="$ctrl.goToAllBeers()">
+            <button><span>Back to Beers</span></button>
+            <div class="bottle-neck"></div>
+        </div> 
     </div>    
     <div class="content">           
         <section>

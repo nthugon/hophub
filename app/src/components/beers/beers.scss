@@ -8,13 +8,13 @@
         background-color: $header;
         position: fixed;
         width: 100%;
-        height: 60px;
+        height: 40px;
         top: 0;
         left: 0;
         overflow: hidden;
         z-index: 1000;
         .app-name {
-            padding: 15px 0 0;
+            padding: 8px 0 0 0;
             h1 {
                 padding-left: 4%;
                 margin: 0;
@@ -25,19 +25,19 @@
     .beers-sub-heading {
         position: fixed;
         width: 100%;
-        height: 110px;
-        top: 60px;
+        height: 70px;
+        top: 40px;
         left: 0;
         overflow: hidden;
         z-index: 1000;
         h2 {
             text-align: center;
             margin: 0;
-            font-size: 3.0rem;
+            font-size: 2.8rem;
         }
         .add-beer-btn {
             text-align: center;
-            margin: 5px 0 0 20px;
+            margin: 0 0 0 20px;
             button {
                 @include button();
             }
@@ -49,19 +49,13 @@
                 border-radius: 0 5px 5px 0;
                 background-color: $button;
             }
-        }
-        h3 {
-            margin: 10px 0 0 0;
-            font-size: 1.6rem;
-            text-align: center;
-            color: $black;
         } 
     }
 
     .content {
         position: absolute;
         width: 100%;
-        top: 170px;
+        top: 110px;
         bottom: 50px;
         overflow: auto; 
         color: $white;      
