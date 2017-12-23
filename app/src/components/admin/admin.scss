@@ -1,15 +1,17 @@
 @import 'colors';
-@import 'header';
-@import 'footer';
+@import 'layout';
+@import 'buttons';
 
 :local(.admin) {
-    margin:  10% 2% 2%;
-    border: 1px solid black;
-
     header {
         @include header();
     }
-
+    .sub-heading {
+        @include sub-heading();
+    }
+    .content {
+        @include content-area();
+    }
     footer {
         @include footer();
     }  

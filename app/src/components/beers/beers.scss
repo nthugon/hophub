@@ -1,40 +1,13 @@
 @import 'colors';
-@import 'header';
-@import 'footer';
+@import 'layout';
 @import 'buttons';
 
 :local(.beers) {      
     header {
-        background-color: $header;
-        position: fixed;
-        width: 100%;
-        height: 40px;
-        top: 0;
-        left: 0;
-        overflow: hidden;
-        z-index: 1000;
-        .app-name {
-            padding: 8px 0 0 0;
-            h1 {
-                padding-left: 4%;
-                margin: 0;
-                font-size: 2.4rem;
-            }           
-        }
+        @include header();
     }
-    .beers-sub-heading {
-        position: fixed;
-        width: 100%;
-        height: 70px;
-        top: 40px;
-        left: 0;
-        overflow: hidden;
-        z-index: 1000;
-        h2 {
-            text-align: center;
-            margin: 0;
-            font-size: 2.8rem;
-        }
+    .sub-heading {
+        @include sub-heading();
         .add-beer-btn {
             text-align: center;
             margin: 0 0 0 20px;
@@ -51,52 +24,10 @@
             }
         } 
     }
-
     .content {
-        position: absolute;
-        width: 100%;
-        top: 110px;
-        bottom: 50px;
-        overflow: auto; 
-        color: $white;      
-        // background: url(/img/beer-mug-suds.jpg) center no-repeat;
-        background-color: $grey;
-        background-size: 100%;
-
-
+        @include content-area();
     }
     footer {
-        box-sizing: border-box;    
-        text-align: center;
-        padding: 10px 0 0;
-        color: $white;
-        background: $footer;
-        font-size: 1.6rem;
-        position: fixed;
-        width: 100%;
-        height: 50px;
-        bottom: 0;
-        left: 0;
-        overflow: hidden;
-        z-index: 1000;
-
-        .tabs {           
-            list-style: none;            
-            font-size: 1.6rem;            
-            display: flex;
-            flex-direction: row;
-            .nav-link {
-                flex: 1;
-                text-align: center;
-                li {
-                    padding: 5px 0 0;
-                    font-size: 1.0rem;
-                }            
-                i {
-                    font-size: 2.0rem;
-                    display: block;
-                }
-            }
-        }
+        @include footer();
     } 
 }

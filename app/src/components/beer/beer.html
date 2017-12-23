@@ -1,20 +1,41 @@
 <section ng-class="$ctrl.styles.beer">
     <header>
-        <div>
-            <h1 ui-sref="about">The Beer Reviewed Journal</h1>
+        <div class="app-name">
+            <h1 ui-sref="about">BeerCrit</h1>
         </div>
-        <nav>
-            <li ng-if="$ctrl.isAdmin()" ui-sref="admin">ADMIN PAGE</li>
-            <li ng-if="$ctrl.isAuthenticated()" ui-sref="profile">MY REVIEWS</li>
-            <li ng-if="$ctrl.isAuthenticated()" ui-sref="beers">BEERS</li>
-            <li ng-if="$ctrl.isAuthenticated()" ui-sref="about" ng-click="$ctrl.logout()">LOGOUT</li>
-            <li ng-if="!$ctrl.isAuthenticated()" ui-sref="beers">SIGNIN</li>     
-        </nav>
     </header>
-    <section>
+    <div class="sub-heading">
+        <h2>Beers!</h2>
+        <div ng-show="true" class="add-beer-btn" ng-click="$ctrl.goToAddBeer()">
+                <button><span>Add a Beer</span></button>
+                <div class="bottle-neck"></div>
+        </div>
+    </div>
+    <section class="content">
         <ui-view></ui-view>
     </section>
-    <footer ui-sref="about.developer">
-        &copy; 2017 Nathan Hugon
+    <footer>
+        <nav class="tabs">
+                <div class="nav-link" ng-if="$ctrl.isAdmin()" ui-sref="admin">
+                    <i class="fa fa-cog"></i>
+                    <li>ADMIN PAGE</li>
+                </div>
+                <div class="nav-link" ng-if="$ctrl.isAuthenticated()" ui-sref="profile">
+                    <i class="fa fa-thumbs-up"></i>
+                    <li>MY REVIEWS</li>
+                </div>
+                <div class="nav-link" ng-if="$ctrl.isAuthenticated()" ui-sref="beers">
+                    <i class="fa fa-beer"></i> 
+                    <li>BEERS</li>
+                </div>
+                <div class="nav-link" ng-if="$ctrl.isAuthenticated()" ui-sref="about" ng-click="$ctrl.logout()">
+                    <i class="fa fa-sign-out"></i>  
+                    <li>LOGOUT</li>
+                </div>
+                <div class="nav-link" ng-if="!$ctrl.isAuthenticated()" ui-sref="beers">
+                    <i class="fa fa-sign-in"></i>
+                    <li>SIGNIN</li>
+                </div>                
+            </nav>
     </footer>
 </section>

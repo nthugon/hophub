@@ -3,24 +3,17 @@
         <div class="app-name">
             <h1 ui-sref="about">BeerCrit</h1>
         </div>
-
     </header>
-    <div class="beers-sub-heading">
+    <div class="sub-heading">
         <h2>Beers!</h2>
-        <div ng-show="$ctrl.all" class="add-beer-btn" ng-click="$ctrl.goToAddBeer()">
+        <div ng-show="true" class="add-beer-btn" ng-click="$ctrl.goToAddBeer()">
                 <button><span>Add a Beer</span></button>
                 <div class="bottle-neck"></div>
         </div>
-        <div ng-show="$ctrl.add" class="add-beer-btn" ng-click="$ctrl.goToAllBeers()">
-            <button><span>Back to Beers</span></button>
-            <div class="bottle-neck"></div>
-        </div> 
     </div>    
-    <div class="content">           
-        <section>
-            <ui-view></ui-view>
-        </section> 
-    </div>
+    <section class="content">           
+        <ui-view></ui-view>
+    </section>
     <footer>
         <nav class="tabs">
                 <div class="nav-link" ng-if="$ctrl.isAdmin()" ui-sref="admin">

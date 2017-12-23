@@ -1,15 +1,32 @@
 @import 'colors';
-@import 'header';
-@import 'footer';
+@import 'layout';
+@import 'buttons';
 
 :local(.profile) {
-    margin:  10% 2% 2%;
-    border: 1px solid black;
-
     header {
         @include header();
     }
-
+    .sub-heading {
+        @include sub-heading();
+        .add-beer-btn {
+            text-align: center;
+            margin: 0 0 0 20px;
+            button {
+                @include button();
+            }
+            .bottle-neck {
+                display: inline-block;
+                width: 40px;
+                height: 18px;
+                margin: 0 0 -4px -5px;
+                border-radius: 0 5px 5px 0;
+                background-color: $button;
+            }
+        }
+    }
+    .content {
+        @include content-area();
+    }
     footer {
         @include footer();
     }
