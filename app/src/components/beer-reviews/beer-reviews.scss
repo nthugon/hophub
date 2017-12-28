@@ -1,0 +1,46 @@
+@import 'colors';
+@import 'layout';
+@import 'buttons';
+
+:local(.reviews) {
+    text-align: center;
+    i {
+        position: absolute;
+        color: $accent;
+        top: 2%;
+        right: 3%;            
+    }
+    .review-heading {
+        margin: 0 0 5%;
+        h3 {
+            @include content-heading();
+        }
+        span {
+            color: $black;           
+            font-size: 1.4rem;
+        }
+
+    }
+    .review-listing {
+        color: $accent;
+        width: 80%;
+        margin: 3% auto;
+        border-bottom: 1px solid $accent;
+        .comment-line {
+            font-size: 1.8rem;
+        }
+        .drink-again-line {
+            font-size: 1.4rem;
+        }
+    }
+    button {
+        @include button();
+        margin: 0 2%;
+        background-color: $accent;
+
+    }
+    .capitalize {
+        text-transform: capitalize;
+    }
+
+}

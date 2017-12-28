@@ -15,7 +15,5 @@ function controller(userService, $state) {
     this.isAdmin = () => userService.isAdmin();
     this.goToAddBeer = () => {
         $state.go('beers.add');
-        this.add = true;
-        this.all = false;
     };
 }

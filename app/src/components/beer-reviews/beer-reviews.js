@@ -14,10 +14,6 @@ controller.$inject = ['$state'];
 function controller($state) {
     this.styles = styles;
 
-    this.goToAddReview = () => {
-        $state.go('beer.addReview');
-    };
-
     this.backToBeers = () => {
         $state.go('beers');
     };

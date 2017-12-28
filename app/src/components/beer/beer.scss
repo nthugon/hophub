@@ -13,6 +13,8 @@
             margin: 0 0 0 20px;
             button {
                 @include button();
+                background-color: $button;
+                border-radius: 5px 15px 15px 5px;
             }
             .bottle-neck {
                 display: inline-block;

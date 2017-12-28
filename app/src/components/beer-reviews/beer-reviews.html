@@ -1,23 +1,23 @@
 <section ng-class="$ctrl.styles.reviews">
-    <div>
-        <h2>{{$ctrl.beer.name}} has the following reviews.</h2>
-        <table>
-            <thead>
-                <tr>
-                    <td>Drink Again?</td>
-                    <td>Comments</td>
-                    <td>Reviewer</td>
-                </tr>
-            </thead>
-            <tbody>
-                <tr ng-repeat="review in $ctrl.beer.reviews">
-                    <td>{{review.drinkAgain}}</td>
-                    <td>{{review.comments}}</td>
-                    <td>{{review.reviewer}}</td>
-                </tr>
-            </tbody>
-        </table>
+    <i class="fa fa-times fa-2x" aria-hidden="true" ng-click="$ctrl.backToBeers()"></i>
+    <div class="review-heading" ng-if="$ctrl.beer.reviews.length > 0">
+        <h3>{{$ctrl.beer.brewery}} {{$ctrl.beer.name}}</h3>
+        <span>has the following reviews:</span>
     </div>
-    <button ng-click="$ctrl.goToAddReview()">Add a Review</button>
+    <div class="review-heading" ng-if="$ctrl.beer.reviews.length === 0">
+        <h3>{{$ctrl.beer.brewery}} {{$ctrl.beer.name}}</h3>
+        <span>does not yet have any reviews.</span>
+    </div>
+    <div class="review-listing" ng-repeat="review in $ctrl.beer.reviews track by $index">
+        <div ng-if="review.comments.length > 0" class="comment-line">
+            "{{review.comments}}" -{{review.reviewer}}
+        </div>
+        <div ng-if="!review.comments" class="comment-line">
+                "No comment." -{{review.reviewer}}
+        </div>
+        <div class="drink-again-line capitalize">
+            Drink Again?: {{review.drinkAgain}}
+        </div>
+    </div>
     <button ng-click="$ctrl.backToBeers()">Back to Beers</button>
 </section>
