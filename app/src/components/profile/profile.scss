@@ -10,7 +10,7 @@
         @include sub-heading();
         .add-beer-btn {
             text-align: center;
-            margin: 0 0 0 20px;
+            margin: 0 0 0 40px;
             button {
                 @include button();
             }

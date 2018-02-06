@@ -1,13 +1,13 @@
 @mixin button() {
     padding: 7px 0 9px 0;
     text-align: center;
-    width: 110px;
+    width: 120px;
     border: none;
     outline: none;
     border-radius: 15px;
     span {
         font-size: 1.4rem;
         font-weight: bold;
-        padding: 0 0 0 10px;
+        margin-left: -3px;
     }
 }
