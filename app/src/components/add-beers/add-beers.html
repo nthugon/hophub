@@ -6,14 +6,14 @@
             Enter the Beer's Information
         </h4>
         <div class="entry-fields">
-                <label for="brewery">Brewery</label>
-                <input id="brewery" ng-model="$ctrl.brewery" maxlength="50">          
-                <label for="name">Name</label>
-                <input id="name" ng-model="$ctrl.name" maxlength="50">
-                <label for="style">Style</label>
-                <input id="style" ng-model="$ctrl.style" maxlength="30">
-                <label for="abv">ABV</label>
-                <input id="abv" type="number" min="1" max="20" ng-model="$ctrl.abv">
+            <label for="brewery">Brewery</label>
+            <input type="text" id="brewery" ng-model="$ctrl.brewery" maxlength="50">   
+            <label for="name">Name</label>
+            <input type="text" id="name" ng-model="$ctrl.name" maxlength="50">
+            <label for="style">Style</label>
+            <input type="text" id="style" ng-model="$ctrl.style" maxlength="30">
+            <label for="abv">ABV</label>
+            <input id="abv" type="number" min="1" max="20" ng-model="$ctrl.abv">
         </div>
         <button ng-click="$ctrl.addBeer()">Add</button>      
     </form>

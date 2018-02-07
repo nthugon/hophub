@@ -1,0 +1,13 @@
+@import 'colors';
+@import 'layout';
+@import 'buttons';
+
+:local(.add_review) {
+    color: $accent;
+    h3 {
+        @include content-heading();
+    }
+    .add-review {
+        @include entry-form();
+    }
+}

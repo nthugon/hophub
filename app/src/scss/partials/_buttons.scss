@@ -11,3 +11,31 @@
         margin-left: -3px;
     }
 }
+
+@mixin bottle-btn() {
+    text-align: center;
+    margin: 0 0 0 40px;
+    button {
+        padding: 7px 0 9px 0;
+        text-align: center;
+        width: 120px;
+        border: none;
+        outline: none;
+        background-color: $button;
+        border-radius: 5px 15px 15px 5px;
+        span {
+            font-size: 1.4rem;
+            font-weight: bold;
+            margin-left: -3px;
+        }
+    }
+    div {
+        display: inline-block;
+        width: 40px;
+        height: 18px;
+        margin: 0 0 -4px -5px;
+        border-radius: 0 5px 5px 0;
+        background-color: $button;
+    }
+
+}

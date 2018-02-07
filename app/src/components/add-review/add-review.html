@@ -1,23 +1,25 @@
-<section ng-class="$ctrl.styles.addreview">
-    <h2>Use the Form Below to Add a Review for {{$ctrl.beer.name}}</h2>
-    <div class="add-review">
-        <div>
-            <h3>Add a Review</h3>
-            <label>Would You Drink This Beer Again?</label>
-            <span ng-repeat="drinkAgain in ['no', 'occasionally', 'yes']">
-            <input 
-                ng-model="$ctrl.drinkAgain" 
-                name="drinkAgain" 
-                ng-value="drinkAgain" 
-                type="radio"> 
-                {{drinkAgain}}
-            </span>
+<section ng-class="$ctrl.styles.add_review">
+    <h3>Add a Review for {{$ctrl.beer.name}}</h3>
+    <form class="add-review">
+        <i class="fa fa-times fa-2x" aria-hidden="true" ng-click="$ctrl.backToBeer()"></i>
+        <h4>
+            Enter Your Review
+        </h4>
+        <div class="entry-fields">
+            <label for="drink-again">Would You Drink This Beer Again?</label>
+            <div id="drink-again">
+                <span ng-repeat="drinkAgain in ['no', 'occasionally', 'yes']">
+                    <input 
+                        ng-model="$ctrl.drinkAgain" 
+                        name="drinkAgain" 
+                        ng-value="drinkAgain" 
+                        type="radio"> 
+                    {{drinkAgain}}
+                </span>
+            </div>
+            <label for="comments">Comments</label>
+            <textarea id="comments" ng-model="$ctrl.comments"></textarea>
         </div>
-        <div>
-            <label>Comments</label>
-            <input ng-model="$ctrl.comments">
-        </div>
-        <button ng-click="$ctrl.addReview()">Add</button>
-        <button ng-click="$ctrl.backToBeer()">Cancel</button>        
-    </div>
+        <button ng-click="$ctrl.addReview()">Add</button>      
+    </form>
 </section>
