@@ -56,37 +56,37 @@
 	
 	var _components2 = _interopRequireDefault(_components);
 	
-	var _services = __webpack_require__(84);
+	var _services = __webpack_require__(96);
 	
 	var _services2 = _interopRequireDefault(_services);
 	
-	var _angularUiRouter = __webpack_require__(91);
+	var _angularUiRouter = __webpack_require__(103);
 	
 	var _angularUiRouter2 = _interopRequireDefault(_angularUiRouter);
 	
-	var _angularUiRouterDefault = __webpack_require__(161);
+	var _angularUiRouterDefault = __webpack_require__(173);
 	
 	var _angularUiRouterDefault2 = _interopRequireDefault(_angularUiRouterDefault);
 	
-	__webpack_require__(162);
+	__webpack_require__(174);
 	
-	var _routes = __webpack_require__(163);
+	var _routes = __webpack_require__(175);
 	
 	var _routes2 = _interopRequireDefault(_routes);
 	
-	var _ngDialog = __webpack_require__(164);
+	var _ngDialog = __webpack_require__(176);
 	
 	var _ngDialog2 = _interopRequireDefault(_ngDialog);
 	
-	__webpack_require__(165);
+	__webpack_require__(177);
 	
-	__webpack_require__(167);
+	__webpack_require__(179);
 	
-	var _http = __webpack_require__(169);
+	var _http = __webpack_require__(181);
 	
 	var _http2 = _interopRequireDefault(_http);
 	
-	var _auth = __webpack_require__(170);
+	var _auth = __webpack_require__(182);
 	
 	var _auth2 = _interopRequireDefault(_auth);
 	
@@ -102,9 +102,6 @@
 	app.config(['$qProvider', function ($qProvider) {
 	    $qProvider.errorOnUnhandledRejections(false);
 	}]);
-	// app.config(['$state', function ($state) {
-	//     $state.defaultErrorHandler(function() { /* do nothing */});
-	// }]);
 	app.config(_http2.default);
 	app.run(_auth2.default);
 
@@ -33941,13 +33938,16 @@
 		"./add-review/add-review.js": 44,
 		"./admin/admin.js": 48,
 		"./all-beers/all-beers.js": 52,
-		"./all-users/all-users.js": 56,
-		"./app/app.js": 60,
-		"./beer-reviews/beer-reviews.js": 64,
-		"./beer/beer.js": 68,
-		"./beers/beers.js": 72,
-		"./profile/profile.js": 76,
-		"./user-reviews/user-reviews.js": 80
+		"./app/app.js": 56,
+		"./beer-reviews/beer-reviews.js": 60,
+		"./beer/beer.js": 64,
+		"./beers/beers.js": 68,
+		"./edit-user/edit-user.js": 72,
+		"./manage-beers/manage-beers.js": 76,
+		"./manage-reviews/manage-reviews.js": 80,
+		"./manage-users/manage-users.js": 84,
+		"./profile/profile.js": 88,
+		"./user-reviews/user-reviews.js": 92
 	};
 	function webpackContext(req) {
 		return __webpack_require__(webpackContextResolve(req));
@@ -34041,7 +34041,7 @@
 /* 17 */
 /***/ function(module, exports) {
 
-	module.exports = "<section ng-class=\"$ctrl.styles.developer\">\n    <img src=\"/img/nathan-hugon.JPG\" alt=\"Nathan Profile Picture\">\n    <h3>Nathan Hugon</h3>\n    <p>I am a full-stack JavaScript developer with a\n    background in education as an English teacher and a love for sourdough\n    baking. Initially drawn to web development as a means to share my baking\n    knowledge, I strive to write code that is modular, flexible, and easy\n    to read. An accompanying passion for research drives my ability to find\n    and create solutions to complex problems.</p>\n    <ul>\n        <li><a href=\"https://github.com/nthugon\" target=\"_blank\">Github</a></li>\n        <li><a href=\"https://www.linkedin.com/in/nathanhugon\" target=\"_blank\">LinkedIn</a></li>\n    </ul>\n</section>\n";
+	module.exports = "<section ng-class=\"$ctrl.styles.developer\">\n    <img src=\"/img/nathan-hugon.JPG\" alt=\"Nathan Profile Picture\">\n    <h3>Nathan Hugon</h3>\n    <p>I am a full-stack developer with a love for food, drink, music, and skateboarding.</p>\n    <ul>\n        <li><a href=\"https://github.com/nthugon\" target=\"_blank\">Github</a></li>\n        <li><a href=\"https://www.linkedin.com/in/nathanhugon\" target=\"_blank\">LinkedIn</a></li>\n    </ul>\n</section>\n";
 
 /***/ },
 /* 18 */
@@ -34089,16 +34089,13 @@
 	    this.isAdmin = function () {
 	        return userService.isAdmin();
 	    };
-	    this.isBrewer = function () {
-	        return userService.isBrewer();
-	    };
 	}
 
 /***/ },
 /* 21 */
 /***/ function(module, exports) {
 
-	module.exports = "<section ng-class=\"$ctrl.styles.about\">\n    <header>\n        <div>\n            <h1 ui-sref=\"about\">The Beer Reviewed Journal</h1>\n        </div>\n        <nav>\n            <li ng-if=\"$ctrl.isAdmin()\" ui-sref=\"admin\">ADMIN PAGE</li>\n            <li ng-if=\"$ctrl.isBrewer()\" ui-sref=\"beers\">BREWER'S PAGE</li>\n            <li ng-if=\"$ctrl.isAuthenticated()\" ui-sref=\"profile\">MY REVIEWS</li>\n            <li ng-if=\"$ctrl.isAuthenticated()\" ui-sref=\"beers\">BEERS</li>    \n            <li ng-if=\"$ctrl.isAuthenticated()\" ui-sref=\"about\" ng-click=\"$ctrl.logout()\">LOGOUT</li>\n            <li ng-if=\"!$ctrl.isAuthenticated()\" ui-sref=\"beers\">SIGNIN</li>     \n        </nav>\n    </header>\n\n    <ui-view></ui-view>\n\n    <footer ui-sref=\"about.developer\">\n        &copy; 2017 Nathan Hugon\n    </footer>\n</section>\n";
+	module.exports = "<section ng-class=\"$ctrl.styles.about\">\n    <header>\n        <div class=\"app-name\">\n            <h1 ui-sref=\"about\">BeerCrit</h1>\n        </div>\n    </header>\n    <div class=\"sub-heading\">\n        <h2>Welcome to BeerCrit!</h2>\n        <div class=\"bottle-btn\" ng-click=\"$ctrl.goToAddBeer()\">\n                <button><span>Add a Beer</span></button>\n                <div></div>\n        </div>\n    </div> \n    <section class=\"content\">\n        <ui-view></ui-view>\n    </section>\n    <footer>\n        <nav class=\"tabs\">\n                <div class=\"nav-link\" ng-if=\"$ctrl.isAdmin()\" ui-sref=\"admin\">\n                    <i class=\"fa fa-cog\"></i>\n                    <li>ADMIN PAGE</li>\n                </div>\n                <div class=\"nav-link\" ng-if=\"$ctrl.isAuthenticated()\" ui-sref=\"profile\">\n                    <i class=\"fa fa-thumbs-up\"></i>\n                    <li>MY REVIEWS</li>\n                </div>\n                <div class=\"nav-link\" ng-if=\"$ctrl.isAuthenticated()\" ui-sref=\"beers\">\n                    <i class=\"fa fa-beer\"></i> \n                    <li>BEERS</li>\n                </div>\n                <div class=\"nav-link\" ng-if=\"$ctrl.isAuthenticated()\" ui-sref=\"about\" ng-click=\"$ctrl.logout()\">\n                    <i class=\"fa fa-sign-out\"></i>  \n                    <li>LOGOUT</li>\n                </div>\n                <div class=\"nav-link\" ng-if=\"!$ctrl.isAuthenticated()\" ui-sref=\"beers\">\n                    <i class=\"fa fa-sign-in\"></i>\n                    <li>SIGNIN</li>\n                </div>                \n            </nav>\n    </footer>\n</section>\n";
 
 /***/ },
 /* 22 */
@@ -34339,12 +34336,13 @@
 	};
 	
 	
-	controller.$inject = ['beerService', '$state'];
+	controller.$inject = ['beerService', '$state', 'userService'];
 	
-	function controller(beers, $state) {
+	function controller(beers, $state, user) {
 	    var _this = this;
 	
 	    this.styles = _addBeers4.default;
+	    this.user = user.getUserInfo();
 	
 	    this.backToAll = function () {
 	        $state.go('beers.all');
@@ -34355,7 +34353,9 @@
 	            name: _this.name,
 	            style: _this.style,
 	            brewery: _this.brewery,
-	            abv: _this.abv
+	            abv: _this.abv,
+	            userId: _this.user._id,
+	            enteredBy: _this.user.username
 	        }).then(function (saved) {
 	            _this.beers.push(saved);
 	            $state.go('beer', { id: saved._id });
@@ -34367,13 +34367,14 @@
 /* 41 */
 /***/ function(module, exports) {
 
-	module.exports = "<section ng-class=\"$ctrl.styles.addbeers\">\n    <h2>Use the Form Below to Add a Beer</h2>\n    <div class=\"add-beer\">\n        <div>\n            <h3>Enter the Beer's Information</h3>\n            <label>Name</label>\n            <input ng-model=\"$ctrl.name\">\n        </div>\n        <div>\n            <label>Style</label>\n            <input ng-model=\"$ctrl.style\">\n        </div>\n        <div>\n            <label>Brewery</label>\n            <input ng-model=\"$ctrl.brewery\">\n        </div>\n        <div>\n            <label>ABV</label>\n            <input ng-model=\"$ctrl.abv\">\n        </div>\n        <button ng-click=\"$ctrl.addBeer()\">Add</button>\n        <button ng-click=\"$ctrl.backToAll()\">Cancel</button>       \n    </div>\n</section>\n";
+	module.exports = "<section ng-class=\"$ctrl.styles.add_beers\">\n    <h3>Use the Form Below to Add a Beer</h3>\n    <form class=\"add-beer\">\n        <i class=\"fa fa-times fa-2x\" aria-hidden=\"true\" ng-click=\"$ctrl.backToAll()\"></i>\n        <h4>\n            Enter the Beer's Information\n        </h4>\n        <div class=\"entry-fields\">\n            <label for=\"brewery\">Brewery</label>\n            <input type=\"text\" id=\"brewery\" ng-model=\"$ctrl.brewery\" maxlength=\"50\">   \n            <label for=\"name\">Name</label>\n            <input type=\"text\" id=\"name\" ng-model=\"$ctrl.name\" maxlength=\"50\">\n            <label for=\"style\">Style</label>\n            <input type=\"text\" id=\"style\" ng-model=\"$ctrl.style\" maxlength=\"30\">\n            <label for=\"abv\">ABV</label>\n            <input id=\"abv\" type=\"number\" min=\"1\" max=\"20\" ng-model=\"$ctrl.abv\">\n        </div>\n        <button ng-click=\"$ctrl.addBeer()\">Add</button>      \n    </form>\n</section>\n";
 
 /***/ },
 /* 42 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
+	module.exports = {"add_beers":"_1izU0fXp63dbvv9H8fbTtJ"};
 
 /***/ },
 /* 43 */,
@@ -34438,13 +34439,14 @@
 /* 45 */
 /***/ function(module, exports) {
 
-	module.exports = "<section ng-class=\"$ctrl.styles.addreview\">\n    <h2>Use the Form Below to Add a Review for {{$ctrl.beer.name}}</h2>\n    <div class=\"add-review\">\n        <div>\n            <h3>Add a Review</h3>\n            <label>Would You Drink This Beer Again?</label>\n            <span ng-repeat=\"drinkAgain in ['no', 'occasionally', 'yes']\">\n            <input \n                ng-model=\"$ctrl.drinkAgain\" \n                name=\"drinkAgain\" \n                ng-value=\"drinkAgain\" \n                type=\"radio\"> \n                {{drinkAgain}}\n            </span>\n        </div>\n        <div>\n            <label>Comments</label>\n            <input ng-model=\"$ctrl.comments\">\n        </div>\n        <button ng-click=\"$ctrl.addReview()\">Add</button>\n        <button ng-click=\"$ctrl.backToBeer()\">Cancel</button>        \n    </div>\n</section>\n";
+	module.exports = "<section ng-class=\"$ctrl.styles.add_review\">\n    <h3>Add a Review for {{$ctrl.beer.name}}</h3>\n    <form class=\"add-review\">\n        <i class=\"fa fa-times fa-2x\" aria-hidden=\"true\" ng-click=\"$ctrl.backToBeer()\"></i>\n        <h4>\n            Enter Your Review\n        </h4>\n        <div class=\"entry-fields\">\n            <label for=\"drink-again\">Would You Drink This Beer Again?</label>\n            <div id=\"drink-again\">\n                <span ng-repeat=\"drinkAgain in ['no', 'occasionally', 'yes']\">\n                    <input \n                        ng-model=\"$ctrl.drinkAgain\" \n                        name=\"drinkAgain\" \n                        ng-value=\"drinkAgain\" \n                        type=\"radio\"> \n                    {{drinkAgain}}\n                </span>\n            </div>\n            <label for=\"comments\">Comments</label>\n            <textarea id=\"comments\" ng-model=\"$ctrl.comments\"></textarea>\n        </div>\n        <button ng-click=\"$ctrl.addReview()\">Add</button>      \n    </form>\n</section>\n";
 
 /***/ },
 /* 46 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
+	module.exports = {"add_review":"_1nJA7HWuWIyGH6HWxnQXzU"};
 
 /***/ },
 /* 47 */,
@@ -34473,9 +34475,9 @@
 	};
 	
 	
-	controller.$inject = ['userService'];
+	controller.$inject = ['userService', '$state'];
 	
-	function controller(userService) {
+	function controller(userService, $state) {
 	    this.styles = _admin4.default;
 	    this.logout = function () {
 	        return userService.logout();
@@ -34486,8 +34488,14 @@
 	    this.isAdmin = function () {
 	        return userService.isAdmin();
 	    };
-	    this.isBrewer = function () {
-	        return userService.isBrewer();
+	    this.manageUsers = function () {
+	        $state.go('admin.users');
+	    };
+	    this.manageBeers = function () {
+	        $state.go('admin.beers');
+	    };
+	    this.manageReviews = function () {
+	        $state.go('admin.reviews');
 	    };
 	}
 
@@ -34495,7 +34503,7 @@
 /* 49 */
 /***/ function(module, exports) {
 
-	module.exports = "<section ng-class=\"$ctrl.styles.admin\">\n    <header>\n        <div>\n            <h1 ui-sref=\"about\">The Beer Reviewed Journal</h1>\n        </div>\n        <nav>\n            <li ng-if=\"$ctrl.isAdmin()\" ui-sref=\"admin\">ADMIN PAGE</li>\n            <li ng-if=\"$ctrl.isBrewer()\" ui-sref=\"beers\">BREWER'S PAGE</li>\n            <li ng-if=\"$ctrl.isAuthenticated()\" ui-sref=\"profile\">MY REVIEWS</li>\n            <li ng-if=\"$ctrl.isAuthenticated()\" ui-sref=\"beers\">BEERS</li>  \n            <li ng-if=\"$ctrl.isAuthenticated()\" ui-sref=\"about\" ng-click=\"$ctrl.logout()\">LOGOUT</li>\n            <li ng-if=\"!$ctrl.isAuthenticated()\" ui-sref=\"beers\">SIGNIN</li>     \n        </nav>\n    </header>\n    <p>Random content on admin parent.<p>\n    <section>\n        <ui-view></ui-view>\n    </section>\n</section>\n";
+	module.exports = "<section ng-class=\"$ctrl.styles.admin\">\n    <header>\n        <div class=\"app-name\">\n            <h1 ui-sref=\"about\">BeerCrit</h1>\n        </div>\n    </header>\n    <div class=\"sub-heading\">\n        <h2>Admin<h2>\n        <button ng-click=\"$ctrl.manageUsers(beer._id)\">Manage Users</button>\n        <button ng-click=\"$ctrl.manageBeers(beer._id)\">Manage Beers</button>\n        <button ng-click=\"$ctrl.manageReviews(beer._id)\">Manage Reviews</button>\n    </div>\n    <section class=\"content\">\n        <ui-view></ui-view>\n    </section>\n    <footer>\n        <nav class=\"tabs\">\n                <div class=\"nav-link\" ng-if=\"$ctrl.isAdmin()\" ui-sref=\"admin\">\n                    <i class=\"fa fa-cog\"></i>\n                    <li>ADMIN PAGE</li>\n                </div>\n                <div class=\"nav-link\" ng-if=\"$ctrl.isAuthenticated()\" ui-sref=\"profile\">\n                    <i class=\"fa fa-thumbs-up\"></i>\n                    <li>MY REVIEWS</li>\n                </div>\n                <div class=\"nav-link\" ng-if=\"$ctrl.isAuthenticated()\" ui-sref=\"beers\">\n                    <i class=\"fa fa-beer\"></i> \n                    <li>BEERS</li>\n                </div>\n                <div class=\"nav-link\" ng-if=\"$ctrl.isAuthenticated()\" ui-sref=\"about\" ng-click=\"$ctrl.logout()\">\n                    <i class=\"fa fa-sign-out\"></i>  \n                    <li>LOGOUT</li>\n                </div>\n                <div class=\"nav-link\" ng-if=\"!$ctrl.isAuthenticated()\" ui-sref=\"beers\">\n                    <i class=\"fa fa-sign-in\"></i>\n                    <li>SIGNIN</li>\n                </div>                \n            </nav>\n    </footer>\n</section>\n";
 
 /***/ },
 /* 50 */
@@ -34538,24 +34546,20 @@
 	
 	function controller($state) {
 	    this.styles = _allBeers4.default;
-	
-	    this.goToAdd = function () {
-	        $state.go('beers.add');
-	    };
 	}
 
 /***/ },
 /* 53 */
 /***/ function(module, exports) {
 
-	module.exports = "<section ng-class=\"$ctrl.styles.allbeers\">\n    <h2>Select a Beer to See Its Reviews</h2>\n    <table>\n        <thead>\n            <tr>\n                <td>Beer</td>\n                <td>Brewery</td>\n                <td>Style</td>\n                <td>ABV</td>\n            </tr>\n        </thead>\n        <tbody>\n            <tr ng-repeat=\"beer in $ctrl.beers\"\n                ui-sref=\"beer({\n                    id: beer._id\n                })\">\n                <td>{{beer.name}}</td>\n                <td>{{beer.brewery}}</td>\n                <td>{{beer.style}}</td>\n                <td>{{beer.abv}}</td>\n            </tr>\n        </tbody>\n    </table>\n    <nav>\n        <button ng-click=\"$ctrl.goToAdd()\">Add a Beer</button>\n    </nav>\n</section>\n";
+	module.exports = "<section ng-class=\"$ctrl.styles.all_beers\">  \n    <h3>Select a Beer to See Its Reviews</h3>\n    <div class=\"beer-listing\" ng-repeat=\"beer in $ctrl.beers | orderBy: 'brewery' track by $index\"\n    ui-sref=\"beer({\n        id: beer._id\n    })\">\n        <div class=\"title-line\">\n            {{beer.brewery}} {{beer.name}}\n        </div>\n        <div class=\"detail-line\">\n            {{beer.style}} {{beer.abv}}\n        </div>\n    </div>\n\n</section>\n";
 
 /***/ },
 /* 54 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
-	module.exports = {"allbeers":"_1m2fFAlSRmksQVLCmtzTn0"};
+	module.exports = {"all_beers":"pckJOSBj2wt45ZAnMd3TS"};
 
 /***/ },
 /* 55 */,
@@ -34568,58 +34572,11 @@
 	    value: true
 	});
 	
-	var _allUsers = __webpack_require__(57);
-	
-	var _allUsers2 = _interopRequireDefault(_allUsers);
-	
-	var _allUsers3 = __webpack_require__(58);
-	
-	var _allUsers4 = _interopRequireDefault(_allUsers3);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	exports.default = {
-	    template: _allUsers2.default,
-	    bindings: {
-	        users: '<'
-	    },
-	    controller: controller
-	};
-	
-	
-	function controller() {
-	    this.styles = _allUsers4.default;
-	}
-
-/***/ },
-/* 57 */
-/***/ function(module, exports) {
-
-	module.exports = "<section ng-class=\"$ctrl.styles.allusers\">\n    <h2>Select a User to See Their Profile</h2>\n    <table>\n        <thead>\n            <tr>\n                <td>User</td>\n                <td>Admin</td>\n                <td>Brewer</td>\n            </tr>\n        </thead>\n        <tbody>\n            <tr ng-repeat=\"user in $ctrl.users\"\n                ui-sref=\"admin.edit({\n                    id: user._id\n                })\">\n                <td>{{user.username}}</td>\n                <td>{{user.admin}}</td>\n                <td>{{user.brewer}}</td>\n            </tr>\n        </tbody>\n    </table>\n</section>\n";
-
-/***/ },
-/* 58 */
-/***/ function(module, exports) {
-
-	// removed by extract-text-webpack-plugin
-	module.exports = {"allusers":"QnEKtUtCNbTjWQGIWPVSa"};
-
-/***/ },
-/* 59 */,
-/* 60 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	
-	var _app = __webpack_require__(61);
+	var _app = __webpack_require__(57);
 	
 	var _app2 = _interopRequireDefault(_app);
 	
-	var _app3 = __webpack_require__(62);
+	var _app3 = __webpack_require__(58);
 	
 	var _app4 = _interopRequireDefault(_app3);
 	
@@ -34636,20 +34593,20 @@
 	}
 
 /***/ },
-/* 61 */
+/* 57 */
 /***/ function(module, exports) {
 
 	module.exports = "<main ng-class=\"$ctrl.styles.app\">\n    <ui-view></ui-view>\n</main>\n\n";
 
 /***/ },
-/* 62 */
+/* 58 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 63 */,
-/* 64 */
+/* 59 */,
+/* 60 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -34658,11 +34615,11 @@
 	    value: true
 	});
 	
-	var _beerReviews = __webpack_require__(65);
+	var _beerReviews = __webpack_require__(61);
 	
 	var _beerReviews2 = _interopRequireDefault(_beerReviews);
 	
-	var _beerReviews3 = __webpack_require__(66);
+	var _beerReviews3 = __webpack_require__(62);
 	
 	var _beerReviews4 = _interopRequireDefault(_beerReviews3);
 	
@@ -34682,30 +34639,27 @@
 	function controller($state) {
 	    this.styles = _beerReviews4.default;
 	
-	    this.goToAddReview = function () {
-	        $state.go('beer.addReview');
-	    };
-	
 	    this.backToBeers = function () {
 	        $state.go('beers');
 	    };
 	}
 
 /***/ },
-/* 65 */
+/* 61 */
 /***/ function(module, exports) {
 
-	module.exports = "<section ng-class=\"$ctrl.styles.reviews\">\n    <div>\n        <h2>{{$ctrl.beer.name}} has the following reviews.</h2>\n        <table>\n            <thead>\n                <tr>\n                    <td>Drink Again?</td>\n                    <td>Comments</td>\n                    <td>Reviewer</td>\n                </tr>\n            </thead>\n            <tbody>\n                <tr ng-repeat=\"review in $ctrl.beer.reviews\">\n                    <td>{{review.drinkAgain}}</td>\n                    <td>{{review.comments}}</td>\n                    <td>{{review.reviewer}}</td>\n                </tr>\n            </tbody>\n        </table>\n    </div>\n    <button ng-click=\"$ctrl.goToAddReview()\">Add a Review</button>\n    <button ng-click=\"$ctrl.backToBeers()\">Back to Beers</button>\n</section>\n";
+	module.exports = "<section ng-class=\"$ctrl.styles.reviews\">\n    <i class=\"fa fa-times fa-2x\" aria-hidden=\"true\" ng-click=\"$ctrl.backToBeers()\"></i>\n    <div class=\"review-heading\" ng-if=\"$ctrl.beer.reviews.length > 0\">\n        <h3>{{$ctrl.beer.brewery}} {{$ctrl.beer.name}}</h3>\n        <span>has the following reviews:</span>\n    </div>\n    <div class=\"review-heading\" ng-if=\"$ctrl.beer.reviews.length === 0\">\n        <h3>{{$ctrl.beer.brewery}} {{$ctrl.beer.name}}</h3>\n        <span>does not yet have any reviews.</span>\n    </div>\n    <div class=\"review-listing\" ng-repeat=\"review in $ctrl.beer.reviews track by $index\">\n        <div ng-if=\"review.comments.length > 0\" class=\"comment-line\">\n            \"{{review.comments}}\" -{{review.reviewer}}\n        </div>\n        <div ng-if=\"!review.comments\" class=\"comment-line\">\n                \"No comment.\" -{{review.reviewer}}\n        </div>\n        <div class=\"drink-again-line capitalize\">\n            Drink Again?: {{review.drinkAgain}}\n        </div>\n    </div>\n    <button ng-click=\"$ctrl.backToBeers()\">Back to Beers</button>\n</section>\n";
 
 /***/ },
-/* 66 */
+/* 62 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
+	module.exports = {"reviews":"_4ir4eP1lGbJgTawhqp8TX"};
 
 /***/ },
-/* 67 */,
-/* 68 */
+/* 63 */,
+/* 64 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -34714,11 +34668,11 @@
 	    value: true
 	});
 	
-	var _beer = __webpack_require__(69);
+	var _beer = __webpack_require__(65);
 	
 	var _beer2 = _interopRequireDefault(_beer);
 	
-	var _beer3 = __webpack_require__(70);
+	var _beer3 = __webpack_require__(66);
 	
 	var _beer4 = _interopRequireDefault(_beer3);
 	
@@ -34734,9 +34688,9 @@
 	};
 	
 	
-	controller.$inject = ['userService'];
+	controller.$inject = ['userService', '$state'];
 	
-	function controller(userService) {
+	function controller(userService, $state) {
 	    this.styles = _beer4.default;
 	    this.logout = function () {
 	        return userService.logout();
@@ -34747,8 +34701,66 @@
 	    this.isAdmin = function () {
 	        return userService.isAdmin();
 	    };
-	    this.isBrewer = function () {
-	        return userService.isBrewer();
+	    this.goToAddReview = function () {
+	        $state.go('beer.addReview');
+	    };
+	}
+
+/***/ },
+/* 65 */
+/***/ function(module, exports) {
+
+	module.exports = "<section ng-class=\"$ctrl.styles.beer\">\n    <header>\n        <div class=\"app-name\">\n            <h1 ui-sref=\"about\">BeerCrit</h1>\n        </div>\n    </header>\n    <div class=\"sub-heading\">\n        <h2>Beers!</h2>\n        <div class=\"bottle-btn\" ng-click=\"$ctrl.goToAddReview()\">\n                <button><span>Add a Review</span></button>\n                <div></div>\n        </div>\n    </div>\n    <section class=\"content\">\n        <ui-view></ui-view>\n    </section>\n    <footer>\n        <nav class=\"tabs\">\n                <div class=\"nav-link\" ng-if=\"$ctrl.isAdmin()\" ui-sref=\"admin\">\n                    <i class=\"fa fa-cog\"></i>\n                    <li>ADMIN PAGE</li>\n                </div>\n                <div class=\"nav-link\" ng-if=\"$ctrl.isAuthenticated()\" ui-sref=\"profile\">\n                    <i class=\"fa fa-thumbs-up\"></i>\n                    <li>MY REVIEWS</li>\n                </div>\n                <div class=\"nav-link\" ng-if=\"$ctrl.isAuthenticated()\" ui-sref=\"beers\">\n                    <i class=\"fa fa-beer\"></i> \n                    <li>BEERS</li>\n                </div>\n                <div class=\"nav-link\" ng-if=\"$ctrl.isAuthenticated()\" ui-sref=\"about\" ng-click=\"$ctrl.logout()\">\n                    <i class=\"fa fa-sign-out\"></i>  \n                    <li>LOGOUT</li>\n                </div>\n                <div class=\"nav-link\" ng-if=\"!$ctrl.isAuthenticated()\" ui-sref=\"beers\">\n                    <i class=\"fa fa-sign-in\"></i>\n                    <li>SIGNIN</li>\n                </div>                \n            </nav>\n    </footer>\n</section>\n";
+
+/***/ },
+/* 66 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+	module.exports = {"beer":"_1OzTLcHgB30oBM6KyYHbyE"};
+
+/***/ },
+/* 67 */,
+/* 68 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _beers = __webpack_require__(69);
+	
+	var _beers2 = _interopRequireDefault(_beers);
+	
+	var _beers3 = __webpack_require__(70);
+	
+	var _beers4 = _interopRequireDefault(_beers3);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.default = {
+	    template: _beers2.default,
+	    controller: controller
+	};
+	
+	
+	controller.$inject = ['userService', '$state'];
+	
+	function controller(userService, $state) {
+	    this.styles = _beers4.default;
+	    this.logout = function () {
+	        return userService.logout();
+	    };
+	    this.isAuthenticated = function () {
+	        return userService.isAuthenticated();
+	    };
+	    this.isAdmin = function () {
+	        return userService.isAdmin();
+	    };
+	    this.goToAddBeer = function () {
+	        $state.go('beers.add');
 	    };
 	}
 
@@ -34756,14 +34768,14 @@
 /* 69 */
 /***/ function(module, exports) {
 
-	module.exports = "<section ng-class=\"$ctrl.styles.beer\">\n    <header>\n        <div>\n            <h1 ui-sref=\"about\">The Beer Reviewed Journal</h1>\n        </div>\n        <nav>\n            <li ng-if=\"$ctrl.isAdmin()\" ui-sref=\"admin\">ADMIN PAGE</li>\n            <li ng-if=\"$ctrl.isBrewer()\" ui-sref=\"beers\">BREWER'S PAGE</li>\n            <li ng-if=\"$ctrl.isAuthenticated()\" ui-sref=\"profile\">MY REVIEWS</li>\n            <li ng-if=\"$ctrl.isAuthenticated()\" ui-sref=\"beers\">BEERS</li>\n            <li ng-if=\"$ctrl.isAuthenticated()\" ui-sref=\"about\" ng-click=\"$ctrl.logout()\">LOGOUT</li>\n            <li ng-if=\"!$ctrl.isAuthenticated()\" ui-sref=\"beers\">SIGNIN</li>     \n        </nav>\n    </header>\n    <section>\n        <ui-view></ui-view>\n    </section>\n</section>\n";
+	module.exports = "<section ng-class=\"$ctrl.styles.beers\">\n    <header>\n        <div class=\"app-name\">\n            <h1 ui-sref=\"about\">BeerCrit</h1>\n        </div>\n    </header>\n    <div class=\"sub-heading\">\n        <h2>Beers!</h2>\n        <div class=\"bottle-btn\" ng-click=\"$ctrl.goToAddBeer()\">\n                <button><span>Add a Beer</span></button>\n                <div></div>\n        </div>\n    </div>    \n    <section class=\"content\">           \n        <ui-view></ui-view>\n    </section>\n    <footer>\n        <nav class=\"tabs\">\n                <div class=\"nav-link\" ng-if=\"$ctrl.isAdmin()\" ui-sref=\"admin\">\n                    <i class=\"fa fa-cog\"></i>\n                    <li>ADMIN PAGE</li>\n                </div>\n                <div class=\"nav-link\" ng-if=\"$ctrl.isAuthenticated()\" ui-sref=\"profile\">\n                    <i class=\"fa fa-thumbs-up\"></i>\n                    <li>MY REVIEWS</li>\n                </div>\n                <div class=\"nav-link\" ng-if=\"$ctrl.isAuthenticated()\" ui-sref=\"beers\">\n                    <i class=\"fa fa-beer\"></i> \n                    <li>BEERS</li>\n                </div>\n                <div class=\"nav-link\" ng-if=\"$ctrl.isAuthenticated()\" ui-sref=\"about\" ng-click=\"$ctrl.logout()\">\n                    <i class=\"fa fa-sign-out\"></i>  \n                    <li>LOGOUT</li>\n                </div>\n                <div class=\"nav-link\" ng-if=\"!$ctrl.isAuthenticated()\" ui-sref=\"beers\">\n                    <i class=\"fa fa-sign-in\"></i>\n                    <li>SIGNIN</li>\n                </div>                \n            </nav>\n    </footer>\n</section>\n";
 
 /***/ },
 /* 70 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
-	module.exports = {"beer":"_1OzTLcHgB30oBM6KyYHbyE"};
+	module.exports = {"beers":"_2DAAtHjo-VrJDh962yRSf4"};
 
 /***/ },
 /* 71 */,
@@ -34776,37 +34788,50 @@
 	    value: true
 	});
 	
-	var _beers = __webpack_require__(73);
+	var _editUser = __webpack_require__(73);
 	
-	var _beers2 = _interopRequireDefault(_beers);
+	var _editUser2 = _interopRequireDefault(_editUser);
 	
-	var _beers3 = __webpack_require__(74);
+	var _editUser3 = __webpack_require__(74);
 	
-	var _beers4 = _interopRequireDefault(_beers3);
+	var _editUser4 = _interopRequireDefault(_editUser3);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	exports.default = {
-	    template: _beers2.default,
+	    template: _editUser2.default,
+	    bindings: {
+	        user: '<',
+	        userReviews: '<',
+	        userBeers: '<'
+	    },
 	    controller: controller
 	};
 	
 	
-	controller.$inject = ['userService'];
+	controller.$inject = ['beerService', 'reviewService'];
 	
-	function controller(userService) {
-	    this.styles = _beers4.default;
-	    this.logout = function () {
-	        return userService.logout();
+	function controller(beers, reviews) {
+	    var _this = this;
+	
+	    this.styles = _editUser4.default;
+	
+	    this.deleteReview = function (id) {
+	        reviews.remove(id).then(function (deleted) {
+	            var indexToRemove = _this.userReviews.findIndex(function (i) {
+	                return i._id === deleted._id;
+	            });
+	            _this.userReviews.splice(indexToRemove, 1);
+	        });
 	    };
-	    this.isAuthenticated = function () {
-	        return userService.isAuthenticated();
-	    };
-	    this.isAdmin = function () {
-	        return userService.isAdmin();
-	    };
-	    this.isBrewer = function () {
-	        return userService.isBrewer();
+	
+	    this.deleteBeer = function (id) {
+	        beers.remove(id).then(function (deleted) {
+	            var indexToRemove = _this.userBeers.findIndex(function (i) {
+	                return i._id === deleted._id;
+	            });
+	            _this.userBeers.splice(indexToRemove, 1);
+	        });
 	    };
 	}
 
@@ -34814,14 +34839,14 @@
 /* 73 */
 /***/ function(module, exports) {
 
-	module.exports = "<section ng-class=\"$ctrl.styles.beers\">\n    <header>\n        <div>\n            <h1 ui-sref=\"about\">The Beer Reviewed Journal</h1>\n        </div>\n        <nav>\n            <li ng-if=\"$ctrl.isAdmin()\" ui-sref=\"admin\">ADMIN PAGE</li>\n            <li ng-if=\"$ctrl.isBrewer()\" ui-sref=\"beers\">BREWER'S PAGE</li>\n            <li ng-if=\"$ctrl.isAuthenticated()\" ui-sref=\"profile\">MY REVIEWS</li>\n            <li ng-if=\"$ctrl.isAuthenticated()\" ui-sref=\"beers\">BEERS</li>  \n            <li ng-if=\"$ctrl.isAuthenticated()\" ui-sref=\"about\" ng-click=\"$ctrl.logout()\">LOGOUT</li>\n            <li ng-if=\"!$ctrl.isAuthenticated()\" ui-sref=\"beers\">SIGNIN</li>     \n        </nav>\n    </header>\n    <p>Random content on beers parent.<p>\n    <section>\n        <ui-view></ui-view>\n    </section>\n</section>\n";
+	module.exports = "<section ng-class=\"$ctrl.styles.edituser\">\n    <h2>Info for {{$ctrl.user.username}}:</h2>\n    <h1>Here is where the user's reviews will go</h1>\n    <table>\n        <thead>\n            <tr>\n                <td>Brewery</td>\n                <td>Beer Name</td>\n                <td>Drink Again?</td>\n                <td>Comments</td>\n                <td></td>               \n            </tr>\n        </thead>\n        <tbody>\n            <tr ng-repeat=\"review in $ctrl.userReviews track by $index\">\n                <td>{{review.brewery}}</td>\n                <td>{{review.beerName}}</td>\n                <td>{{review.drinkAgain}}</td>\n                <td>{{review.comments}}</td>\n                <td>\n                    <button ng-click=\"$ctrl.deleteReview(review._id)\">Delete</button>\n                </td>\n            </tr>\n        </tbody>\n    </table>\n    <h1>Here is where the user's beers will go</h1>\n    <table>\n        <thead>\n            <tr>\n                <td>Name</td>\n                <td>Style</td>\n                <td>Brewery</td>\n                <td>ABV</td>\n                <td></td>\n            </tr>\n        </thead>\n        <tbody>\n            <tr ng-repeat=\"beer in $ctrl.userBeers track by $index\">\n                <td>{{beer.name}}</td>\n                <td>{{beer.style}}</td>\n                <td>{{beer.brewery}}</td>\n                <td>{{beer.abv}}</td>\n                <td>\n                    <button ng-click=\"$ctrl.deleteBeer(beer._id)\">Delete</button>\n                </td>\n            </tr>\n        </tbody>\n    </table>\n</section>\n";
 
 /***/ },
 /* 74 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
-	module.exports = {"beers":"_2DAAtHjo-VrJDh962yRSf4"};
+	module.exports = {"edituser":"_3dR4U8KApMJqA2YfiBXM60"};
 
 /***/ },
 /* 75 */,
@@ -34834,11 +34859,178 @@
 	    value: true
 	});
 	
-	var _profile = __webpack_require__(77);
+	var _manageBeers = __webpack_require__(77);
+	
+	var _manageBeers2 = _interopRequireDefault(_manageBeers);
+	
+	var _manageBeers3 = __webpack_require__(78);
+	
+	var _manageBeers4 = _interopRequireDefault(_manageBeers3);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.default = {
+	    template: _manageBeers2.default,
+	    bindings: {
+	        allBeers: '<'
+	    },
+	    controller: controller
+	};
+	
+	
+	controller.$inject = ['beerService'];
+	
+	function controller(beers) {
+	    var _this = this;
+	
+	    this.styles = _manageBeers4.default;
+	
+	    this.deleteBeer = function (id) {
+	        beers.remove(id).then(function (deleted) {
+	            var indexToRemove = _this.allBeers.findIndex(function (i) {
+	                return i._id === deleted._id;
+	            });
+	            _this.allBeers.splice(indexToRemove, 1);
+	        });
+	    };
+	}
+
+/***/ },
+/* 77 */
+/***/ function(module, exports) {
+
+	module.exports = "<section ng-class=\"$ctrl.styles.managebeers\">\n        <h2>Beers</h2>\n        <table>\n            <thead>\n                <tr>\n                    <td>Name</td>\n                    <td>Style</td>\n                    <td>Brewery</td>\n                    <td>ABV</td>\n                </tr>\n            </thead>\n            <tbody>\n                <tr ng-repeat=\"beer in $ctrl.allBeers track by $index\">\n                    <td>{{beer.name}}</td>\n                    <td>{{beer.style}}</td>\n                    <td>{{beer.brewery}}</td>\n                    <td>{{beer.abv}}</td>\n                    <td>\n                        <button ng-click=\"$ctrl.deleteBeer(beer._id)\">Delete</button>\n                    </td>\n                </tr>\n            </tbody>\n        </table>\n</section>\n    ";
+
+/***/ },
+/* 78 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+	module.exports = {"managebeers":"tN1SgbKp1wk7kYSjS2KFb"};
+
+/***/ },
+/* 79 */,
+/* 80 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _manageReviews = __webpack_require__(81);
+	
+	var _manageReviews2 = _interopRequireDefault(_manageReviews);
+	
+	var _manageReviews3 = __webpack_require__(82);
+	
+	var _manageReviews4 = _interopRequireDefault(_manageReviews3);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.default = {
+	    template: _manageReviews2.default,
+	    bindings: {
+	        allReviews: '<'
+	    },
+	    controller: controller
+	};
+	
+	
+	controller.$inject = ['reviewService'];
+	
+	function controller(reviews) {
+	    var _this = this;
+	
+	    this.styles = _manageReviews4.default;
+	
+	    this.deleteReview = function (id) {
+	        reviews.remove(id).then(function (deleted) {
+	            var indexToRemove = _this.allReviews.findIndex(function (i) {
+	                return i._id === deleted._id;
+	            });
+	            _this.allReviews.splice(indexToRemove, 1);
+	        });
+	    };
+	}
+
+/***/ },
+/* 81 */
+/***/ function(module, exports) {
+
+	module.exports = "<section ng-class=\"$ctrl.styles.managereviews\">\n        <h2>Reviews</h2>\n        <table>\n            <thead>\n                <tr>\n                    <td>Brewery</td>\n                    <td>Beer Name</td>\n                    <td>Drink Again?</td>\n                    <td>Comments</td>\n                    <td></td>                    \n                </tr>\n            </thead>\n            <tbody>\n                <tr ng-repeat=\"review in $ctrl.allReviews track by $index\">\n                    <td>{{review.brewery}}</td>\n                    <td>{{review.beerName}}</td>\n                    <td>{{review.drinkAgain}}</td>\n                    <td>{{review.comments}}</td>\n                    <td>\n                        <button ng-click=\"$ctrl.deleteReview(review._id)\">Delete</button>\n                    </td>\n                </tr>\n            </tbody>\n        </table>\n    </section>\n    ";
+
+/***/ },
+/* 82 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+	module.exports = {"managereviews":"_1SD4qXA_ius075k7XSng1E"};
+
+/***/ },
+/* 83 */,
+/* 84 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _manageUsers = __webpack_require__(85);
+	
+	var _manageUsers2 = _interopRequireDefault(_manageUsers);
+	
+	var _manageUsers3 = __webpack_require__(86);
+	
+	var _manageUsers4 = _interopRequireDefault(_manageUsers3);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	exports.default = {
+	    template: _manageUsers2.default,
+	    bindings: {
+	        users: '<'
+	    },
+	    controller: controller
+	};
+	
+	
+	function controller() {
+	    this.styles = _manageUsers4.default;
+	}
+
+/***/ },
+/* 85 */
+/***/ function(module, exports) {
+
+	module.exports = "<section ng-class=\"$ctrl.styles.manageusers\">\n    <h2>Select a User to See Their Profile</h2>\n    <table>\n        <thead>\n            <tr>\n                <td>User</td>\n                <td>Admin</td>\n                <td>Brewer</td>\n            </tr>\n        </thead>\n        <tbody>\n            <tr ng-repeat=\"user in $ctrl.users\"\n                ui-sref=\"admin.editUsers({\n                    id: user._id\n                })\">\n                <td>{{user.username}}</td>\n                <td>{{user.admin}}</td>\n                <td>{{user.brewer}}</td>\n            </tr>\n        </tbody>\n    </table>\n</section>\n";
+
+/***/ },
+/* 86 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+	module.exports = {"manageusers":"_31YWzvuAPmCgXzfl4rs1aS"};
+
+/***/ },
+/* 87 */,
+/* 88 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _profile = __webpack_require__(89);
 	
 	var _profile2 = _interopRequireDefault(_profile);
 	
-	var _profile3 = __webpack_require__(78);
+	var _profile3 = __webpack_require__(90);
 	
 	var _profile4 = _interopRequireDefault(_profile3);
 	
@@ -34863,27 +35055,24 @@
 	    this.isAdmin = function () {
 	        return userService.isAdmin();
 	    };
-	    this.isBrewer = function () {
-	        return userService.isBrewer();
-	    };
 	}
 
 /***/ },
-/* 77 */
+/* 89 */
 /***/ function(module, exports) {
 
-	module.exports = "<section ng-class=\"$ctrl.styles.profile\">\n    <header>\n        <div>\n            <h1 ui-sref=\"about\">The Beer Reviewed Journal</h1>\n        </div>\n        <nav>\n            <li ng-if=\"$ctrl.isAdmin()\" ui-sref=\"admin\">ADMIN PAGE</li>\n            <li ng-if=\"$ctrl.isBrewer()\" ui-sref=\"beers\">BREWER'S PAGE</li>\n            <li ng-if=\"$ctrl.isAuthenticated()\" ui-sref=\"profile\">MY REVIEWS</li>\n            <li ng-if=\"$ctrl.isAuthenticated()\" ui-sref=\"beers\">BEERS</li>\n            <li ng-if=\"$ctrl.isAuthenticated()\" ui-sref=\"about\" ng-click=\"$ctrl.logout()\">LOGOUT</li>\n            <li ng-if=\"!$ctrl.isAuthenticated()\" ui-sref=\"beers\">SIGNIN</li>     \n        </nav>\n    </header>\n\n    <ui-view></ui-view>\n\n    <footer ui-sref=\"about.developer\">\n        &copy; 2017 Nathan Hugon\n    </footer>\n</section>\n";
+	module.exports = "<section ng-class=\"$ctrl.styles.profile\">\n    <header>\n        <div class=\"app-name\">\n            <h1 ui-sref=\"about\">BeerCrit</h1>\n        </div>\n    </header>\n    <div class=\"sub-heading\">\n        <h2>Beers!</h2>\n        <div class=\"bottle-btn\" ng-click=\"$ctrl.goToAddBeer()\">\n                <button><span>Add a Beer</span></button>\n                <div></div>\n        </div>\n    </div>\n    <section class=\"content\">\n        <ui-view></ui-view>\n    </section>\n    <footer>\n        <nav class=\"tabs\">\n                <div class=\"nav-link\" ng-if=\"$ctrl.isAdmin()\" ui-sref=\"admin\">\n                    <i class=\"fa fa-cog\"></i>\n                    <li>ADMIN PAGE</li>\n                </div>\n                <div class=\"nav-link\" ng-if=\"$ctrl.isAuthenticated()\" ui-sref=\"profile\">\n                    <i class=\"fa fa-thumbs-up\"></i>\n                    <li>MY REVIEWS</li>\n                </div>\n                <div class=\"nav-link\" ng-if=\"$ctrl.isAuthenticated()\" ui-sref=\"beers\">\n                    <i class=\"fa fa-beer\"></i> \n                    <li>BEERS</li>\n                </div>\n                <div class=\"nav-link\" ng-if=\"$ctrl.isAuthenticated()\" ui-sref=\"about\" ng-click=\"$ctrl.logout()\">\n                    <i class=\"fa fa-sign-out\"></i>  \n                    <li>LOGOUT</li>\n                </div>\n                <div class=\"nav-link\" ng-if=\"!$ctrl.isAuthenticated()\" ui-sref=\"beers\">\n                    <i class=\"fa fa-sign-in\"></i>\n                    <li>SIGNIN</li>\n                </div>                \n            </nav>\n    </footer>\n</section>\n";
 
 /***/ },
-/* 78 */
+/* 90 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 	module.exports = {"profile":"_3z0ZR-ff-NLQoPBo8gGSQf"};
 
 /***/ },
-/* 79 */,
-/* 80 */
+/* 91 */,
+/* 92 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -34892,11 +35081,11 @@
 	    value: true
 	});
 	
-	var _userReviews = __webpack_require__(81);
+	var _userReviews = __webpack_require__(93);
 	
 	var _userReviews2 = _interopRequireDefault(_userReviews);
 	
-	var _userReviews3 = __webpack_require__(82);
+	var _userReviews3 = __webpack_require__(94);
 	
 	var _userReviews4 = _interopRequireDefault(_userReviews3);
 	
@@ -34916,20 +35105,20 @@
 	}
 
 /***/ },
-/* 81 */
+/* 93 */
 /***/ function(module, exports) {
 
 	module.exports = "<section ng-class=\"$ctrl.styles.userreviews\">\n    <h1>Here is where the user's reviews will go</h1>\n    <table>\n        <thead>\n            <tr>\n                <td>Brewery</td>\n                <td>Beer Name</td>\n                <td>Drink Again?</td>\n                <td>Comments</td>\n            </tr>\n        </thead>\n        <tbody>\n            <tr ng-repeat=\"review in $ctrl.reviews\">\n                <td>{{review.brewery}}</td>\n                <td>{{review.beerName}}</td>\n                <td>{{review.drinkAgain}}</td>\n                <td>{{review.comments}}</td>\n            </tr>\n        </tbody>\n    </table>\n</section>\n";
 
 /***/ },
-/* 82 */
+/* 94 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 83 */,
-/* 84 */
+/* 95 */,
+/* 96 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -34952,7 +35141,7 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	var context = __webpack_require__(85);
+	var context = __webpack_require__(97);
 	
 	var _module = _angular2.default.module('services', []);
 	
@@ -34964,15 +35153,15 @@
 	exports.default = _module.name;
 
 /***/ },
-/* 85 */
+/* 97 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var map = {
-		"./admin-service.js": 86,
-		"./beer-service.js": 87,
-		"./review-service.js": 88,
-		"./token-service.js": 89,
-		"./user-service.js": 90
+		"./admin-service.js": 98,
+		"./beer-service.js": 99,
+		"./review-service.js": 100,
+		"./token-service.js": 101,
+		"./user-service.js": 102
 	};
 	function webpackContext(req) {
 		return __webpack_require__(webpackContextResolve(req));
@@ -34985,11 +35174,11 @@
 	};
 	webpackContext.resolve = webpackContextResolve;
 	module.exports = webpackContext;
-	webpackContext.id = 85;
+	webpackContext.id = 97;
 
 
 /***/ },
-/* 86 */
+/* 98 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -35021,7 +35210,7 @@
 	}
 
 /***/ },
-/* 87 */
+/* 99 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -35045,6 +35234,11 @@
 	                return res.data;
 	            });
 	        },
+	        getByUser: function getByUser(id) {
+	            return $http.get(apiUrl + '/beers/user/' + id).then(function (res) {
+	                return res.data;
+	            });
+	        },
 	        remove: function remove(id) {
 	            return $http.delete(apiUrl + '/beers/' + id).then(function (res) {
 	                return res.data;
@@ -35059,7 +35253,7 @@
 	}
 
 /***/ },
-/* 88 */
+/* 100 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -35083,8 +35277,13 @@
 	                return res.data;
 	            });
 	        },
-	        getUserReviews: function getUserReviews() {
-	            return $http.get(apiUrl + '/reviews/user').then(function (res) {
+	        getByCurrentUser: function getByCurrentUser() {
+	            return $http.get(apiUrl + '/reviews/currentUser').then(function (res) {
+	                return res.data;
+	            });
+	        },
+	        getByUser: function getByUser(id) {
+	            return $http.get(apiUrl + '/reviews/user/' + id).then(function (res) {
 	                return res.data;
 	            });
 	        },
@@ -35102,7 +35301,7 @@
 	}
 
 /***/ },
-/* 89 */
+/* 101 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -35130,7 +35329,7 @@
 	}
 
 /***/ },
-/* 90 */
+/* 102 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -35219,7 +35418,7 @@
 	}
 
 /***/ },
-/* 91 */
+/* 103 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -35230,23 +35429,23 @@
 	function __export(m) {
 	    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 	}
-	var core = __webpack_require__(92);
+	var core = __webpack_require__(104);
 	exports.core = core;
-	__export(__webpack_require__(92));
-	__export(__webpack_require__(148));
-	__export(__webpack_require__(150));
-	__export(__webpack_require__(152));
-	__webpack_require__(156);
-	__webpack_require__(157);
-	__webpack_require__(158);
-	__webpack_require__(159);
-	__webpack_require__(160);
+	__export(__webpack_require__(104));
+	__export(__webpack_require__(160));
+	__export(__webpack_require__(162));
+	__export(__webpack_require__(164));
+	__webpack_require__(168);
+	__webpack_require__(169);
+	__webpack_require__(170);
+	__webpack_require__(171);
+	__webpack_require__(172);
 	Object.defineProperty(exports, "__esModule", { value: true });
 	exports.default = "ui.router";
 	//# sourceMappingURL=index.js.map
 
 /***/ },
-/* 92 */
+/* 104 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -35257,21 +35456,21 @@
 	function __export(m) {
 	    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 	}
-	__export(__webpack_require__(93));
-	__export(__webpack_require__(140));
-	__export(__webpack_require__(141));
-	__export(__webpack_require__(142));
-	__export(__webpack_require__(143));
-	__export(__webpack_require__(144));
-	__export(__webpack_require__(145));
-	__export(__webpack_require__(146));
-	__export(__webpack_require__(137));
-	__export(__webpack_require__(116));
-	__export(__webpack_require__(147));
+	__export(__webpack_require__(105));
+	__export(__webpack_require__(152));
+	__export(__webpack_require__(153));
+	__export(__webpack_require__(154));
+	__export(__webpack_require__(155));
+	__export(__webpack_require__(156));
+	__export(__webpack_require__(157));
+	__export(__webpack_require__(158));
+	__export(__webpack_require__(149));
+	__export(__webpack_require__(128));
+	__export(__webpack_require__(159));
 	//# sourceMappingURL=index.js.map
 
 /***/ },
-/* 93 */
+/* 105 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -35279,18 +35478,18 @@
 	    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 	}
 	/** @module common */ /** for typedoc */
-	__export(__webpack_require__(94));
-	__export(__webpack_require__(97));
-	__export(__webpack_require__(98));
-	__export(__webpack_require__(96));
-	__export(__webpack_require__(95));
-	__export(__webpack_require__(99));
-	__export(__webpack_require__(100));
-	__export(__webpack_require__(103));
+	__export(__webpack_require__(106));
+	__export(__webpack_require__(109));
+	__export(__webpack_require__(110));
+	__export(__webpack_require__(108));
+	__export(__webpack_require__(107));
+	__export(__webpack_require__(111));
+	__export(__webpack_require__(112));
+	__export(__webpack_require__(115));
 	//# sourceMappingURL=index.js.map
 
 /***/ },
-/* 94 */
+/* 106 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -35302,9 +35501,9 @@
 	 * @module common
 	 */ /** for typedoc */
 	"use strict";
-	var predicates_1 = __webpack_require__(95);
-	var hof_1 = __webpack_require__(96);
-	var coreservices_1 = __webpack_require__(97);
+	var predicates_1 = __webpack_require__(107);
+	var hof_1 = __webpack_require__(108);
+	var coreservices_1 = __webpack_require__(109);
 	var w = typeof window === 'undefined' ? {} : window;
 	var angular = w.angular || {};
 	exports.fromJson = angular.fromJson || JSON.parse.bind(JSON);
@@ -35912,7 +36111,7 @@
 	//# sourceMappingURL=common.js.map
 
 /***/ },
-/* 95 */
+/* 107 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -35923,7 +36122,7 @@
 	 *
 	 * @module common_predicates
 	 */ /** */
-	var hof_1 = __webpack_require__(96);
+	var hof_1 = __webpack_require__(108);
 	var toStr = Object.prototype.toString;
 	var tis = function (t) { return function (x) { return typeof (x) === t; }; };
 	exports.isUndefined = tis('undefined');
@@ -35960,7 +36159,7 @@
 	//# sourceMappingURL=predicates.js.map
 
 /***/ },
-/* 96 */
+/* 108 */
 /***/ function(module, exports) {
 
 	/**
@@ -36209,7 +36408,7 @@
 	//# sourceMappingURL=hof.js.map
 
 /***/ },
-/* 97 */
+/* 109 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -36224,7 +36423,7 @@
 	//# sourceMappingURL=coreservices.js.map
 
 /***/ },
-/* 98 */
+/* 110 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -36313,7 +36512,7 @@
 	//# sourceMappingURL=glob.js.map
 
 /***/ },
-/* 99 */
+/* 111 */
 /***/ function(module, exports) {
 
 	/**
@@ -36363,7 +36562,7 @@
 	//# sourceMappingURL=queue.js.map
 
 /***/ },
-/* 100 */
+/* 112 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -36374,12 +36573,12 @@
 	 * @module common_strings
 	 */ /** */
 	"use strict";
-	var predicates_1 = __webpack_require__(95);
-	var rejectFactory_1 = __webpack_require__(101);
-	var common_1 = __webpack_require__(94);
-	var hof_1 = __webpack_require__(96);
-	var transition_1 = __webpack_require__(102);
-	var resolvable_1 = __webpack_require__(113);
+	var predicates_1 = __webpack_require__(107);
+	var rejectFactory_1 = __webpack_require__(113);
+	var common_1 = __webpack_require__(106);
+	var hof_1 = __webpack_require__(108);
+	var transition_1 = __webpack_require__(114);
+	var resolvable_1 = __webpack_require__(125);
 	/**
 	 * Returns a string shortened to a maximum length
 	 *
@@ -36519,7 +36718,7 @@
 	//# sourceMappingURL=strings.js.map
 
 /***/ },
-/* 101 */
+/* 113 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -36527,8 +36726,8 @@
 	 * @module transition
 	 */ /** for typedoc */
 	"use strict";
-	var common_1 = __webpack_require__(94);
-	var strings_1 = __webpack_require__(100);
+	var common_1 = __webpack_require__(106);
+	var strings_1 = __webpack_require__(112);
 	var RejectType;
 	(function (RejectType) {
 	    RejectType[RejectType["SUPERSEDED"] = 2] = "SUPERSEDED";
@@ -36598,27 +36797,27 @@
 	//# sourceMappingURL=rejectFactory.js.map
 
 /***/ },
-/* 102 */
+/* 114 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-	var trace_1 = __webpack_require__(103);
-	var coreservices_1 = __webpack_require__(97);
-	var common_1 = __webpack_require__(94);
-	var predicates_1 = __webpack_require__(95);
-	var hof_1 = __webpack_require__(96);
-	var interface_1 = __webpack_require__(104);
-	var transitionHook_1 = __webpack_require__(105);
-	var hookRegistry_1 = __webpack_require__(107);
-	var hookBuilder_1 = __webpack_require__(108);
-	var node_1 = __webpack_require__(109);
-	var pathFactory_1 = __webpack_require__(112);
-	var targetState_1 = __webpack_require__(106);
-	var param_1 = __webpack_require__(110);
-	var resolvable_1 = __webpack_require__(113);
-	var rejectFactory_1 = __webpack_require__(101);
-	var resolveContext_1 = __webpack_require__(114);
-	var router_1 = __webpack_require__(116);
+	var trace_1 = __webpack_require__(115);
+	var coreservices_1 = __webpack_require__(109);
+	var common_1 = __webpack_require__(106);
+	var predicates_1 = __webpack_require__(107);
+	var hof_1 = __webpack_require__(108);
+	var interface_1 = __webpack_require__(116);
+	var transitionHook_1 = __webpack_require__(117);
+	var hookRegistry_1 = __webpack_require__(119);
+	var hookBuilder_1 = __webpack_require__(120);
+	var node_1 = __webpack_require__(121);
+	var pathFactory_1 = __webpack_require__(124);
+	var targetState_1 = __webpack_require__(118);
+	var param_1 = __webpack_require__(122);
+	var resolvable_1 = __webpack_require__(125);
+	var rejectFactory_1 = __webpack_require__(113);
+	var resolveContext_1 = __webpack_require__(126);
+	var router_1 = __webpack_require__(128);
 	/** @hidden */
 	var stateSelf = hof_1.prop("self");
 	/**
@@ -37211,7 +37410,7 @@
 	//# sourceMappingURL=transition.js.map
 
 /***/ },
-/* 103 */
+/* 115 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -37250,9 +37449,9 @@
 	 * @coreapi
 	 * @module trace
 	 */ /** for typedoc */
-	var hof_1 = __webpack_require__(96);
-	var predicates_1 = __webpack_require__(95);
-	var strings_1 = __webpack_require__(100);
+	var hof_1 = __webpack_require__(108);
+	var predicates_1 = __webpack_require__(107);
+	var strings_1 = __webpack_require__(112);
 	/** @hidden */
 	function uiViewString(viewData) {
 	    if (!viewData)
@@ -37462,7 +37661,7 @@
 	//# sourceMappingURL=trace.js.map
 
 /***/ },
-/* 104 */
+/* 116 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -37482,18 +37681,18 @@
 	//# sourceMappingURL=interface.js.map
 
 /***/ },
-/* 105 */
+/* 117 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-	var common_1 = __webpack_require__(94);
-	var strings_1 = __webpack_require__(100);
-	var predicates_1 = __webpack_require__(95);
-	var hof_1 = __webpack_require__(96);
-	var trace_1 = __webpack_require__(103);
-	var coreservices_1 = __webpack_require__(97);
-	var rejectFactory_1 = __webpack_require__(101);
-	var targetState_1 = __webpack_require__(106);
+	var common_1 = __webpack_require__(106);
+	var strings_1 = __webpack_require__(112);
+	var predicates_1 = __webpack_require__(107);
+	var hof_1 = __webpack_require__(108);
+	var trace_1 = __webpack_require__(115);
+	var coreservices_1 = __webpack_require__(109);
+	var rejectFactory_1 = __webpack_require__(113);
+	var targetState_1 = __webpack_require__(118);
 	var defaultOptions = {
 	    current: common_1.noop,
 	    transition: null,
@@ -37633,7 +37832,7 @@
 	//# sourceMappingURL=transitionHook.js.map
 
 /***/ },
-/* 106 */
+/* 118 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -37641,8 +37840,8 @@
 	 * @module state
 	 */ /** for typedoc */
 	"use strict";
-	var common_1 = __webpack_require__(94);
-	var predicates_1 = __webpack_require__(95);
+	var common_1 = __webpack_require__(106);
+	var predicates_1 = __webpack_require__(107);
 	/**
 	 * Encapsulate the target (destination) state/params/options of a [[Transition]].
 	 *
@@ -37751,7 +37950,7 @@
 	//# sourceMappingURL=targetState.js.map
 
 /***/ },
-/* 107 */
+/* 119 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -37759,10 +37958,10 @@
 	 * @coreapi
 	 * @module transition
 	 */ /** for typedoc */
-	var common_1 = __webpack_require__(94);
-	var predicates_1 = __webpack_require__(95);
-	var interface_1 = __webpack_require__(104); // has or is using
-	var glob_1 = __webpack_require__(98);
+	var common_1 = __webpack_require__(106);
+	var predicates_1 = __webpack_require__(107);
+	var interface_1 = __webpack_require__(116); // has or is using
+	var glob_1 = __webpack_require__(110);
 	/**
 	 * Determines if the given state matches the matchCriteria
 	 *
@@ -37896,7 +38095,7 @@
 	//# sourceMappingURL=hookRegistry.js.map
 
 /***/ },
-/* 108 */
+/* 120 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -37904,10 +38103,10 @@
 	 * @module transition
 	 */ /** for typedoc */
 	"use strict";
-	var common_1 = __webpack_require__(94);
-	var predicates_1 = __webpack_require__(95);
-	var interface_1 = __webpack_require__(104);
-	var transitionHook_1 = __webpack_require__(105);
+	var common_1 = __webpack_require__(106);
+	var predicates_1 = __webpack_require__(107);
+	var interface_1 = __webpack_require__(116);
+	var transitionHook_1 = __webpack_require__(117);
 	/**
 	 * This class returns applicable TransitionHooks for a specific Transition instance.
 	 *
@@ -38021,14 +38220,14 @@
 	//# sourceMappingURL=hookBuilder.js.map
 
 /***/ },
-/* 109 */
+/* 121 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	/** @module path */ /** for typedoc */
-	var common_1 = __webpack_require__(94);
-	var hof_1 = __webpack_require__(96);
-	var param_1 = __webpack_require__(110);
+	var common_1 = __webpack_require__(106);
+	var hof_1 = __webpack_require__(108);
+	var param_1 = __webpack_require__(122);
 	/**
 	 * A node in a [[TreeChanges]] path
 	 *
@@ -38111,7 +38310,7 @@
 	//# sourceMappingURL=node.js.map
 
 /***/ },
-/* 110 */
+/* 122 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -38119,11 +38318,11 @@
 	 * @internalapi
 	 * @module params
 	 */ /** for typedoc */
-	var common_1 = __webpack_require__(94);
-	var hof_1 = __webpack_require__(96);
-	var predicates_1 = __webpack_require__(95);
-	var coreservices_1 = __webpack_require__(97);
-	var paramType_1 = __webpack_require__(111);
+	var common_1 = __webpack_require__(106);
+	var hof_1 = __webpack_require__(108);
+	var predicates_1 = __webpack_require__(107);
+	var coreservices_1 = __webpack_require__(109);
+	var paramType_1 = __webpack_require__(123);
 	var hasOwn = Object.prototype.hasOwnProperty;
 	var isShorthand = function (cfg) {
 	    return ["value", "type", "squash", "array", "dynamic"].filter(hasOwn.bind(cfg || {})).length === 0;
@@ -38289,13 +38488,13 @@
 	//# sourceMappingURL=param.js.map
 
 /***/ },
-/* 111 */
+/* 123 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	/** @module params */ /** for typedoc */
-	var common_1 = __webpack_require__(94);
-	var predicates_1 = __webpack_require__(95);
+	var common_1 = __webpack_require__(106);
+	var predicates_1 = __webpack_require__(107);
 	/**
 	 * An internal class which implements [[ParamTypeDefinition]].
 	 *
@@ -38431,15 +38630,15 @@
 	//# sourceMappingURL=paramType.js.map
 
 /***/ },
-/* 112 */
+/* 124 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/** @module path */ /** for typedoc */
 	"use strict";
-	var common_1 = __webpack_require__(94);
-	var hof_1 = __webpack_require__(96);
-	var targetState_1 = __webpack_require__(106);
-	var node_1 = __webpack_require__(109);
+	var common_1 = __webpack_require__(106);
+	var hof_1 = __webpack_require__(108);
+	var targetState_1 = __webpack_require__(118);
+	var node_1 = __webpack_require__(121);
 	/**
 	 * This class contains functions which convert TargetStates, Nodes and paths from one type to another.
 	 */
@@ -38569,7 +38768,7 @@
 	//# sourceMappingURL=pathFactory.js.map
 
 /***/ },
-/* 113 */
+/* 125 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -38577,11 +38776,11 @@
 	 * @coreapi
 	 * @module resolve
 	 */ /** for typedoc */
-	var common_1 = __webpack_require__(94);
-	var coreservices_1 = __webpack_require__(97);
-	var trace_1 = __webpack_require__(103);
-	var strings_1 = __webpack_require__(100);
-	var predicates_1 = __webpack_require__(95);
+	var common_1 = __webpack_require__(106);
+	var coreservices_1 = __webpack_require__(109);
+	var trace_1 = __webpack_require__(115);
+	var strings_1 = __webpack_require__(112);
+	var predicates_1 = __webpack_require__(107);
 	// TODO: explicitly make this user configurable
 	exports.defaultResolvePolicy = {
 	    when: "LAZY",
@@ -38706,20 +38905,20 @@
 	//# sourceMappingURL=resolvable.js.map
 
 /***/ },
-/* 114 */
+/* 126 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	/** @module resolve */
 	/** for typedoc */
-	var common_1 = __webpack_require__(94);
-	var hof_1 = __webpack_require__(96);
-	var trace_1 = __webpack_require__(103);
-	var coreservices_1 = __webpack_require__(97);
-	var interface_1 = __webpack_require__(115);
-	var resolvable_1 = __webpack_require__(113);
-	var pathFactory_1 = __webpack_require__(112);
-	var strings_1 = __webpack_require__(100);
+	var common_1 = __webpack_require__(106);
+	var hof_1 = __webpack_require__(108);
+	var trace_1 = __webpack_require__(115);
+	var coreservices_1 = __webpack_require__(109);
+	var interface_1 = __webpack_require__(127);
+	var resolvable_1 = __webpack_require__(125);
+	var pathFactory_1 = __webpack_require__(124);
+	var strings_1 = __webpack_require__(112);
 	var when = interface_1.resolvePolicies.when;
 	var ALL_WHENS = [when.EAGER, when.LAZY];
 	var EAGER_WHENS = [when.EAGER];
@@ -38910,7 +39109,7 @@
 	//# sourceMappingURL=resolveContext.js.map
 
 /***/ },
-/* 115 */
+/* 127 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -38929,7 +39128,7 @@
 	//# sourceMappingURL=interface.js.map
 
 /***/ },
-/* 116 */
+/* 128 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -38937,16 +39136,16 @@
 	 * @coreapi
 	 * @module core
 	 */ /** */
-	var urlMatcherFactory_1 = __webpack_require__(117);
-	var urlRouter_1 = __webpack_require__(120);
-	var transitionService_1 = __webpack_require__(123);
-	var view_1 = __webpack_require__(131);
-	var stateRegistry_1 = __webpack_require__(132);
-	var stateService_1 = __webpack_require__(136);
-	var globals_1 = __webpack_require__(137);
-	var common_1 = __webpack_require__(94);
-	var predicates_1 = __webpack_require__(95);
-	var urlService_1 = __webpack_require__(139);
+	var urlMatcherFactory_1 = __webpack_require__(129);
+	var urlRouter_1 = __webpack_require__(132);
+	var transitionService_1 = __webpack_require__(135);
+	var view_1 = __webpack_require__(143);
+	var stateRegistry_1 = __webpack_require__(144);
+	var stateService_1 = __webpack_require__(148);
+	var globals_1 = __webpack_require__(149);
+	var common_1 = __webpack_require__(106);
+	var predicates_1 = __webpack_require__(107);
+	var urlService_1 = __webpack_require__(151);
 	/** @hidden */
 	var _routerInstance = 0;
 	/**
@@ -39034,7 +39233,7 @@
 	//# sourceMappingURL=router.js.map
 
 /***/ },
-/* 117 */
+/* 129 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -39042,11 +39241,11 @@
 	 * @internalapi
 	 * @module url
 	 */ /** for typedoc */
-	var common_1 = __webpack_require__(94);
-	var predicates_1 = __webpack_require__(95);
-	var urlMatcher_1 = __webpack_require__(118);
-	var param_1 = __webpack_require__(110);
-	var paramTypes_1 = __webpack_require__(119);
+	var common_1 = __webpack_require__(106);
+	var predicates_1 = __webpack_require__(107);
+	var urlMatcher_1 = __webpack_require__(130);
+	var param_1 = __webpack_require__(122);
+	var paramTypes_1 = __webpack_require__(131);
 	/**
 	 * Factory for [[UrlMatcher]] instances.
 	 *
@@ -39165,7 +39364,7 @@
 	//# sourceMappingURL=urlMatcherFactory.js.map
 
 /***/ },
-/* 118 */
+/* 130 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -39173,11 +39372,11 @@
 	 * @coreapi
 	 * @module url
 	 */ /** for typedoc */
-	var common_1 = __webpack_require__(94);
-	var hof_1 = __webpack_require__(96);
-	var predicates_1 = __webpack_require__(95);
-	var param_1 = __webpack_require__(110);
-	var strings_1 = __webpack_require__(100);
+	var common_1 = __webpack_require__(106);
+	var hof_1 = __webpack_require__(108);
+	var predicates_1 = __webpack_require__(107);
+	var param_1 = __webpack_require__(122);
+	var strings_1 = __webpack_require__(112);
 	/** @hidden */
 	function quoteRegExp(string, param) {
 	    var surroundPattern = ['', ''], result = string.replace(/[\\\[\]\^$*+?.()|{}]/g, "\\$&");
@@ -39642,7 +39841,7 @@
 	//# sourceMappingURL=urlMatcher.js.map
 
 /***/ },
-/* 119 */
+/* 131 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -39650,11 +39849,11 @@
 	 * @coreapi
 	 * @module params
 	 */ /** for typedoc */
-	var common_1 = __webpack_require__(94);
-	var predicates_1 = __webpack_require__(95);
-	var hof_1 = __webpack_require__(96);
-	var coreservices_1 = __webpack_require__(97);
-	var paramType_1 = __webpack_require__(111);
+	var common_1 = __webpack_require__(106);
+	var predicates_1 = __webpack_require__(107);
+	var hof_1 = __webpack_require__(108);
+	var coreservices_1 = __webpack_require__(109);
+	var paramType_1 = __webpack_require__(123);
 	/**
 	 * A registry for parameter types.
 	 *
@@ -39801,7 +40000,7 @@
 	//# sourceMappingURL=paramTypes.js.map
 
 /***/ },
-/* 120 */
+/* 132 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -39810,12 +40009,12 @@
 	 * @module url
 	 */
 	/** for typedoc */
-	var common_1 = __webpack_require__(94);
-	var predicates_1 = __webpack_require__(95);
-	var urlMatcher_1 = __webpack_require__(118);
-	var hof_1 = __webpack_require__(96);
-	var urlRule_1 = __webpack_require__(121);
-	var targetState_1 = __webpack_require__(106);
+	var common_1 = __webpack_require__(106);
+	var predicates_1 = __webpack_require__(107);
+	var urlMatcher_1 = __webpack_require__(130);
+	var hof_1 = __webpack_require__(108);
+	var urlRule_1 = __webpack_require__(133);
+	var targetState_1 = __webpack_require__(118);
 	/** @hidden */
 	function appendBasePath(url, isHtml5, absolute, baseHref) {
 	    if (baseHref === '/')
@@ -40050,7 +40249,7 @@
 	//# sourceMappingURL=urlRouter.js.map
 
 /***/ },
-/* 121 */
+/* 133 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -40058,11 +40257,11 @@
 	 * @coreapi
 	 * @module url
 	 */ /** */
-	var urlMatcher_1 = __webpack_require__(118);
-	var predicates_1 = __webpack_require__(95);
-	var common_1 = __webpack_require__(94);
-	var hof_1 = __webpack_require__(96);
-	var stateObject_1 = __webpack_require__(122);
+	var urlMatcher_1 = __webpack_require__(130);
+	var predicates_1 = __webpack_require__(107);
+	var common_1 = __webpack_require__(106);
+	var hof_1 = __webpack_require__(108);
+	var stateObject_1 = __webpack_require__(134);
 	/**
 	 * Creates a [[UrlRule]]
 	 *
@@ -40264,7 +40463,7 @@
 	//# sourceMappingURL=urlRule.js.map
 
 /***/ },
-/* 122 */
+/* 134 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -40272,8 +40471,8 @@
 	 * @module state
 	 */ /** for typedoc */
 	"use strict";
-	var common_1 = __webpack_require__(94);
-	var hof_1 = __webpack_require__(96);
+	var common_1 = __webpack_require__(106);
+	var hof_1 = __webpack_require__(108);
 	/**
 	 * Internal representation of a UI-Router state.
 	 *
@@ -40358,7 +40557,7 @@
 	//# sourceMappingURL=stateObject.js.map
 
 /***/ },
-/* 123 */
+/* 135 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -40366,20 +40565,20 @@
 	 * @coreapi
 	 * @module transition
 	 */ /** for typedoc */
-	var interface_1 = __webpack_require__(104);
-	var transition_1 = __webpack_require__(102);
-	var hookRegistry_1 = __webpack_require__(107);
-	var resolve_1 = __webpack_require__(124);
-	var views_1 = __webpack_require__(125);
-	var url_1 = __webpack_require__(126);
-	var redirectTo_1 = __webpack_require__(127);
-	var onEnterExitRetain_1 = __webpack_require__(128);
-	var lazyLoad_1 = __webpack_require__(129);
-	var transitionEventType_1 = __webpack_require__(130);
-	var transitionHook_1 = __webpack_require__(105);
-	var predicates_1 = __webpack_require__(95);
-	var common_1 = __webpack_require__(94);
-	var hof_1 = __webpack_require__(96);
+	var interface_1 = __webpack_require__(116);
+	var transition_1 = __webpack_require__(114);
+	var hookRegistry_1 = __webpack_require__(119);
+	var resolve_1 = __webpack_require__(136);
+	var views_1 = __webpack_require__(137);
+	var url_1 = __webpack_require__(138);
+	var redirectTo_1 = __webpack_require__(139);
+	var onEnterExitRetain_1 = __webpack_require__(140);
+	var lazyLoad_1 = __webpack_require__(141);
+	var transitionEventType_1 = __webpack_require__(142);
+	var transitionHook_1 = __webpack_require__(117);
+	var predicates_1 = __webpack_require__(107);
+	var common_1 = __webpack_require__(106);
+	var hof_1 = __webpack_require__(108);
 	/**
 	 * The default [[Transition]] options.
 	 *
@@ -40599,14 +40798,14 @@
 	//# sourceMappingURL=transitionService.js.map
 
 /***/ },
-/* 124 */
+/* 136 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	/** @module hooks */ /** for typedoc */
-	var common_1 = __webpack_require__(94);
-	var resolveContext_1 = __webpack_require__(114);
-	var hof_1 = __webpack_require__(96);
+	var common_1 = __webpack_require__(106);
+	var resolveContext_1 = __webpack_require__(126);
+	var hof_1 = __webpack_require__(108);
 	/**
 	 * A [[TransitionHookFn]] which resolves all EAGER Resolvables in the To Path
 	 *
@@ -40645,13 +40844,13 @@
 	//# sourceMappingURL=resolve.js.map
 
 /***/ },
-/* 125 */
+/* 137 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	/** @module hooks */ /** for typedoc */
-	var common_1 = __webpack_require__(94);
-	var coreservices_1 = __webpack_require__(97);
+	var common_1 = __webpack_require__(106);
+	var coreservices_1 = __webpack_require__(109);
 	/**
 	 * A [[TransitionHookFn]] which waits for the views to load
 	 *
@@ -40696,7 +40895,7 @@
 	//# sourceMappingURL=views.js.map
 
 /***/ },
-/* 126 */
+/* 138 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -40725,14 +40924,14 @@
 	//# sourceMappingURL=url.js.map
 
 /***/ },
-/* 127 */
+/* 139 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	/** @module hooks */ /** */
-	var predicates_1 = __webpack_require__(95);
-	var coreservices_1 = __webpack_require__(97);
-	var targetState_1 = __webpack_require__(106);
+	var predicates_1 = __webpack_require__(107);
+	var coreservices_1 = __webpack_require__(109);
+	var targetState_1 = __webpack_require__(118);
 	/**
 	 * A [[TransitionHookFn]] that redirects to a different state or params
 	 *
@@ -40766,7 +40965,7 @@
 	//# sourceMappingURL=redirectTo.js.map
 
 /***/ },
-/* 128 */
+/* 140 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -40826,11 +41025,11 @@
 	//# sourceMappingURL=onEnterExitRetain.js.map
 
 /***/ },
-/* 129 */
+/* 141 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-	var coreservices_1 = __webpack_require__(97);
+	var coreservices_1 = __webpack_require__(109);
 	/**
 	 * A [[TransitionHookFn]] that performs lazy loading
 	 *
@@ -40927,11 +41126,11 @@
 	//# sourceMappingURL=lazyLoad.js.map
 
 /***/ },
-/* 130 */
+/* 142 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-	var transitionHook_1 = __webpack_require__(105);
+	var transitionHook_1 = __webpack_require__(117);
 	/**
 	 * This class defines a type of hook, such as `onBefore` or `onEnter`.
 	 * Plugins can define custom hook types, such as sticky states does for `onInactive`.
@@ -40959,7 +41158,7 @@
 	//# sourceMappingURL=transitionEventType.js.map
 
 /***/ },
-/* 131 */
+/* 143 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -40967,10 +41166,10 @@
 	 * @coreapi
 	 * @module view
 	 */ /** for typedoc */
-	var common_1 = __webpack_require__(94);
-	var hof_1 = __webpack_require__(96);
-	var predicates_1 = __webpack_require__(95);
-	var trace_1 = __webpack_require__(103);
+	var common_1 = __webpack_require__(106);
+	var hof_1 = __webpack_require__(108);
+	var predicates_1 = __webpack_require__(107);
+	var trace_1 = __webpack_require__(115);
 	/**
 	 * The View service
 	 *
@@ -41232,7 +41431,7 @@
 	//# sourceMappingURL=view.js.map
 
 /***/ },
-/* 132 */
+/* 144 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -41240,11 +41439,11 @@
 	 * @module state
 	 */ /** for typedoc */
 	"use strict";
-	var stateMatcher_1 = __webpack_require__(133);
-	var stateBuilder_1 = __webpack_require__(134);
-	var stateQueueManager_1 = __webpack_require__(135);
-	var common_1 = __webpack_require__(94);
-	var hof_1 = __webpack_require__(96);
+	var stateMatcher_1 = __webpack_require__(145);
+	var stateBuilder_1 = __webpack_require__(146);
+	var stateQueueManager_1 = __webpack_require__(147);
+	var common_1 = __webpack_require__(106);
+	var hof_1 = __webpack_require__(108);
 	var StateRegistry = (function () {
 	    /** @internalapi */
 	    function StateRegistry(_router) {
@@ -41393,14 +41592,14 @@
 	//# sourceMappingURL=stateRegistry.js.map
 
 /***/ },
-/* 133 */
+/* 145 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	/** @module state */ /** for typedoc */
-	var predicates_1 = __webpack_require__(95);
-	var glob_1 = __webpack_require__(98);
-	var common_1 = __webpack_require__(94);
+	var predicates_1 = __webpack_require__(107);
+	var glob_1 = __webpack_require__(110);
+	var common_1 = __webpack_require__(106);
 	var StateMatcher = (function () {
 	    function StateMatcher(_states) {
 	        this._states = _states;
@@ -41457,17 +41656,17 @@
 	//# sourceMappingURL=stateMatcher.js.map
 
 /***/ },
-/* 134 */
+/* 146 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	/** @module state */ /** for typedoc */
-	var common_1 = __webpack_require__(94);
-	var predicates_1 = __webpack_require__(95);
-	var strings_1 = __webpack_require__(100);
-	var hof_1 = __webpack_require__(96);
-	var resolvable_1 = __webpack_require__(113);
-	var coreservices_1 = __webpack_require__(97);
+	var common_1 = __webpack_require__(106);
+	var predicates_1 = __webpack_require__(107);
+	var strings_1 = __webpack_require__(112);
+	var hof_1 = __webpack_require__(108);
+	var resolvable_1 = __webpack_require__(125);
+	var coreservices_1 = __webpack_require__(109);
 	var parseUrl = function (url) {
 	    if (!predicates_1.isString(url))
 	        return false;
@@ -41735,14 +41934,14 @@
 	//# sourceMappingURL=stateBuilder.js.map
 
 /***/ },
-/* 135 */
+/* 147 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	/** @module state */ /** for typedoc */
-	var common_1 = __webpack_require__(94);
-	var predicates_1 = __webpack_require__(95);
-	var stateObject_1 = __webpack_require__(122);
+	var common_1 = __webpack_require__(106);
+	var predicates_1 = __webpack_require__(107);
+	var stateObject_1 = __webpack_require__(134);
 	/** @internalapi */
 	var StateQueueManager = (function () {
 	    function StateQueueManager($registry, $urlRouter, states, builder, listeners) {
@@ -41828,7 +42027,7 @@
 	//# sourceMappingURL=stateQueueManager.js.map
 
 /***/ },
-/* 136 */
+/* 148 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -41836,20 +42035,20 @@
 	 * @coreapi
 	 * @module state
 	 */ /** */
-	var common_1 = __webpack_require__(94);
-	var predicates_1 = __webpack_require__(95);
-	var queue_1 = __webpack_require__(99);
-	var coreservices_1 = __webpack_require__(97);
-	var pathFactory_1 = __webpack_require__(112);
-	var node_1 = __webpack_require__(109);
-	var transitionService_1 = __webpack_require__(123);
-	var rejectFactory_1 = __webpack_require__(101);
-	var targetState_1 = __webpack_require__(106);
-	var param_1 = __webpack_require__(110);
-	var glob_1 = __webpack_require__(98);
-	var resolveContext_1 = __webpack_require__(114);
-	var lazyLoad_1 = __webpack_require__(129);
-	var hof_1 = __webpack_require__(96);
+	var common_1 = __webpack_require__(106);
+	var predicates_1 = __webpack_require__(107);
+	var queue_1 = __webpack_require__(111);
+	var coreservices_1 = __webpack_require__(109);
+	var pathFactory_1 = __webpack_require__(124);
+	var node_1 = __webpack_require__(121);
+	var transitionService_1 = __webpack_require__(135);
+	var rejectFactory_1 = __webpack_require__(113);
+	var targetState_1 = __webpack_require__(118);
+	var param_1 = __webpack_require__(122);
+	var glob_1 = __webpack_require__(110);
+	var resolveContext_1 = __webpack_require__(126);
+	var lazyLoad_1 = __webpack_require__(141);
+	var hof_1 = __webpack_require__(108);
 	/**
 	 * Provides state related service functions
 	 *
@@ -42419,7 +42618,7 @@
 	//# sourceMappingURL=stateService.js.map
 
 /***/ },
-/* 137 */
+/* 149 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -42427,9 +42626,9 @@
 	 * @coreapi
 	 * @module core
 	 */ /** */
-	var stateParams_1 = __webpack_require__(138);
-	var queue_1 = __webpack_require__(99);
-	var common_1 = __webpack_require__(94);
+	var stateParams_1 = __webpack_require__(150);
+	var queue_1 = __webpack_require__(111);
+	var common_1 = __webpack_require__(106);
 	/**
 	 * Global mutable state
 	 */
@@ -42461,12 +42660,12 @@
 	//# sourceMappingURL=globals.js.map
 
 /***/ },
-/* 138 */
+/* 150 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	/** @module params */ /** for typedoc */
-	var common_1 = __webpack_require__(94);
+	var common_1 = __webpack_require__(106);
 	var StateParams = (function () {
 	    function StateParams(params) {
 	        if (params === void 0) { params = {}; }
@@ -42504,7 +42703,7 @@
 	//# sourceMappingURL=stateParams.js.map
 
 /***/ },
-/* 139 */
+/* 151 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -42512,8 +42711,8 @@
 	 * @module url
 	 */ /** */
 	"use strict";
-	var coreservices_1 = __webpack_require__(97);
-	var common_1 = __webpack_require__(94);
+	var coreservices_1 = __webpack_require__(109);
+	var common_1 = __webpack_require__(106);
 	/** @hidden */
 	var makeStub = function (keys) {
 	    return keys.reduce(function (acc, key) { return (acc[key] = coreservices_1.notImplemented(key), acc); }, { dispose: common_1.noop });
@@ -42588,21 +42787,21 @@
 	//# sourceMappingURL=urlService.js.map
 
 /***/ },
-/* 140 */
+/* 152 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	function __export(m) {
 	    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 	}
-	__export(__webpack_require__(110));
-	__export(__webpack_require__(119));
-	__export(__webpack_require__(138));
-	__export(__webpack_require__(111));
+	__export(__webpack_require__(122));
+	__export(__webpack_require__(131));
+	__export(__webpack_require__(150));
+	__export(__webpack_require__(123));
 	//# sourceMappingURL=index.js.map
 
 /***/ },
-/* 141 */
+/* 153 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -42610,12 +42809,12 @@
 	    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 	}
 	/** @module path */ /** for typedoc */
-	__export(__webpack_require__(109));
-	__export(__webpack_require__(112));
+	__export(__webpack_require__(121));
+	__export(__webpack_require__(124));
 	//# sourceMappingURL=index.js.map
 
 /***/ },
-/* 142 */
+/* 154 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -42623,30 +42822,30 @@
 	    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 	}
 	/** @module resolve */ /** for typedoc */
-	__export(__webpack_require__(115));
-	__export(__webpack_require__(113));
-	__export(__webpack_require__(114));
+	__export(__webpack_require__(127));
+	__export(__webpack_require__(125));
+	__export(__webpack_require__(126));
 	//# sourceMappingURL=index.js.map
 
 /***/ },
-/* 143 */
+/* 155 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	function __export(m) {
 	    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 	}
+	__export(__webpack_require__(146));
 	__export(__webpack_require__(134));
-	__export(__webpack_require__(122));
-	__export(__webpack_require__(133));
-	__export(__webpack_require__(135));
-	__export(__webpack_require__(132));
-	__export(__webpack_require__(136));
-	__export(__webpack_require__(106));
+	__export(__webpack_require__(145));
+	__export(__webpack_require__(147));
+	__export(__webpack_require__(144));
+	__export(__webpack_require__(148));
+	__export(__webpack_require__(118));
 	//# sourceMappingURL=index.js.map
 
 /***/ },
-/* 144 */
+/* 156 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -42665,44 +42864,44 @@
 	 * @preferred
 	 * @module transition
 	 */ /** for typedoc */
-	__export(__webpack_require__(104));
-	__export(__webpack_require__(108));
-	__export(__webpack_require__(107));
-	__export(__webpack_require__(101));
-	__export(__webpack_require__(102));
-	__export(__webpack_require__(105));
-	__export(__webpack_require__(130));
-	__export(__webpack_require__(123));
-	//# sourceMappingURL=index.js.map
-
-/***/ },
-/* 145 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	function __export(m) {
-	    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
-	}
-	__export(__webpack_require__(118));
-	__export(__webpack_require__(117));
+	__export(__webpack_require__(116));
 	__export(__webpack_require__(120));
-	__export(__webpack_require__(121));
-	__export(__webpack_require__(139));
+	__export(__webpack_require__(119));
+	__export(__webpack_require__(113));
+	__export(__webpack_require__(114));
+	__export(__webpack_require__(117));
+	__export(__webpack_require__(142));
+	__export(__webpack_require__(135));
 	//# sourceMappingURL=index.js.map
 
 /***/ },
-/* 146 */
+/* 157 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	function __export(m) {
 	    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 	}
-	__export(__webpack_require__(131));
+	__export(__webpack_require__(130));
+	__export(__webpack_require__(129));
+	__export(__webpack_require__(132));
+	__export(__webpack_require__(133));
+	__export(__webpack_require__(151));
 	//# sourceMappingURL=index.js.map
 
 /***/ },
-/* 147 */
+/* 158 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	function __export(m) {
+	    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+	}
+	__export(__webpack_require__(143));
+	//# sourceMappingURL=index.js.map
+
+/***/ },
+/* 159 */
 /***/ function(module, exports) {
 
 	/**
@@ -42726,7 +42925,7 @@
 	//# sourceMappingURL=interface.js.map
 
 /***/ },
-/* 148 */
+/* 160 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -42741,14 +42940,14 @@
 	 * @preferred
 	 */
 	/** for typedoc */
-	var angular_1 = __webpack_require__(149);
-	var ui_router_core_1 = __webpack_require__(92);
-	var views_1 = __webpack_require__(150);
-	var templateFactory_1 = __webpack_require__(151);
-	var stateProvider_1 = __webpack_require__(152);
-	var onEnterExitRetain_1 = __webpack_require__(153);
-	var locationServices_1 = __webpack_require__(154);
-	var urlRouterProvider_1 = __webpack_require__(155);
+	var angular_1 = __webpack_require__(161);
+	var ui_router_core_1 = __webpack_require__(104);
+	var views_1 = __webpack_require__(162);
+	var templateFactory_1 = __webpack_require__(163);
+	var stateProvider_1 = __webpack_require__(164);
+	var onEnterExitRetain_1 = __webpack_require__(165);
+	var locationServices_1 = __webpack_require__(166);
+	var urlRouterProvider_1 = __webpack_require__(167);
 	angular_1.ng.module("ui.router.angular1", []);
 	var mod_init = angular_1.ng.module('ui.router.init', []);
 	var mod_util = angular_1.ng.module('ui.router.util', ['ng', 'ui.router.init']);
@@ -42845,7 +43044,7 @@
 	//# sourceMappingURL=services.js.map
 
 /***/ },
-/* 149 */
+/* 161 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -42855,11 +43054,11 @@
 	//# sourceMappingURL=angular.js.map
 
 /***/ },
-/* 150 */
+/* 162 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-	var ui_router_core_1 = __webpack_require__(92);
+	var ui_router_core_1 = __webpack_require__(104);
 	function getNg1ViewConfigFactory() {
 	    var templateFactory = null;
 	    return function (path, view) {
@@ -42956,14 +43155,14 @@
 	//# sourceMappingURL=views.js.map
 
 /***/ },
-/* 151 */
+/* 163 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	/** @module view */
 	/** for typedoc */
-	var angular_1 = __webpack_require__(149);
-	var ui_router_core_1 = __webpack_require__(92);
+	var angular_1 = __webpack_require__(161);
+	var ui_router_core_1 = __webpack_require__(104);
 	/**
 	 * Service which manages loading of templates from a ViewConfig.
 	 */
@@ -43147,12 +43346,12 @@
 	//# sourceMappingURL=templateFactory.js.map
 
 /***/ },
-/* 152 */
+/* 164 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	/** @module ng1 */ /** for typedoc */
-	var ui_router_core_1 = __webpack_require__(92);
+	var ui_router_core_1 = __webpack_require__(104);
 	/**
 	 * @ngdoc object
 	 * @name ui.router.state.$stateProvider
@@ -43298,13 +43497,13 @@
 	//# sourceMappingURL=stateProvider.js.map
 
 /***/ },
-/* 153 */
+/* 165 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	/** @module ng1 */ /** */
-	var ui_router_core_1 = __webpack_require__(92);
-	var services_1 = __webpack_require__(148);
+	var ui_router_core_1 = __webpack_require__(104);
+	var services_1 = __webpack_require__(160);
 	/**
 	 * This is a [[StateBuilder.builder]] function for angular1 `onEnter`, `onExit`,
 	 * `onRetain` callback hooks on a [[Ng1StateDeclaration]].
@@ -43327,11 +43526,11 @@
 	//# sourceMappingURL=onEnterExitRetain.js.map
 
 /***/ },
-/* 154 */
+/* 166 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-	var ui_router_core_1 = __webpack_require__(92);
+	var ui_router_core_1 = __webpack_require__(104);
 	/**
 	 * Implements UI-Router LocationServices and LocationConfig using Angular 1's $location service
 	 */
@@ -43406,13 +43605,13 @@
 	//# sourceMappingURL=locationServices.js.map
 
 /***/ },
-/* 155 */
+/* 167 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	/** @module url */ /** */
-	var ui_router_core_1 = __webpack_require__(92);
-	var ui_router_core_2 = __webpack_require__(92);
+	var ui_router_core_1 = __webpack_require__(104);
+	var ui_router_core_2 = __webpack_require__(104);
 	/**
 	 * Manages rules for client-side URL
 	 *
@@ -43614,7 +43813,7 @@
 	//# sourceMappingURL=urlRouterProvider.js.map
 
 /***/ },
-/* 156 */
+/* 168 */
 /***/ function(module, exports) {
 
 	/**
@@ -43976,7 +44175,7 @@
 	//# sourceMappingURL=injectables.js.map
 
 /***/ },
-/* 157 */
+/* 169 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -43989,8 +44188,8 @@
 	 * @preferred
 	 * @module directives
 	 */ /** for typedoc */
-	var angular_1 = __webpack_require__(149);
-	var ui_router_core_1 = __webpack_require__(92);
+	var angular_1 = __webpack_require__(161);
+	var ui_router_core_1 = __webpack_require__(104);
 	/** @hidden */
 	function parseStateRef(ref) {
 	    var paramsOnly = ref.match(/^\s*({[^}]*})\s*$/), parsed;
@@ -44509,12 +44708,12 @@
 	//# sourceMappingURL=stateDirectives.js.map
 
 /***/ },
-/* 158 */
+/* 170 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/** @module state */ /** for typedoc */
 	"use strict";
-	var angular_1 = __webpack_require__(149);
+	var angular_1 = __webpack_require__(161);
 	/**
 	 * @ngdoc filter
 	 * @name ui.router.state.filter:isState
@@ -44557,7 +44756,7 @@
 	//# sourceMappingURL=stateFilters.js.map
 
 /***/ },
-/* 159 */
+/* 171 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -44565,11 +44764,11 @@
 	 * @ng1api
 	 * @module directives
 	 */ /** for typedoc */
-	var angular_1 = __webpack_require__(149);
+	var angular_1 = __webpack_require__(161);
 	var angular_2 = __webpack_require__(1);
-	var ui_router_core_1 = __webpack_require__(92);
-	var views_1 = __webpack_require__(150);
-	var services_1 = __webpack_require__(148);
+	var ui_router_core_1 = __webpack_require__(104);
+	var views_1 = __webpack_require__(162);
+	var services_1 = __webpack_require__(160);
 	/**
 	 * `ui-view`: A viewport directive which is filled in by a view from the active state.
 	 *
@@ -44959,12 +45158,12 @@
 	//# sourceMappingURL=viewDirective.js.map
 
 /***/ },
-/* 160 */
+/* 172 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	/** @module ng1 */ /** */
-	var angular_1 = __webpack_require__(149);
+	var angular_1 = __webpack_require__(161);
 	/** @hidden */
 	function $ViewScrollProvider() {
 	    var useAnchorScroll = false;
@@ -44986,7 +45185,7 @@
 	//# sourceMappingURL=viewScroll.js.map
 
 /***/ },
-/* 161 */
+/* 173 */
 /***/ function(module, exports) {
 
 	/**
@@ -45087,7 +45286,7 @@
 	})(window.angular);
 
 /***/ },
-/* 162 */
+/* 174 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -45377,7 +45576,7 @@
 
 
 /***/ },
-/* 163 */
+/* 175 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -45418,18 +45617,57 @@
 	        url: '/admin',
 	        abstract: true,
 	        default: '.users',
-	        resolve: {
-	            users: ['adminService', function (admin) {
-	                return admin.getAllUsers();
-	            }]
-	        },
 	        component: 'admin'
 	    });
 	
 	    $stateProvider.state({
 	        name: 'admin.users',
 	        url: '/users',
-	        component: 'allUsers'
+	        resolve: {
+	            users: ['adminService', function (admin) {
+	                return admin.getAllUsers();
+	            }]
+	        },
+	        component: 'manageUsers'
+	    });
+	
+	    $stateProvider.state({
+	        name: 'admin.beers',
+	        url: '/beers',
+	        resolve: {
+	            allBeers: ['beerService', function (beers) {
+	                return beers.getAll();
+	            }]
+	        },
+	        component: 'manageBeers'
+	    });
+	
+	    $stateProvider.state({
+	        name: 'admin.reviews',
+	        url: '/reviews',
+	        resolve: {
+	            allReviews: ['reviewService', function (reviews) {
+	                return reviews.getAll();
+	            }]
+	        },
+	        component: 'manageReviews'
+	    });
+	
+	    $stateProvider.state({
+	        name: 'admin.editUsers',
+	        url: '/edit/:id',
+	        resolve: {
+	            userBeers: ['$transition$', 'beerService', function (t, beers) {
+	                return beers.getByUser(t.params().id);
+	            }],
+	            userReviews: ['$transition$', 'reviewService', function (t, reviews) {
+	                return reviews.getByUser(t.params().id);
+	            }],
+	            user: ['$transition$', 'adminService', function (t, admin) {
+	                return admin.getUser(t.params().id);
+	            }]
+	        },
+	        component: 'editUser'
 	    });
 	
 	    $stateProvider.state({
@@ -45489,7 +45727,7 @@
 	        default: 'profile.reviews',
 	        resolve: {
 	            reviews: ['reviewService', function (reviews) {
-	                return reviews.getUserReviews();
+	                return reviews.getByCurrentUser();
 	            }]
 	        },
 	        component: 'profile'
@@ -45505,7 +45743,7 @@
 	}
 
 /***/ },
-/* 164 */
+/* 176 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*
@@ -46406,13 +46644,13 @@
 
 
 /***/ },
-/* 165 */
+/* 177 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(166);
+	var content = __webpack_require__(178);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(6)(content, {});
@@ -46432,7 +46670,7 @@
 	}
 
 /***/ },
-/* 166 */
+/* 178 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(5)();
@@ -46446,13 +46684,13 @@
 
 
 /***/ },
-/* 167 */
+/* 179 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(168);
+	var content = __webpack_require__(180);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(6)(content, {});
@@ -46472,7 +46710,7 @@
 	}
 
 /***/ },
-/* 168 */
+/* 180 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(5)();
@@ -46486,7 +46724,7 @@
 
 
 /***/ },
-/* 169 */
+/* 181 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -46528,7 +46766,7 @@
 	}
 
 /***/ },
-/* 170 */
+/* 182 */
 /***/ function(module, exports) {
 
 	'use strict';
