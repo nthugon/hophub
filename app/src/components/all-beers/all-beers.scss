@@ -14,12 +14,21 @@
         border-bottom: 1px solid $accent;
         .title-line {
             font-size: 1.8rem;
+            padding: 0 0 1% 0;
         }
         .detail-line {
             font-size: 1.4rem;
+            padding: 0 0 1% 0;
         }
     }
     h3 {
         @include content-heading();
+    }
+
+    @media (min-width: 768px)
+    {
+        .beer-listing {
+            width: 50%;
+        }
     }
 }

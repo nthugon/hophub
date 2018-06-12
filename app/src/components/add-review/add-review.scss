@@ -10,4 +10,18 @@
     .add-review {
         @include entry-form();
     }
+
+    @media (min-width: 768px)
+    {
+        .add-review {
+            width: 60%;
+            padding: 3% 0;
+        }
+        .entry-fields {
+            textarea {
+                height: 50px;
+                font-size: 1.4rem;
+            }
+        }
+    }
 }
