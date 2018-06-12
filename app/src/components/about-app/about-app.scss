@@ -20,8 +20,10 @@
             width: 30%;
             border-radius: 2em;       
         }
+    }
 
-        @media (min-width: 350px) {
+    @media (min-width: 350px) {
+        .hero {
             min-height: 700px;
             .hero-text {
                 p {
@@ -29,8 +31,10 @@
                 }
             }
         }
-        
-        @media (min-width: 768px) {
+    }
+    
+    @media (min-width: 768px) {
+        .hero {
             width: 75%;
             margin: 0 auto;
             min-height: 1200px;

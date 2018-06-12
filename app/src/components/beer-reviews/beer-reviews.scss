@@ -25,9 +25,11 @@
         color: $accent;
         width: 80%;
         margin: 3% auto;
+        padding: 0 0 1% 0;
         border-bottom: 1px solid $accent;
         .comment-line {
             font-size: 1.8rem;
+            padding: 0 0 1% 0;
         }
         .drink-again-line {
             font-size: 1.4rem;
@@ -41,6 +43,12 @@
     }
     .capitalize {
         text-transform: capitalize;
+    }
+
+    @media (min-width: 768px) {
+        .review-listing {
+            width: 50%;
+        }
     }
 
 }
