@@ -8,5 +8,6 @@ export default {
 };
 
 function controller() {
+    this.styles = styles;
     this.action = 'signin';
 }

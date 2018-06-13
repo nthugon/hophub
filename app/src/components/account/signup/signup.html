@@ -1,8 +1,8 @@
-<section>
+<section ng-class="$ctrl.styles.signup">
 	<h2>Sign up for The Beer Reviewed Journal</h2>
 	<form name="auth" ng-submit="$ctrl.authenticate()">
 		<div>
-			<label>
+			<label class="username">
 				username: <input required ng-model="$ctrl.credentials.username">
 			</label>
 		</div>

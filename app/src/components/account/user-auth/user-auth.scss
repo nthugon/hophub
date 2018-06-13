@@ -1,0 +1,16 @@
+:local(.auth) {
+    .ngdialog-content {
+        width: 75%;
+    }
+    .sign-in-or-up {
+        width: 50%;
+        margin: 0 auto;
+        text-align: center;
+        label {
+            margin: 0 1%;
+        }
+    }
+    label {
+        color: red;
+    }
+}
