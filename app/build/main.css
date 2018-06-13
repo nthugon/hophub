@@ -9,34 +9,35 @@ body {
   margin: 0;
   padding: 0; }
 .G8x22nXjSYuzfnFaMY5qt .hero {
-  width: 90%;
-  margin: 0 8% 0 2%;
-  border-radius: 0 2em 2em 0;
-  background: linear-gradient(-90deg, black, black, transparent); }
+  background: url("/img/beer-pint.png") no-repeat center -15px;
+  background-size: cover;
+  min-height: 600px; }
   .G8x22nXjSYuzfnFaMY5qt .hero .hero-text {
     vertical-align: top;
-    padding: 2% 0 0 25%;
-    color: #d3d3d3;
-    display: inline-block;
-    width: 44%; }
+    color: #090909;
+    width: 50%;
+    margin: 0 auto;
+    padding: 13% 0 5% 0; }
     .G8x22nXjSYuzfnFaMY5qt .hero .hero-text p {
-      padding-left: 15%;
+      font-size: 1.4rem;
       text-align: center; }
   .G8x22nXjSYuzfnFaMY5qt .hero img {
     width: 30%;
     border-radius: 2em; }
 
-.G8x22nXjSYuzfnFaMY5qt .get-started-btn {
-  padding: 7px 0 9px 0;
-  text-align: center;
-  width: 120px;
-  border: none;
-  outline: none;
-  border-radius: 15px; }
-  .G8x22nXjSYuzfnFaMY5qt .get-started-btn span {
-    font-size: 1.4rem;
-    font-weight: bold;
-    margin-left: -3px; }
+@media (min-width: 350px) {
+  .G8x22nXjSYuzfnFaMY5qt .hero {
+    min-height: 700px; }
+    .G8x22nXjSYuzfnFaMY5qt .hero .hero-text p {
+      font-size: 1.6rem; } }
+
+@media (min-width: 768px) {
+  .G8x22nXjSYuzfnFaMY5qt .hero {
+    width: 75%;
+    margin: 0 auto;
+    min-height: 1200px; }
+    .G8x22nXjSYuzfnFaMY5qt .hero .hero-text p {
+      font-size: 2rem; } }
 ._1YnBKp12AG3QJ19uUlXsXg header {
   background-color: #78c1ce;
   position: fixed;
@@ -130,12 +131,6 @@ body {
   color: red; }
 .error {
   color: red; }
-._1IZKgvl92BktL4gSOmBmsk {
-  text-align: right; }
-  ._1IZKgvl92BktL4gSOmBmsk span {
-    color: aqua;
-    border: 1px solid aqua;
-    padding: 10px; }
 ._1izU0fXp63dbvv9H8fbTtJ {
   color: #f58220; }
   ._1izU0fXp63dbvv9H8fbTtJ h3 {
@@ -176,8 +171,7 @@ body {
         box-shadow: inset 0 0 5px 1px #005778; }
       ._1izU0fXp63dbvv9H8fbTtJ .add-beer .entry-fields textarea {
         resize: none;
-        width: 60%;
-        height: 40%; }
+        width: 60%; }
     ._1izU0fXp63dbvv9H8fbTtJ .add-beer button {
       padding: 7px 0 9px 0;
       text-align: center;
@@ -231,8 +225,7 @@ body {
         box-shadow: inset 0 0 5px 1px #005778; }
       ._1nJA7HWuWIyGH6HWxnQXzU .add-review .entry-fields textarea {
         resize: none;
-        width: 60%;
-        height: 40%; }
+        width: 60%; }
     ._1nJA7HWuWIyGH6HWxnQXzU .add-review button {
       padding: 7px 0 9px 0;
       text-align: center;
@@ -246,6 +239,13 @@ body {
         font-size: 1.4rem;
         font-weight: bold;
         margin-left: -3px; }
+  @media (min-width: 768px) {
+    ._1nJA7HWuWIyGH6HWxnQXzU .add-review {
+      width: 60%;
+      padding: 3% 0; }
+    ._1nJA7HWuWIyGH6HWxnQXzU .entry-fields textarea {
+      height: 50px;
+      font-size: 1.4rem; } }
 ._15jCuTfY5stx1XNn0YGYcb header {
   background-color: #78c1ce;
   position: fixed;
@@ -324,14 +324,19 @@ body {
     margin: 3% auto;
     border-bottom: 1px solid #f58220; }
     .pckJOSBj2wt45ZAnMd3TS .beer-listing .title-line {
-      font-size: 1.8rem; }
+      font-size: 1.8rem;
+      padding: 0 0 1% 0; }
     .pckJOSBj2wt45ZAnMd3TS .beer-listing .detail-line {
-      font-size: 1.4rem; }
+      font-size: 1.4rem;
+      padding: 0 0 1% 0; }
   .pckJOSBj2wt45ZAnMd3TS h3 {
     margin: 10px 0 0 0;
     font-size: 1.6rem;
     text-align: center;
     color: #090909; }
+  @media (min-width: 768px) {
+    .pckJOSBj2wt45ZAnMd3TS .beer-listing {
+      width: 50%; } }
 ._4ir4eP1lGbJgTawhqp8TX {
   text-align: center; }
   ._4ir4eP1lGbJgTawhqp8TX i {
@@ -355,9 +360,11 @@ body {
     margin: 3% auto;
     border-bottom: 1px solid #f58220; }
     ._4ir4eP1lGbJgTawhqp8TX .review-listing .comment-line {
-      font-size: 1.8rem; }
+      font-size: 1.8rem;
+      padding: 0 0 1% 0; }
     ._4ir4eP1lGbJgTawhqp8TX .review-listing .drink-again-line {
-      font-size: 1.4rem; }
+      font-size: 1.4rem;
+      padding: 0 0 1% 0; }
   ._4ir4eP1lGbJgTawhqp8TX button {
     padding: 7px 0 9px 0;
     text-align: center;
@@ -373,6 +380,9 @@ body {
       margin-left: -3px; }
   ._4ir4eP1lGbJgTawhqp8TX .capitalize {
     text-transform: capitalize; }
+  @media (min-width: 768px) {
+    ._4ir4eP1lGbJgTawhqp8TX .review-listing {
+      width: 50%; } }
 ._1OzTLcHgB30oBM6KyYHbyE header {
   background-color: #78c1ce;
   position: fixed;
