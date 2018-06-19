@@ -10,6 +10,7 @@ export default function auth($rootScope, userService, ngDialog, $state) {
             const dialog = ngDialog.open({ 
                 template: '<user-auth success="success"></user-auth>',
                 plain: true,
+                className: 'ngdialog-theme-default custom-width-250 custom-width-350',
                 controller: ['$scope', function($scope){
                     $scope.success = function(){
                         dialog.close();

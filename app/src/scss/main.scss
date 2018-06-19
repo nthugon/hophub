@@ -12,3 +12,17 @@ body {
     margin: 0;
     padding: 0;
 }
+
+@media (max-width: 350px) {
+    .ngdialog.ngdialog-theme-default.custom-width-250 .ngdialog-content {
+        width: 250px;
+    }
+}
+
+@media (max-width: 480px) and (min-width: 350px) {
+    .ngdialog.ngdialog-theme-default.custom-width-350 .ngdialog-content {
+        width: 350px;
+    }
+}
+
+
