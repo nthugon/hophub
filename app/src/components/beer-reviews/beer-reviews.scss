@@ -6,7 +6,7 @@
     text-align: center;
     i {
         position: absolute;
-        color: $accent;
+        color: $content-text;
         top: 2%;
         right: 3%;            
     }
@@ -22,10 +22,10 @@
 
     }
     .review-listing {
-        color: $accent;
+        color: $content-text;
         width: 80%;
         margin: 3% auto;
-        border-bottom: 1px solid $accent;
+        border-bottom: 1px solid $content-text;
         .comment-line {
             font-size: 1.8rem;
             padding: 0 0 1% 0;
@@ -38,7 +38,7 @@
     button {
         @include button();
         margin: 0 2%;
-        background-color: $accent;
+        background-color: $content-text;
 
     }
     .capitalize {

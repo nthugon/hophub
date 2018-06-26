@@ -1,45 +1,31 @@
-// #44af69 medium sea green
-// #f8333c deep carmine pink  #f8454d sunburnt cyclops
-// #fcab10 dark tangerine
-// #2b9eb3 light sea green    #78c1ce dark sky blue
-// #dbd5b5 timberwolf
-
-// #008e97 aqua
-// #0fa8ad faded aqua
-// #f58220 orange
-// #f79b4d light orange
-// #f8c9a3 faded light orange
-// #005778 blue
-// #2028f5 dark blue
-// #f52028 red
-// #fa8f93 light red
-// #f5ec20 yellow
-// #fcf9b6 faded yellow
-// #20f582 green
-// #8220f5 purple
-// #78c1ce sky blue
-
-$header: #78c1ce;
-$app-background: #fafafa;
-$parent-background: #0fa8ad;
-$accent: #f58220;
-$content: #f8c9a3;
-$button: #97dfb7;
-$footer: #005778;
-$footer-text: #fcf9b6;
-
-$logo: #20f582;
-$item: #005778;
-
-$blue: #005778;
-$aqua: #008e97;
-$light-aqua: #78c1ce;
-$orange: #faa75e;
-$light-orange: #f8c296;
-$green: #20f582;
-$red: #f52028;
-$light-red: #fa8f93;
-$black: #090909;
 $white: #fafafa;
 $grey: #d3d3d3;
 $dark-grey: #a9a9a9;
+$black: #090909;
+
+$light-aqua: #78c1ce;
+$blue: #005778;
+$light-orange: #f8c9a3;
+$orange: #faa75e;
+$dark-orange: #f58220;
+$green: #97dfb7;
+
+//not used
+$light-red: #fa8f93;
+$red: #f52028;
+$yellow: #fcf9b6;
+$aqua: #008e97;
+
+
+$header: $light-aqua;
+$app-background: $white;
+$auth-label: $blue;
+$input-focus: $light-aqua;
+$auth-accent: $orange;
+$content-text: $dark-orange;
+$form-background: $light-orange;
+$button: $green;
+$footer: $blue;
+
+
+

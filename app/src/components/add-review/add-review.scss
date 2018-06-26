@@ -3,7 +3,7 @@
 @import 'buttons';
 
 :local(.add_review) {
-    color: $accent;
+    color: $content-text;
     h3 {
         @include content-heading();
     }

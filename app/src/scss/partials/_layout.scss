@@ -141,8 +141,8 @@
     margin: 4% auto;
     padding: 3% 0 10%;
     text-align: center;
-    color: $accent;
-    background-color: $content;
+    color: $content-text;
+    background-color: $form-background;
     border-radius: 15px;
     position: relative;
     i {
@@ -180,7 +180,7 @@
     button {
         @include button();
         margin: 0 2%;
-        background-color: $accent;
+        background-color: $content-text;
     }
 
 }
