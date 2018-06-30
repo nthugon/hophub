@@ -9,13 +9,13 @@
         <span>does not yet have any reviews.</span>
     </div>
     <div class="review-listing" ng-repeat="review in $ctrl.beer.reviews track by $index">
-        <div ng-if="review.comments.length > 0" class="comment-line">
+        <div ng-if="review.comments.length > 0" class="title-line">
             "{{review.comments}}" -{{review.reviewer}}
         </div>
-        <div ng-if="!review.comments" class="comment-line">
+        <div ng-if="!review.comments" class="title-line">
                 "No comment." -{{review.reviewer}}
         </div>
-        <div class="drink-again-line capitalize">
+        <div class="detail-line capitalize">
             Drink Again?: {{review.drinkAgain}}
         </div>
     </div>
