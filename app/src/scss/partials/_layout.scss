@@ -152,19 +152,24 @@
     }
 }
 
+@mixin close-x() {
+    position: absolute;
+    color: $content-text;
+    top: 3%;
+    right: 5%;            
+}
+
 @mixin entry-form() {
     width: 80%;
     margin: 4% auto;
-    padding: 3% 0 10%;
+    padding: 7% 0 10%;
     text-align: center;
     color: $content-text;
     background-color: $form-background;
     border-radius: 15px;
     position: relative;
     i {
-        position: absolute;
-        top: 2%;
-        right: 3%;            
+        @include close-x();           
     }
     h4 {
         font-size: 1.4rem;

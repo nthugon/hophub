@@ -5,10 +5,7 @@
 :local(.reviews) {
     text-align: center;
     i {
-        position: absolute;
-        color: $content-text;
-        top: 2%;
-        right: 3%;            
+        @include close-x();          
     }
     .review-heading {
         margin: 0 0 5%;
