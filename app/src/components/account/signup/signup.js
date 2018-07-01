@@ -22,7 +22,7 @@ function controller( userService ) {
                 this.success();
             })
             .catch(error => {
-                this.error = error;
+                this.error = error.error;
             });
     };
 

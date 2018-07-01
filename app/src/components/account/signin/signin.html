@@ -4,12 +4,12 @@
 		<div>
             <label for="username">username: </label>
             <input required type="text" id="username" ng-model="$ctrl.credentials.username">		
-		</div>
+        </div>
 		<div>
             <label for="password">password: </label>
             <input required type="password" id="password" ng-model="$ctrl.credentials.password">			
 		</div>
 		<button type="submit">Submit</button>
 	</form>
-	<div class="error" ng-if='$ctrl.error'>{{$ctrl.error.reason}}</div>
+    <div class="error" ng-if='$ctrl.error'>{{$ctrl.error}}</div>	
 </section>
