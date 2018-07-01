@@ -1,6 +1,9 @@
 @import 'colors';
 
 :local(.auth) {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
     background-color: $white;
     padding: 10px;
     text-align: center;
@@ -13,6 +16,8 @@
         }
         input[type='radio'] {
             -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
             width: 10px;
             height: 10px;
             border-radius: 50%;
@@ -43,6 +48,9 @@
 
     input[type=text], input[type=password] {
         -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        width: 50%;
         margin: 3px;
         border-radius: 15px;
         border: 1px solid $dark-grey;
@@ -55,6 +63,8 @@
 
     button {
         -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
         border: none;
         border-radius: 15px;
         background-color: $auth-accent;

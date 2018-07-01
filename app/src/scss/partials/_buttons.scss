@@ -1,4 +1,7 @@
 @mixin button() {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
     padding: 7px 0 9px 0;
     text-align: center;
     width: 120px;
@@ -16,6 +19,9 @@
     text-align: center;
     margin: 0 0 0 40px;
     button {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
         padding: 7px 0 9px 0;
         text-align: center;
         width: 120px;
