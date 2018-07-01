@@ -17,8 +17,8 @@
                     {{drinkAgain}}
                 </span>
             </div>
-            <label for="comments">Comments</label>
-            <textarea id="comments" ng-model="$ctrl.comments"></textarea>
+            <label for="comments">Comments (280 characters)</label>
+            <textarea id="comments" ng-model="$ctrl.comments" maxlength="280"></textarea>
         </div>
         <button ng-click="$ctrl.addReview()">Add</button>      
     </form>
