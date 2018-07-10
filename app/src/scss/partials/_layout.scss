@@ -178,7 +178,16 @@
         label {
             display: block;
             font-size: 1.4rem;
-            margin: 3% 0 1% 0;
+            margin: 0 0 1% 0;
+        }
+        .message {
+            margin: 0 0 0 0;
+            padding: 0;
+            color: $aqua;
+            min-height: 12px;
+        }
+        .radio-select {
+            margin-bottom: 5%;
         }
         input[type='text'], input[type='number'] {
             font-size: 1.8rem;
@@ -197,12 +206,13 @@
         textarea {
             resize: none;
             width: 60%;
+            margin-bottom: 5%;
         }
-        margin-bottom: 5%;
+        // margin-bottom: 5%;
     }
     button {
         @include button();
-        margin: 0 2%;
+        // margin: 0 2%;
         background-color: $content-text;
     }
 
