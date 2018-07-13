@@ -12,11 +12,14 @@
         h3 {
             @include content-heading();
         }
-        span {
+        h2 {
+            @include content-sub-heading();
+        }
+        p {
+            margin: 1% 0 0 0;
             color: $black;           
             font-size: 1.4rem;
         }
-
     }
     .review-listing {
         @include listing();
@@ -25,7 +28,6 @@
         @include button();
         margin: 0 2%;
         background-color: $content-text;
-
     }
 
     @media (min-width: 768px) {

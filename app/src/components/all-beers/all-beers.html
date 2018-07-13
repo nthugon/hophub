@@ -1,5 +1,5 @@
 <section ng-class="$ctrl.styles.all_beers">  
-    <h3>Select a Beer to See Its Reviews</h3>
+    <h3>Select a Beer to See Reviews</h3>
     <div class="beer-listing" ng-repeat="beer in $ctrl.beers | orderBy: 'brewery' track by $index"
     ui-sref="beer({
         id: beer._id

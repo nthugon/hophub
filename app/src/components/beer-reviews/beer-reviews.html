@@ -1,12 +1,9 @@
 <section ng-class="$ctrl.styles.reviews">
     <i class="fa fa-times fa-2x" aria-hidden="true" ng-click="$ctrl.backToBeers()"></i>
-    <div class="review-heading" ng-if="$ctrl.beer.reviews.length > 0">
-        <h3>{{$ctrl.beer.brewery}} {{$ctrl.beer.name}}</h3>
-        <span>has the following reviews:</span>
-    </div>
-    <div class="review-heading" ng-if="$ctrl.beer.reviews.length === 0">
-        <h3>{{$ctrl.beer.brewery}} {{$ctrl.beer.name}}</h3>
-        <span>does not yet have any reviews.</span>
+    <div class="review-heading">
+        <h3>{{$ctrl.beer.brewery}}</h3>
+        <h2>{{$ctrl.beer.name}}</h2>
+        <p>{{$ctrl.beer.reviews.length > 0 ? "has the following reviews:" : "does not yet have any reviews."}}</p>
     </div>
     <div class="review-listing" ng-repeat="review in $ctrl.beer.reviews track by $index">
         <div ng-if="review.comments.length > 0" class="title-line">

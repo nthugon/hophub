@@ -130,10 +130,27 @@
 }
 
 @mixin content-heading() {
-    margin: 10px 0 0 0;
+    margin: 10px auto 0;    
     font-size: 1.6rem;
     text-align: center;
     color: $black;
+    width: 75%;
+    @include truncate-text();
+}
+
+@mixin content-sub-heading() {
+    margin: 0 auto;
+    font-size: 1.4rem;
+    text-align: center;
+    color: $black;
+    width: 75%;
+    @include truncate-text();
+}
+
+@mixin truncate-text() {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 @mixin listing() {
