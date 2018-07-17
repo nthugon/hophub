@@ -4,12 +4,14 @@
     ui-sref="beer({
         id: beer._id
     })">
-        <div class="title-line">
-            {{beer.brewery}} {{beer.name}}
+        <div title="{{beer.brewery}}" class="detail-line">
+            {{beer.brewery}} 
+        </div>
+        <div title="{{beer.name}}" class="title-line">
+            {{beer.name}} 
         </div>
         <div class="detail-line">
-            {{beer.style}} {{beer.abv}}
+            {{beer.style}} {{beer.abv}}<span>{{beer.abv ? "% abv" : ""}}</span>
         </div>
     </div>
-
 </section>
