@@ -9,10 +9,10 @@
     }
     .review-heading {
         margin: 0 0 5%;
-        h3 {
+        h2 {
             @include content-heading();
         }
-        h2 {
+        h3 {
             @include content-sub-heading();
         }
         p {

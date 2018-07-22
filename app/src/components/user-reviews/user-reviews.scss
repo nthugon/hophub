@@ -1,0 +1,30 @@
+@import 'colors';
+@import 'layout';
+@import 'buttons';
+
+:local(.userReviews) {
+    .user-review-heading {
+        h2 {
+            @include content-heading();
+        }
+    }
+    .no-reviews-message {
+        @include content-sub-heading();
+        color: $content-text;
+        margin-top: 5%;
+
+    }
+    .user-review-listing {
+        @include listing();
+        .comment {
+            font-size: 1.4rem;
+        }
+    }
+
+    @media (min-width: 768px) {
+        .user-review-listing {
+            width: 50%;
+        }
+    }
+
+}

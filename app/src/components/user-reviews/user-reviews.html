@@ -1,6 +1,25 @@
-<section ng-class="$ctrl.styles.userreviews">
-    <h1>Here is where the user's reviews will go</h1>
-    <table>
+<section ng-class="$ctrl.styles.userReviews">
+    <div class="user-review-heading">
+        <h2>Your Reviews</h2>
+    </div>
+    <div ng-if="!$ctrl.reviews" class="no-reviews-message">
+        You do not yet have any reviews.
+    </div>
+    <div class="user-review-listing" ng-repeat="review in $ctrl.reviews track by $index">
+            <div title="{{review.brewery}}" class="detail-line">
+                    {{review.brewery}} 
+            </div>
+            <div title="{{review.beerName}}" class="title-line">
+                {{review.beerName}} 
+            </div>
+            <div class="detail-line capitalize">
+                    Drink Again?: {{review.drinkAgain}}
+            </div>
+            <div class="comment">
+                Comments: {{review.comments.length > 0 ? review.comments : "None"}}
+            </div>
+        </div>
+    <!-- <table>
         <thead>
             <tr>
                 <td>Brewery</td>
@@ -17,5 +36,5 @@
                 <td>{{review.comments}}</td>
             </tr>
         </tbody>
-    </table>
+    </table> -->
 </section>
