@@ -1,24 +1,24 @@
 <section ng-class="$ctrl.styles.add_beers">
     <h3>Use the Form Below to Add a Beer</h3>
-    <form class="add-beer">
+    <form class="add-beer" name="addBeer">
         <i class="fa fa-times fa-2x" aria-hidden="true" ng-click="$ctrl.backToAll()"></i>
         <h4>
             Enter the Beer's Information
         </h4>
         <div class="entry-fields">
             <label for="brewery">Brewery</label>
-            <input type="text" id="brewery" ng-model="$ctrl.brewery" maxlength="50">
+            <input type="text" id="brewery" ng-model="$ctrl.brewery" maxlength="50" required>
             <div class="message">{{$ctrl.brewery.length >= 50 ? "50 characters max" : ""}}</div>
             <label for="name">Name</label>
-            <input type="text" id="name" ng-model="$ctrl.name" maxlength="50">
+            <input type="text" id="name" ng-model="$ctrl.name" maxlength="50" required>
             <div class="message">{{$ctrl.name.length >= 50 ? "50 characters max" : ""}}</div>
             <label for="style">Style</label>
-            <input type="text" id="style" ng-model="$ctrl.style" maxlength="30">
+            <input type="text" id="style" ng-model="$ctrl.style" maxlength="30" required>
             <div class="message">{{$ctrl.style.length >= 30 ? "30 characters max" : ""}}</div>
             <label for="abv">ABV</label>
             <input id="abv" type="number" min="1" max="20" ng-model="$ctrl.abv">
             <div class="message">{{$ctrl.abv >= 20 ? "20 percent max" : ""}}</div>
         </div>
-        <button ng-click="$ctrl.addBeer()">Add</button>      
+        <button ng-click="$ctrl.addBeer()" ng-disabled="addBeer.$invalid">Add</button>      
     </form>
 </section>

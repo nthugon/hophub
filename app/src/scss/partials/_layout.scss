@@ -237,4 +237,9 @@
         background-color: $content-text;
     }
 
+    button[disabled] {
+        background-color: $faded-orange;
+        color: $grey;
+    }
+
 }
