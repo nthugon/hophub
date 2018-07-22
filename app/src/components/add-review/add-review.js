@@ -20,7 +20,7 @@ function controller(reviews, user, $state) {
             drinkAgain: this.drinkAgain,
             userId: this.user._id,
             reviewer: this.user.username, 
-            comments: this.comments,
+            comments: (this.comments ? this.comments : ""),
             beerId: this.beer._id,
             brewery: this.beer.brewery,
             beerName: this.beer.name

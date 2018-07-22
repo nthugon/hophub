@@ -1,6 +1,6 @@
 <section ng-class="$ctrl.styles.add_review">
     <h3>Add a Review for {{$ctrl.beer.name}}</h3>
-    <form class="add-review">
+    <form class="add-review" name="addReview">
         <i class="fa fa-times fa-2x" aria-hidden="true" ng-click="$ctrl.backToBeer()"></i>
         <h4>
             Enter Your Review
@@ -13,13 +13,14 @@
                         ng-model="$ctrl.drinkAgain" 
                         name="drinkAgain" 
                         ng-value="drinkAgain" 
-                        type="radio"> 
+                        type="radio"
+                        required> 
                     {{drinkAgain}}
                 </span>
             </div>
             <label for="comments">Comments (280 characters)</label>
             <textarea id="comments" ng-model="$ctrl.comments" maxlength="280"></textarea>
         </div>
-        <button ng-click="$ctrl.addReview()">Add</button>      
+        <button ng-click="$ctrl.addReview()" ng-disabled="addReview.$invalid">Add</button>      
     </form>
 </section>
