@@ -1,6 +1,11 @@
 @import 'colors';
 
 :local(.signup) {
+    input[type='text'],
+    input[type='number'],
+    textarea {
+    font-size: 1.6rem;
+    }
 }
 
 
