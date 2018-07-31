@@ -142,12 +142,10 @@ body {
         font-size: 2.0rem;
         display: block; }
 ._3zL2ZHtCK5gZw0rDFx2pWR input[type='text'],
-._3zL2ZHtCK5gZw0rDFx2pWR input[type='number'],
-._3zL2ZHtCK5gZw0rDFx2pWR textarea {
+._3zL2ZHtCK5gZw0rDFx2pWR input[type='password'] {
   font-size: 1.6rem; }
 ._2FgLAKlzI6_uND6eI_tRmk input[type='text'],
-._2FgLAKlzI6_uND6eI_tRmk input[type='number'],
-._2FgLAKlzI6_uND6eI_tRmk textarea {
+._2FgLAKlzI6_uND6eI_tRmk input[type='password'] {
   font-size: 1.6rem; }
 ._3nlLcIefVzf7epd4gi3fWP {
   -webkit-appearance: none;
