@@ -2,8 +2,7 @@
 
 :local(.signin) {
     input[type='text'],
-    input[type='number'],
-    textarea {
+    input[type='password'] {
     font-size: 1.6rem;
     }
 }
