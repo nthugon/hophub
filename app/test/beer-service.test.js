@@ -13,9 +13,9 @@ describe('beer service', () => {
         enteredBy: 'some user',
         name: 'beer name',
         style: 'beer style',
-        userId: 123,
+        userId: '123',
         __v: 0,
-        _id: 123
+        _id: '123'
     };
 
     const beer2 = {
@@ -24,9 +24,9 @@ describe('beer service', () => {
         enteredBy: 'some other user',
         name: 'other beer name',
         style: 'other beer style',
-        userId: 246,
+        userId: '246',
         __v: 0,
-        _id: 456
+        _id: '456'
     };
 
     const beer3 = {
@@ -35,9 +35,9 @@ describe('beer service', () => {
         enteredBy: 'another user',
         name: 'another beer name',
         style: 'another beer style',
-        userId: 246,
+        userId: '246',
         __v: 0,
-        _id: 789
+        _id: '789'
     };
 
     const beer4 = {
@@ -46,16 +46,16 @@ describe('beer service', () => {
         enteredBy: 'yet another user',
         name: 'yet another beer name',
         style: 'yet another beer style',
-        userId: 135,
+        userId: '135',
         __v: 0,
-        _id: 135
+        _id: '135'
     };
 
     const user = {
         admin: false,
         brewer: false,
         username: 'nathan',
-        _id: 246
+        _id: '246'
     };
 
     const beers = [beer1, beer2, beer3];
