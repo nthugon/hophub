@@ -55,11 +55,17 @@ describe('review service', () => {
         _id: '135'
     };
 
-
     const user = {
         admin: false,
         brewer: false,
         username: 'nathan',
+        _id: 135
+    };
+
+    const currentUser = {
+        admin: false,
+        brewer: false,
+        username: 'leah',
         _id: 246
     };
 
@@ -97,12 +103,28 @@ describe('review service', () => {
     it('gets reviews by user', done => {
        
         $httpBackend
-            .expectGET('/api/reviews/user/246')
+            .expectGET('/api/reviews/user/135')
             .respond(usersReviews);
 
         reviewService.getByUser(user._id)
             .then(reviewsByUserId => {
                 assert.deepEqual(reviewsByUserId, usersReviews);
+                done();
+            })
+            .catch(done);
+
+        $httpBackend.flush();
+    });
+
+    it('gets reviews by currentUser', done => {
+       
+        $httpBackend
+            .expectGET('/api/reviews/currentUser')
+            .respond(currentUsersReviews);
+
+        reviewService.getByCurrentUser(user._id)
+            .then(reviewsByCurrentUser => {
+                assert.deepEqual(reviewsByCurrentUser, currentUsersReviews);
                 done();
             })
             .catch(done);
