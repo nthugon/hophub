@@ -21,12 +21,12 @@ function controller(beers, $state, user) {
 
     this.addBeer = () => {
         beers.add({
-            name: this.name,
-            style: this.style,
-            brewery: this.brewery,
             abv: this.abv,
-            userId: this.user._id,
-            enteredBy: this.user.username
+            brewery: this.brewery,
+            enteredBy: this.user.username,
+            name: this.name,
+            style: this.style,                   
+            userId: this.user._id,           
         })
         .then(saved => {              
             this.beers.push(saved);

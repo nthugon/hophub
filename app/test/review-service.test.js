@@ -1,6 +1,7 @@
-describe('review service', () => {
-    const { assert } = chai;
+const { assert } = chai;
 
+describe('review service', () => {
+    
     angular.mock.module.sharedInjector();
 
     before(angular.mock.module('services', { apiUrl: '/api' }));
@@ -15,7 +16,6 @@ describe('review service', () => {
         drinkAgain: 'yes',
         reviewer: 'nathan',
         userId: '135',
-        __v: 0,
         _id: '123'
     };
 
@@ -27,7 +27,6 @@ describe('review service', () => {
         drinkAgain: 'yes',
         reviewer: 'leah',
         userId: '246',
-        __v: 0,
         _id: '456'
     };
 
@@ -39,7 +38,6 @@ describe('review service', () => {
         drinkAgain: 'yes',
         reviewer: 'leah',
         userId: '246',
-        __v: 0,
         _id: '789'
     };
 
@@ -51,7 +49,6 @@ describe('review service', () => {
         drinkAgain: 'yes',
         reviewer: 'nathan',
         userId: '123',
-        __v: 0,
         _id: '135'
     };
 

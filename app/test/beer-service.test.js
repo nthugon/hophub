@@ -1,5 +1,6 @@
+const { assert } = chai;
+
 describe('beer service', () => {
-    const { assert } = chai;
 
     angular.mock.module.sharedInjector();
 
@@ -14,7 +15,6 @@ describe('beer service', () => {
         name: 'beer name',
         style: 'beer style',
         userId: '123',
-        __v: 0,
         _id: '123'
     };
 
@@ -25,7 +25,6 @@ describe('beer service', () => {
         name: 'other beer name',
         style: 'other beer style',
         userId: '246',
-        __v: 0,
         _id: '456'
     };
 
@@ -36,7 +35,6 @@ describe('beer service', () => {
         name: 'another beer name',
         style: 'another beer style',
         userId: '246',
-        __v: 0,
         _id: '789'
     };
 
@@ -47,7 +45,6 @@ describe('beer service', () => {
         name: 'yet another beer name',
         style: 'yet another beer style',
         userId: '135',
-        __v: 0,
         _id: '135'
     };
 
