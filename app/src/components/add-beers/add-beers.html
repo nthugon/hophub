@@ -16,7 +16,7 @@
             <input type="text" id="style" ng-model="$ctrl.style" maxlength="30" required>
             <div class="message">{{$ctrl.style.length >= 30 ? "30 characters max" : ""}}</div>
             <label for="abv">ABV</label>
-            <input id="abv" type="number" step="0.5" min="1" max="20" ng-model="$ctrl.abv">
+            <input id="abv" type="number" step="0.1" min="1" max="20" ng-model="$ctrl.abv">
             <div class="message">{{$ctrl.abv >= 20 ? "20 percent max" : ""}}</div>
         </div>
         <button ng-click="$ctrl.addBeer()" ng-disabled="addBeer.$invalid">Add</button>      
