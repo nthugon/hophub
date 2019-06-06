@@ -191,7 +191,8 @@
     position: absolute;
     color: $content-text;
     top: 3%;
-    right: 5%;            
+    right: 5%;
+    cursor: pointer;            
 }
 
 @mixin entry-form() {
@@ -252,6 +253,7 @@
     button[disabled] {
         background-color: $faded-orange;
         color: $grey;
+        cursor: not-allowed;
     }
 
 }
