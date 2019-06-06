@@ -1,7 +1,9 @@
 <section ng-class="$ctrl.styles.admin">
     <header>
         <div class="app-name">
-            <h1 ui-sref="about">HopHub</h1>
+            <h1 ui-sref="about">
+                <span>HopHub</span>
+            </h1>
         </div>
     </header>
     <div class="sub-heading">
@@ -15,26 +17,26 @@
     </section>
     <footer>
         <nav class="tabs">
-                <div class="nav-link" ng-if="$ctrl.isAdmin()" ui-sref="admin">
-                    <i class="fa fa-cog"></i>
-                    <li>ADMIN PAGE</li>
-                </div>
-                <div class="nav-link" ng-if="$ctrl.isAuthenticated()" ui-sref="profile">
-                    <i class="fa fa-thumbs-up"></i>
-                    <li>MY REVIEWS</li>
-                </div>
-                <div class="nav-link" ng-if="$ctrl.isAuthenticated()" ui-sref="beers">
-                    <i class="fa fa-beer"></i> 
-                    <li>BEERS</li>
-                </div>
-                <div class="nav-link" ng-if="$ctrl.isAuthenticated()" ui-sref="about" ng-click="$ctrl.logout()">
-                    <i class="fa fa-sign-out"></i>  
-                    <li>LOGOUT</li>
-                </div>
-                <div class="nav-link" ng-if="!$ctrl.isAuthenticated()" ui-sref="beers">
-                    <i class="fa fa-sign-in"></i>
-                    <li>SIGNIN</li>
-                </div>                
-            </nav>
+            <div class="nav-link" ng-if="$ctrl.isAdmin()" ui-sref="admin">
+                <i class="fa fa-cog"></i>
+                <li><span>ADMIN PAGE</span></li>
+            </div>
+            <div class="nav-link" ng-if="$ctrl.isAuthenticated()" ui-sref="profile">
+                <i class="fa fa-thumbs-up"></i>
+                <li><span>MY REVIEWS</span></li>
+            </div>
+            <div class="nav-link" ng-if="$ctrl.isAuthenticated()" ui-sref="beers">
+                <i class="fa fa-beer"></i> 
+                <li><span>BEERS</span></li>
+            </div>
+            <div class="nav-link" ng-if="$ctrl.isAuthenticated()" ui-sref="about" ng-click="$ctrl.logout()">
+                <i class="fa fa-sign-out"></i>  
+                <li><span>LOGOUT</span></li>
+            </div>
+            <div class="nav-link" ng-if="!$ctrl.isAuthenticated()" ui-sref="beers">
+                <i class="fa fa-sign-in"></i>
+                <li><span>SIGNIN</span></li>
+            </div>                
+        </nav>
     </footer>
 </section>
