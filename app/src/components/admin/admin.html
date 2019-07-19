@@ -31,11 +31,11 @@
             </div>
             <div class="nav-link" ng-if="$ctrl.isAuthenticated()" ui-sref="about" ng-click="$ctrl.logout()">
                 <i class="fa fa-sign-out"></i>  
-                <li><span>LOGOUT</span></li>
+                <li><span>LOG OUT</span></li>
             </div>
-            <div class="nav-link" ng-if="!$ctrl.isAuthenticated()" ui-sref="beers">
+            <div class="nav-link" ng-if="!$ctrl.isAuthenticated()" ng-click="$ctrl.login()">
                 <i class="fa fa-sign-in"></i>
-                <li><span>SIGNIN</span></li>
+                <li><span>LOG IN</span></li>
             </div>                
         </nav>
     </footer>

@@ -34079,6 +34079,9 @@
 	
 	function controller(userService) {
 	    this.styles = _about4.default;
+	    this.login = function () {
+	        return userService.login();
+	    };
 	    this.logout = function () {
 	        return userService.logout();
 	    };
@@ -34094,7 +34097,7 @@
 /* 21 */
 /***/ function(module, exports) {
 
-	module.exports = "<section ng-class=\"$ctrl.styles.about\">\n    <header>\n        <div class=\"app-name\">\n            <h1 ui-sref=\"about\">HopHub</h1>\n        </div>\n    </header>\n    <div class=\"sub-heading\">\n        <h2>Welcome!</h2>\n        <div class=\"bottle-btn\" ui-sref=\"beers\">\n                <button><span>Get Started</span></button>\n                <div></div>\n        </div>\n    </div> \n    <section class=\"content\">\n        <ui-view></ui-view>\n    </section>\n    <footer>\n        <nav class=\"tabs\">\n                <div class=\"nav-link\" ng-if=\"$ctrl.isAdmin()\" ui-sref=\"admin\">\n                    <i class=\"fa fa-cog\"></i>\n                    <li>ADMIN PAGE</li>\n                </div>\n                <div class=\"nav-link\" ng-if=\"$ctrl.isAuthenticated()\" ui-sref=\"profile\">\n                    <i class=\"fa fa-thumbs-up\"></i>\n                    <li>MY REVIEWS</li>\n                </div>\n                <div class=\"nav-link\" ng-if=\"$ctrl.isAuthenticated()\" ui-sref=\"beers\">\n                    <i class=\"fa fa-beer\"></i> \n                    <li>BEERS</li>\n                </div>\n                <div class=\"nav-link\" ng-if=\"$ctrl.isAuthenticated()\" ui-sref=\"about\" ng-click=\"$ctrl.logout()\">\n                    <i class=\"fa fa-sign-out\"></i>  \n                    <li>LOGOUT</li>\n                </div>\n                <div class=\"nav-link\" ng-if=\"!$ctrl.isAuthenticated()\" ui-sref=\"beers\">\n                    <i class=\"fa fa-sign-in\"></i>\n                    <li>SIGNIN</li>\n                </div>                \n            </nav>\n    </footer>\n</section>\n";
+	module.exports = "<section ng-class=\"$ctrl.styles.about\">\n    <header>\n        <div class=\"app-name\">\n            <h1 ui-sref=\"about\">\n                <span>HopHub</span>\n            </h1>\n        </div>\n    </header>\n    <div class=\"sub-heading\">\n        <h2>Welcome!</h2>\n        <div class=\"bottle-btn\" ui-sref=\"beers\">\n                <button><span>Get Started</span></button>\n                <div></div>\n        </div>\n    </div> \n    <section class=\"content\">\n        <ui-view></ui-view>\n    </section>\n    <footer>\n        <nav class=\"tabs\">\n            <div class=\"nav-link\" ng-if=\"$ctrl.isAdmin()\" ui-sref=\"admin\">\n                <i class=\"fa fa-cog\"></i>\n                <li><span>ADMIN PAGE</span></li>\n            </div>\n            <div class=\"nav-link\" ng-if=\"$ctrl.isAuthenticated()\" ui-sref=\"profile\">\n                <i class=\"fa fa-thumbs-up\"></i>\n                <li><span>MY REVIEWS</span></li>\n            </div>\n            <div class=\"nav-link\" ng-if=\"$ctrl.isAuthenticated()\" ui-sref=\"beers\">\n                <i class=\"fa fa-beer\"></i> \n                <li><span>BEERS</span></li>\n            </div>\n            <div class=\"nav-link\" ng-if=\"$ctrl.isAuthenticated()\" ui-sref=\"about\" ng-click=\"$ctrl.logout()\">\n                <i class=\"fa fa-sign-out\"></i>  \n                <li><span>LOG OUT</span></li>\n            </div>\n            <div class=\"nav-link\" ng-if=\"!$ctrl.isAuthenticated()\" ng-click=\"$ctrl.login()\">\n                <i class=\"fa fa-sign-in\"></i>\n                <li><span>LOG IN</span></li>\n            </div>                \n        </nav>\n    </footer>\n</section>\n";
 
 /***/ },
 /* 22 */
@@ -34155,7 +34158,7 @@
 /* 25 */
 /***/ function(module, exports) {
 
-	module.exports = "<section ng-class=\"$ctrl.styles.signin\">\n\t<h2>Sign in to HopHub</h2>\n\t<form name=\"auth\" ng-submit=\"$ctrl.authenticate()\">\n\t\t<div>\n            <label for=\"username\">username: </label>\n            <input required type=\"text\" id=\"username\" ng-model=\"$ctrl.credentials.username\">\t\t\n        </div>\n\t\t<div>\n            <label for=\"password\">password: </label>\n            <input required type=\"password\" id=\"password\" ng-model=\"$ctrl.credentials.password\">\t\t\t\n\t\t</div>\n\t\t<button type=\"submit\">Submit</button>\n\t</form>\n    <div class=\"error\" ng-if='$ctrl.error'>{{$ctrl.error}}</div>\t\n</section>\n";
+	module.exports = "<section ng-class=\"$ctrl.styles.signin\">\n\t<h2>Log in to HopHub</h2>\n\t<form name=\"auth\" ng-submit=\"$ctrl.authenticate()\">\n\t\t<div>\n            <label for=\"username\">username: </label>\n            <input required type=\"text\" id=\"username\" ng-model=\"$ctrl.credentials.username\">\t\t\n        </div>\n\t\t<div>\n            <label for=\"password\">password: </label>\n            <input required type=\"password\" id=\"password\" ng-model=\"$ctrl.credentials.password\">\t\t\t\n\t\t</div>\n\t\t<button type=\"submit\">Submit</button>\n\t</form>\n    <div class=\"error\" ng-if='$ctrl.error'>{{$ctrl.error}}</div>\t\n</section>\n";
 
 /***/ },
 /* 26 */
@@ -34262,7 +34265,7 @@
 /* 33 */
 /***/ function(module, exports) {
 
-	module.exports = "<section ng-class=\"$ctrl.styles.auth\">\n    <div class=\"sign-in-or-up\">\n        <label>\n            <input type=\"radio\" ng-model=\"$ctrl.action\" value=\"signin\">\n            Sign In\n        </label>\n        <label>\n            <input type=\"radio\" ng-model=\"$ctrl.action\" value=\"signup\">\n            Sign Up\n        </label>\n    </div>\n    <signin ng-if=\"$ctrl.action==='signin'\" success=\"$ctrl.success\"></signin>\n    <signup ng-if=\"$ctrl.action==='signup'\" success=\"$ctrl.success\"></signup>\n</section>\n\n";
+	module.exports = "<section ng-class=\"$ctrl.styles.auth\">\n    <div class=\"sign-in-or-up\">\n        <label>\n            <input type=\"radio\" ng-model=\"$ctrl.action\" value=\"signin\">\n            Log In\n        </label>\n        <label>\n            <input type=\"radio\" ng-model=\"$ctrl.action\" value=\"signup\">\n            Sign Up\n        </label>\n    </div>\n    <signin ng-if=\"$ctrl.action==='signin'\" success=\"$ctrl.success\"></signin>\n    <signup ng-if=\"$ctrl.action==='signup'\" success=\"$ctrl.success\"></signup>\n</section>\n\n";
 
 /***/ },
 /* 34 */
@@ -34332,7 +34335,7 @@
 /* 37 */
 /***/ function(module, exports) {
 
-	module.exports = "<section ng-class=\"$ctrl.styles.add_beers\">\n    <h3>Add a Beer</h3>\n    <form class=\"add-beer\" name=\"addBeer\">\n        <i class=\"fa fa-times fa-2x\" aria-hidden=\"true\" ng-click=\"$ctrl.backToAll()\"></i>\n        <h4>\n            Enter the Beer's Information\n        </h4>\n        <div class=\"entry-fields\">\n            <label for=\"brewery\">Brewery</label>\n            <input type=\"text\" id=\"brewery\" ng-model=\"$ctrl.brewery\" maxlength=\"50\" required>\n            <div class=\"message\">{{$ctrl.brewery.length >= 50 ? \"50 characters max\" : \"\"}}</div>\n            <label for=\"name\">Name</label>\n            <input type=\"text\" id=\"name\" ng-model=\"$ctrl.name\" maxlength=\"50\" required>\n            <div class=\"message\">{{$ctrl.name.length >= 50 ? \"50 characters max\" : \"\"}}</div>\n            <label for=\"style\">Style</label>\n            <input type=\"text\" id=\"style\" ng-model=\"$ctrl.style\" maxlength=\"30\" required>\n            <div class=\"message\">{{$ctrl.style.length >= 30 ? \"30 characters max\" : \"\"}}</div>\n            <label for=\"abv\">ABV</label>\n            <input id=\"abv\" type=\"number\" step=\"0.5\" min=\"1\" max=\"20\" ng-model=\"$ctrl.abv\">\n            <div class=\"message\">{{$ctrl.abv >= 20 ? \"20 percent max\" : \"\"}}</div>\n        </div>\n        <button ng-click=\"$ctrl.addBeer()\" ng-disabled=\"addBeer.$invalid\">Add</button>      \n    </form>\n</section>\n";
+	module.exports = "<section ng-class=\"$ctrl.styles.add_beers\">\n    <h3>Add a Beer</h3>\n    <form class=\"add-beer\" name=\"addBeer\">\n        <i class=\"fa fa-times fa-2x\" aria-hidden=\"true\" ng-click=\"$ctrl.backToAll()\"></i>\n        <h4>\n            Enter the Beer's Information\n        </h4>\n        <div class=\"entry-fields\">\n            <label for=\"brewery\">Brewery</label>\n            <input type=\"text\" id=\"brewery\" ng-model=\"$ctrl.brewery\" maxlength=\"50\" required>\n            <div class=\"message\">{{$ctrl.brewery.length >= 50 ? \"50 characters max\" : \"\"}}</div>\n            <label for=\"name\">Name</label>\n            <input type=\"text\" id=\"name\" ng-model=\"$ctrl.name\" maxlength=\"50\" required>\n            <div class=\"message\">{{$ctrl.name.length >= 50 ? \"50 characters max\" : \"\"}}</div>\n            <label for=\"style\">Style</label>\n            <input type=\"text\" id=\"style\" ng-model=\"$ctrl.style\" maxlength=\"30\" required>\n            <div class=\"message\">{{$ctrl.style.length >= 30 ? \"30 characters max\" : \"\"}}</div>\n            <label for=\"abv\">ABV</label>\n            <input id=\"abv\" type=\"number\" step=\"0.1\" min=\"1\" max=\"20\" ng-model=\"$ctrl.abv\">\n            <div class=\"message\">{{$ctrl.abv >= 20 ? \"20 percent max\" : \"\"}}</div>\n        </div>\n        <button ng-click=\"$ctrl.addBeer()\" ng-disabled=\"addBeer.$invalid\">Add</button>      \n    </form>\n</section>\n";
 
 /***/ },
 /* 38 */
@@ -34444,6 +34447,9 @@
 	
 	function controller(userService, $state) {
 	    this.styles = _admin4.default;
+	    this.login = function () {
+	        return userService.login();
+	    };
 	    this.logout = function () {
 	        return userService.logout();
 	    };
@@ -34468,7 +34474,7 @@
 /* 45 */
 /***/ function(module, exports) {
 
-	module.exports = "<section ng-class=\"$ctrl.styles.admin\">\n    <header>\n        <div class=\"app-name\">\n            <h1 ui-sref=\"about\">HopHub</h1>\n        </div>\n    </header>\n    <div class=\"sub-heading\">\n        <h2>Admin<h2>\n        <button ng-click=\"$ctrl.manageUsers(beer._id)\">Manage Users</button>\n        <button ng-click=\"$ctrl.manageBeers(beer._id)\">Manage Beers</button>\n        <button ng-click=\"$ctrl.manageReviews(beer._id)\">Manage Reviews</button>\n    </div>\n    <section class=\"content\">\n        <ui-view></ui-view>\n    </section>\n    <footer>\n        <nav class=\"tabs\">\n                <div class=\"nav-link\" ng-if=\"$ctrl.isAdmin()\" ui-sref=\"admin\">\n                    <i class=\"fa fa-cog\"></i>\n                    <li>ADMIN PAGE</li>\n                </div>\n                <div class=\"nav-link\" ng-if=\"$ctrl.isAuthenticated()\" ui-sref=\"profile\">\n                    <i class=\"fa fa-thumbs-up\"></i>\n                    <li>MY REVIEWS</li>\n                </div>\n                <div class=\"nav-link\" ng-if=\"$ctrl.isAuthenticated()\" ui-sref=\"beers\">\n                    <i class=\"fa fa-beer\"></i> \n                    <li>BEERS</li>\n                </div>\n                <div class=\"nav-link\" ng-if=\"$ctrl.isAuthenticated()\" ui-sref=\"about\" ng-click=\"$ctrl.logout()\">\n                    <i class=\"fa fa-sign-out\"></i>  \n                    <li>LOGOUT</li>\n                </div>\n                <div class=\"nav-link\" ng-if=\"!$ctrl.isAuthenticated()\" ui-sref=\"beers\">\n                    <i class=\"fa fa-sign-in\"></i>\n                    <li>SIGNIN</li>\n                </div>                \n            </nav>\n    </footer>\n</section>\n";
+	module.exports = "<section ng-class=\"$ctrl.styles.admin\">\n    <header>\n        <div class=\"app-name\">\n            <h1 ui-sref=\"about\">\n                <span>HopHub</span>\n            </h1>\n        </div>\n    </header>\n    <div class=\"sub-heading\">\n        <h2>Admin<h2>\n        <button ng-click=\"$ctrl.manageUsers(beer._id)\">Manage Users</button>\n        <button ng-click=\"$ctrl.manageBeers(beer._id)\">Manage Beers</button>\n        <button ng-click=\"$ctrl.manageReviews(beer._id)\">Manage Reviews</button>\n    </div>\n    <section class=\"content\">\n        <ui-view></ui-view>\n    </section>\n    <footer>\n        <nav class=\"tabs\">\n            <div class=\"nav-link\" ng-if=\"$ctrl.isAdmin()\" ui-sref=\"admin\">\n                <i class=\"fa fa-cog\"></i>\n                <li><span>ADMIN PAGE</span></li>\n            </div>\n            <div class=\"nav-link\" ng-if=\"$ctrl.isAuthenticated()\" ui-sref=\"profile\">\n                <i class=\"fa fa-thumbs-up\"></i>\n                <li><span>MY REVIEWS</span></li>\n            </div>\n            <div class=\"nav-link\" ng-if=\"$ctrl.isAuthenticated()\" ui-sref=\"beers\">\n                <i class=\"fa fa-beer\"></i> \n                <li><span>BEERS</span></li>\n            </div>\n            <div class=\"nav-link\" ng-if=\"$ctrl.isAuthenticated()\" ui-sref=\"about\" ng-click=\"$ctrl.logout()\">\n                <i class=\"fa fa-sign-out\"></i>  \n                <li><span>LOG OUT</span></li>\n            </div>\n            <div class=\"nav-link\" ng-if=\"!$ctrl.isAuthenticated()\" ng-click=\"$ctrl.login()\">\n                <i class=\"fa fa-sign-in\"></i>\n                <li><span>LOG IN</span></li>\n            </div>                \n        </nav>\n    </footer>\n</section>\n";
 
 /***/ },
 /* 46 */
@@ -34657,6 +34663,9 @@
 	
 	function controller(userService, $state) {
 	    this.styles = _beer4.default;
+	    this.login = function () {
+	        return userService.login();
+	    };
 	    this.logout = function () {
 	        return userService.logout();
 	    };
@@ -34675,7 +34684,7 @@
 /* 61 */
 /***/ function(module, exports) {
 
-	module.exports = "<section ng-class=\"$ctrl.styles.beer\">\n    <header>\n        <div class=\"app-name\">\n            <h1 ui-sref=\"about\">HopHub</h1>\n        </div>\n    </header>\n    <div class=\"sub-heading\">\n        <h2>Reviews!</h2>\n        <div class=\"bottle-btn\" ng-click=\"$ctrl.goToAddReview()\">\n                <button><span>Add a Review</span></button>\n                <div></div>\n        </div>\n    </div>\n    <section class=\"content\">\n        <ui-view></ui-view>\n    </section>\n    <footer>\n        <nav class=\"tabs\">\n                <div class=\"nav-link\" ng-if=\"$ctrl.isAdmin()\" ui-sref=\"admin\">\n                    <i class=\"fa fa-cog\"></i>\n                    <li>ADMIN PAGE</li>\n                </div>\n                <div class=\"nav-link\" ng-if=\"$ctrl.isAuthenticated()\" ui-sref=\"profile\">\n                    <i class=\"fa fa-thumbs-up\"></i>\n                    <li>MY REVIEWS</li>\n                </div>\n                <div class=\"nav-link\" ng-if=\"$ctrl.isAuthenticated()\" ui-sref=\"beers\">\n                    <i class=\"fa fa-beer\"></i> \n                    <li>BEERS</li>\n                </div>\n                <div class=\"nav-link\" ng-if=\"$ctrl.isAuthenticated()\" ui-sref=\"about\" ng-click=\"$ctrl.logout()\">\n                    <i class=\"fa fa-sign-out\"></i>  \n                    <li>LOGOUT</li>\n                </div>\n                <div class=\"nav-link\" ng-if=\"!$ctrl.isAuthenticated()\" ui-sref=\"beers\">\n                    <i class=\"fa fa-sign-in\"></i>\n                    <li>SIGNIN</li>\n                </div>                \n            </nav>\n    </footer>\n</section>\n";
+	module.exports = "<section ng-class=\"$ctrl.styles.beer\">\n    <header>\n        <div class=\"app-name\">\n            <h1 ui-sref=\"about\">\n                <span>HopHub</span>\n            </h1>\n        </div>\n    </header>\n    <div class=\"sub-heading\">\n        <h2>Reviews!</h2>\n        <div class=\"bottle-btn\" ng-click=\"$ctrl.goToAddReview()\">\n                <button><span>Add a Review</span></button>\n                <div></div>\n        </div>\n    </div>\n    <section class=\"content\">\n        <ui-view></ui-view>\n    </section>\n    <footer>\n        <nav class=\"tabs\">\n            <div class=\"nav-link\" ng-if=\"$ctrl.isAdmin()\" ui-sref=\"admin\">\n                <i class=\"fa fa-cog\"></i>\n                <li><span>ADMIN PAGE</span></li>\n            </div>\n            <div class=\"nav-link\" ng-if=\"$ctrl.isAuthenticated()\" ui-sref=\"profile\">\n                <i class=\"fa fa-thumbs-up\"></i>\n                <li><span>MY REVIEWS</span></li>\n            </div>\n            <div class=\"nav-link\" ng-if=\"$ctrl.isAuthenticated()\" ui-sref=\"beers\">\n                <i class=\"fa fa-beer\"></i> \n                <li><span>BEERS</span></li>\n            </div>\n            <div class=\"nav-link\" ng-if=\"$ctrl.isAuthenticated()\" ui-sref=\"about\" ng-click=\"$ctrl.logout()\">\n                <i class=\"fa fa-sign-out\"></i>  \n                <li><span>LOG OUT</span></li>\n            </div>\n            <div class=\"nav-link\" ng-if=\"!$ctrl.isAuthenticated()\" ng-click=\"$ctrl.login()\">\n                <i class=\"fa fa-sign-in\"></i>\n                <li><span>LOG IN</span></li>\n            </div>                \n        </nav>\n    </footer>\n</section>\n";
 
 /***/ },
 /* 62 */
@@ -34715,6 +34724,9 @@
 	
 	function controller(userService, $state) {
 	    this.styles = _beers4.default;
+	    this.login = function () {
+	        return userService.login();
+	    };
 	    this.logout = function () {
 	        return userService.logout();
 	    };
@@ -34733,7 +34745,7 @@
 /* 65 */
 /***/ function(module, exports) {
 
-	module.exports = "<section ng-class=\"$ctrl.styles.beers\">\n    <header>\n        <div class=\"app-name\">\n            <h1 ui-sref=\"about\">HopHub</h1>\n        </div>\n    </header>\n    <div class=\"sub-heading\">\n        <h2>Beers!</h2>\n        <div class=\"bottle-btn\" ng-click=\"$ctrl.goToAddBeer()\">\n                <button><span>Add a Beer</span></button>\n                <div></div>\n        </div>\n    </div>    \n    <section class=\"content\">           \n        <ui-view></ui-view>\n    </section>\n    <footer>\n        <nav class=\"tabs\">\n                <div class=\"nav-link\" ng-if=\"$ctrl.isAdmin()\" ui-sref=\"admin\">\n                    <i class=\"fa fa-cog\"></i>\n                    <li>ADMIN PAGE</li>\n                </div>\n                <div class=\"nav-link\" ng-if=\"$ctrl.isAuthenticated()\" ui-sref=\"profile\">\n                    <i class=\"fa fa-thumbs-up\"></i>\n                    <li>MY REVIEWS</li>\n                </div>\n                <div class=\"nav-link\" ng-if=\"$ctrl.isAuthenticated()\" ui-sref=\"beers\">\n                    <i class=\"fa fa-beer\"></i> \n                    <li>BEERS</li>\n                </div>\n                <div class=\"nav-link\" ng-if=\"$ctrl.isAuthenticated()\" ui-sref=\"about\" ng-click=\"$ctrl.logout()\">\n                    <i class=\"fa fa-sign-out\"></i>  \n                    <li>LOGOUT</li>\n                </div>\n                <div class=\"nav-link\" ng-if=\"!$ctrl.isAuthenticated()\" ui-sref=\"beers\">\n                    <i class=\"fa fa-sign-in\"></i>\n                    <li>SIGNIN</li>\n                </div>                \n            </nav>\n    </footer>\n</section>\n";
+	module.exports = "<section ng-class=\"$ctrl.styles.beers\">\n    <header>\n        <div class=\"app-name\">\n            <h1 ui-sref=\"about\">\n                <span>HopHub</span>\n            </h1>\n        </div>\n    </header>\n    <div class=\"sub-heading\">\n        <h2>Beers!</h2>\n        <div class=\"bottle-btn\" ng-click=\"$ctrl.goToAddBeer()\">\n                <button><span>Add a Beer</span></button>\n                <div></div>\n        </div>\n    </div>    \n    <section class=\"content\">           \n        <ui-view></ui-view>\n    </section>\n    <footer>\n        <nav class=\"tabs\">\n            <div class=\"nav-link\" ng-if=\"$ctrl.isAdmin()\" ui-sref=\"admin\">\n                <i class=\"fa fa-cog\"></i>\n                <li><span>ADMIN PAGE</span></li>\n            </div>\n            <div class=\"nav-link\" ng-if=\"$ctrl.isAuthenticated()\" ui-sref=\"profile\">\n                <i class=\"fa fa-thumbs-up\"></i>\n                <li><span>MY REVIEWS</span></li>\n            </div>\n            <div class=\"nav-link\" ng-if=\"$ctrl.isAuthenticated()\" ui-sref=\"beers\">\n                <i class=\"fa fa-beer\"></i> \n                <li><span>BEERS</span></li>\n            </div>\n            <div class=\"nav-link\" ng-if=\"$ctrl.isAuthenticated()\" ui-sref=\"about\" ng-click=\"$ctrl.logout()\">\n                <i class=\"fa fa-sign-out\"></i>  \n                <li><span>LOG OUT</span></li>\n            </div>\n            <div class=\"nav-link\" ng-if=\"!$ctrl.isAuthenticated()\" ng-click=\"$ctrl.login()\">\n                <i class=\"fa fa-sign-in\"></i>\n                <li><span>LOG IN</span></li>\n            </div>                \n        </nav>\n    </footer>\n</section>\n";
 
 /***/ },
 /* 66 */
@@ -35011,8 +35023,8 @@
 	
 	function controller(userService, $state) {
 	    this.styles = _profile4.default;
-	    this.backToBeers = function () {
-	        $state.go('beers');
+	    this.login = function () {
+	        return userService.login();
 	    };
 	    this.logout = function () {
 	        return userService.logout();
@@ -35023,13 +35035,16 @@
 	    this.isAdmin = function () {
 	        return userService.isAdmin();
 	    };
+	    this.backToBeers = function () {
+	        $state.go('beers');
+	    };
 	}
 
 /***/ },
 /* 85 */
 /***/ function(module, exports) {
 
-	module.exports = "<section ng-class=\"$ctrl.styles.profile\">\n    <header>\n        <div class=\"app-name\">\n            <h1 ui-sref=\"about\">HopHub</h1>\n        </div>\n    </header>\n    <div class=\"sub-heading\">\n        <h2>Reviews!</h2>\n        <div class=\"bottle-btn\" ng-click=\"$ctrl.backToBeers()\">\n                <button><span>Back to Beers</span></button>\n                <div></div>\n        </div>\n    </div>\n    <section class=\"content\">\n        <ui-view></ui-view>\n    </section>\n    <footer>\n        <nav class=\"tabs\">\n                <div class=\"nav-link\" ng-if=\"$ctrl.isAdmin()\" ui-sref=\"admin\">\n                    <i class=\"fa fa-cog\"></i>\n                    <li>ADMIN PAGE</li>\n                </div>\n                <div class=\"nav-link\" ng-if=\"$ctrl.isAuthenticated()\" ui-sref=\"profile\">\n                    <i class=\"fa fa-thumbs-up\"></i>\n                    <li>MY REVIEWS</li>\n                </div>\n                <div class=\"nav-link\" ng-if=\"$ctrl.isAuthenticated()\" ui-sref=\"beers\">\n                    <i class=\"fa fa-beer\"></i> \n                    <li>BEERS</li>\n                </div>\n                <div class=\"nav-link\" ng-if=\"$ctrl.isAuthenticated()\" ui-sref=\"about\" ng-click=\"$ctrl.logout()\">\n                    <i class=\"fa fa-sign-out\"></i>  \n                    <li>LOGOUT</li>\n                </div>\n                <div class=\"nav-link\" ng-if=\"!$ctrl.isAuthenticated()\" ui-sref=\"beers\">\n                    <i class=\"fa fa-sign-in\"></i>\n                    <li>SIGNIN</li>\n                </div>                \n            </nav>\n    </footer>\n</section>\n";
+	module.exports = "<section ng-class=\"$ctrl.styles.profile\">\n    <header>\n        <div class=\"app-name\">\n            <h1 ui-sref=\"about\">\n                <span>HopHub</span>\n            </h1>\n        </div>\n    </header>\n    <div class=\"sub-heading\">\n        <h2>Reviews!</h2>\n        <div class=\"bottle-btn\" ng-click=\"$ctrl.backToBeers()\">\n                <button><span>Back to Beers</span></button>\n                <div></div>\n        </div>\n    </div>\n    <section class=\"content\">\n        <ui-view></ui-view>\n    </section>\n    <footer>\n        <nav class=\"tabs\">\n            <div class=\"nav-link\" ng-if=\"$ctrl.isAdmin()\" ui-sref=\"admin\">\n                <i class=\"fa fa-cog\"></i>\n                <li><span>ADMIN PAGE</span></li>\n            </div>\n            <div class=\"nav-link\" ng-if=\"$ctrl.isAuthenticated()\" ui-sref=\"profile\">\n                <i class=\"fa fa-thumbs-up\"></i>\n                <li><span>MY REVIEWS</span></li>\n            </div>\n            <div class=\"nav-link\" ng-if=\"$ctrl.isAuthenticated()\" ui-sref=\"beers\">\n                <i class=\"fa fa-beer\"></i> \n                <li><span>BEERS</span></li>\n            </div>\n            <div class=\"nav-link\" ng-if=\"$ctrl.isAuthenticated()\" ui-sref=\"about\" ng-click=\"$ctrl.logout()\">\n                <i class=\"fa fa-sign-out\"></i>  \n                <li><span>LOG OUT</span></li>\n            </div>\n            <div class=\"nav-link\" ng-if=\"!$ctrl.isAuthenticated()\" ng-click=\"$ctrl.login()\">\n                <i class=\"fa fa-sign-in\"></i>\n                <li><span>LOG IN</span></li>\n            </div>                \n        </nav>\n    </footer>\n</section>\n";
 
 /***/ },
 /* 86 */
@@ -35307,9 +35322,9 @@
 	    value: true
 	});
 	exports.default = userService;
-	userService.$inject = ['tokenService', '$http', 'apiUrl'];
+	userService.$inject = ['tokenService', '$http', 'apiUrl', 'ngDialog'];
 	
-	function userService(token, $http, apiUrl) {
+	function userService(token, $http, apiUrl, ngDialog) {
 	
 	    var current = token.get();
 	    if (current) {
@@ -35355,12 +35370,28 @@
 	        return user;
 	    }
 	
+	    function openLoginModal() {
+	        var dialog = ngDialog.open({
+	            template: '<user-auth success="success"></user-auth>',
+	            plain: true,
+	            className: 'ngdialog-theme-default custom-width-250 custom-width-350',
+	            controller: ['$scope', function ($scope) {
+	                $scope.success = function () {
+	                    dialog.close();
+	                };
+	            }]
+	        });
+	    }
+	
 	    return {
 	        isAuthenticated: function isAuthenticated() {
 	            return !!token.get();
 	        },
 	        logout: function logout() {
 	            token.remove();
+	        },
+	        login: function login() {
+	            openLoginModal();
 	        },
 	        isAdmin: function isAdmin() {
 	            if (!!token.get()) {
@@ -45643,6 +45674,9 @@
 	        name: 'beers',
 	        url: '/beers',
 	        abstract: true,
+	        data: {
+	            public: true
+	        },
 	        default: '.all',
 	        resolve: {
 	            beers: ['beerService', function (beers) {
@@ -45661,6 +45695,9 @@
 	    $stateProvider.state({
 	        name: 'beers.add',
 	        url: '/add',
+	        data: {
+	            public: false
+	        },
 	        component: 'addBeers'
 	    });
 	
@@ -45668,6 +45705,9 @@
 	        name: 'beer',
 	        url: '/beers/:id',
 	        abstract: true,
+	        data: {
+	            public: true
+	        },
 	        default: '.reviews',
 	        resolve: {
 	            beer: ['$transition$', 'beerService', function (t, beers) {
@@ -45686,6 +45726,9 @@
 	    $stateProvider.state({
 	        name: 'beer.addReview',
 	        url: '/add',
+	        data: {
+	            public: false
+	        },
 	        component: 'addReview'
 	    });
 	

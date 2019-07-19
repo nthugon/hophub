@@ -10,6 +10,7 @@ controller.$inject = ['userService'];
 
 function controller(userService) {
     this.styles = styles;
+    this.login = () => userService.login();
     this.logout = () => userService.logout();
     this.isAuthenticated = () => userService.isAuthenticated();
     this.isAdmin = () => userService.isAdmin();

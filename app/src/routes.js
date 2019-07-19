@@ -87,6 +87,9 @@ export default function routes($stateProvider, $urlRouterProvider) {
         name: 'beers',
         url: '/beers',
         abstract: true,
+        data: {
+            public: true
+        },
         default: '.all',
         resolve: {
             beers: ['beerService', beers => {
@@ -105,6 +108,9 @@ export default function routes($stateProvider, $urlRouterProvider) {
     $stateProvider.state({
         name: 'beers.add',
         url: '/add',
+        data: {
+            public: false
+        },
         component: 'addBeers'
     });
 
@@ -112,6 +118,9 @@ export default function routes($stateProvider, $urlRouterProvider) {
         name: 'beer',
         url: '/beers/:id',
         abstract: true,
+        data: {
+            public: true
+        },
         default: '.reviews',
         resolve: {
             beer: ['$transition$', 'beerService', (t, beers) => {
@@ -130,6 +139,9 @@ export default function routes($stateProvider, $urlRouterProvider) {
     $stateProvider.state({
         name: 'beer.addReview',
         url: '/add',
+        data: {
+            public: false
+        },
         component: 'addReview'
     });
 
